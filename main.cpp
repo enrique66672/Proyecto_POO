@@ -25,7 +25,8 @@ Vehiculo personalizarVehiculo();
 void escogerTransmision(Vehiculo&);
 void escogerFrenos(Vehiculo&);
 void escogerTraccion(Vehiculo&);
-void pedirDatosAuto(Vehiculo automovil);
+void escogerColor(Vehiculo&);
+void escogerRines(Vehiculo&);
 
 void vehiculosstock(Vehiculo[], int&);
 void superAdmin(Administrador&, int&);
@@ -422,6 +423,55 @@ void escogerTraccion(Vehiculo&v) {
         }
     }
     
+}
+
+void escogerColor(Vehiculo&v) {
+    int res;
+    cout<<"1.- Negro"<<endl;
+    cout<<"2.- Blanco"<<endl;
+    cout<<"3.- Plomo"<<endl;
+    cout<<"4.- Rojo"<<endl;
+    cout<<"5.- Azul"<<endl;
+    cout<<"6.- Plata"<<endl;
+    cout<<"Color de automovil: "<<endl;
+    cin>>res;
+    switch(res) {
+        case 1: v.setColor("Negro"); break;
+        case 2: v.setColor("Blanco"); break;
+        case 3: v.setColor("Plomo"); break;
+        case 4: v.setColor("Rojo"); break;
+        case 5: v.setColor("Azul"); break;
+        case 6: v.setColor("Plata"); break;
+        default: cout<<"Opcion no disponible"<<endl; break;
+    }
+}
+
+void escogerRines(Vehiculo&v) {
+    int res;
+    if(v.getTipoVehiculo() == "Clasico" || v.getTipoVehiculo() == "Sedan" || v.getTipoVehiculo() == "Familiar") {
+        cout<<"1.- 13 in"<<endl;
+        cout<<"2.- 14 in"<<endl;
+        cout<<"3.- 15 in"<<endl;
+        cout<<"Tamaño de Rines: "<<endl;
+        cin>>res;
+        switch(res) {
+            case 1: v.setRin(13); break;
+            case 2: v.setRin(14); break;
+            case 3: v.setRin(15); break;
+            default: cout<<"Opcion no disponible"<<endl; break;
+        }
+    }
+    else if(v.getTipoVehiculo() == "Deportivo" || v.getTipoVehiculo() == "Descapotable" || v.getTipoVehiculo() == "PickUp") {
+        cout<<"1.- 16 in"<<endl;
+        cout<<"2.- 17 in"<<endl;
+        cout<<"Tamaño de Rines: "<<endl;
+        cin>>res;
+        switch(res) {
+            case 1: v.setRin(16); break;
+            case 2: v.setRin(17); break;
+            default: cout<<"Opcion no disponible"<<endl; break;
+        }
+    }
 }
 
 // void pedirDatosAuto(Vehiculo automovil) {
