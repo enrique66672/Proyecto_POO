@@ -10,6 +10,7 @@
 #define ADMIN 3
 #define COM 30
 #define AUTOS 50
+#define VEN 30
 
 using namespace std;
 
@@ -31,15 +32,17 @@ void escogerRines(Vehiculo&);
 void vehiculosstock(Vehiculo[], int&);
 void superAdmin(Administrador&, int&);
 int buscarAdministrador(Administrador[], int&);
-int iniciarSesion(Administrador[], int&);
+void iniciarSesion(Administrador[], int&);
 Administrador crearAdministrador();
 void mostrarAdministradores(Administrador[], int&);
 void menuSuperAdministrador(Administrador[], int&);
+void menuAdministradorNorm(Venta[], int&);
 
 int main() {
     Administrador* administradores = new Administrador[ADMIN];
     Comprador* compradores = new Comprador[COM];
     Vehiculo* vehiculos = new Vehiculo[AUTOS];
+    Venta* ventas = new Venta[VEN];
     int respuesta, r;
     int nAdmin = 0, nAutos = 0;
     Entrada entrada;
@@ -56,20 +59,13 @@ int main() {
         cin>>respuesta;
 
         switch (respuesta){
-        case 1:
-            entrada.entero = iniciarSesion(administradores, nAdmin);
-            if(entrada.entero == 0) {
-                menuSuperAdministrador(administradores, nAdmin);
-            }
-            if(entrada.entero != 0) {
-                //Menú de administrador normal
-            }
+        case 1: // Administracion
+            iniciarSesion(administradores, nAdmin);            
             break;
-        // case 2:
-            // break;
+        case 2: // Comprador
+            break;
         case 3:
             cout<<"Saliendo..."<<endl;
-            // _sleep(100);
             break;        
         default:
             cout<<"Error"<<endl;
@@ -474,22 +470,6 @@ void escogerRines(Vehiculo&v) {
     }
 }
 
-// void pedirDatosAuto(Vehiculo automovil) {
-//     automovil.setNumCilindros();
-//     automovil.setTransmision();
-//     automovil.setChasis();
-//     automovil.setFrenos();
-//     automovil.setTraccion();
-//     automovil.setSuspension();
-//     automovil.setMarca();
-//     automovil.setColor();
-//     automovil.setRin();
-//     automovil.setLlanta();
-//     automovil.setModelo();
-//     automovil.setPrecio();
-//     automovil.setTipoVehiculo()
-// }
-
 
 void superAdmin(Administrador&admin, int&nAdmin) {
     admin.setId("ad0001", "Administrador");
@@ -514,7 +494,7 @@ int buscarAdministrador(Administrador admin[], int&nAdmin){
     return indice;
 }
 
-int iniciarSesion(Administrador admin[], int&nAdmin) {
+void iniciarSesion(Administrador admin[], int&nAdmin) {
     string datos1, datos2;
     int indice = -1, res;
     cin.ignore();
@@ -527,29 +507,17 @@ int iniciarSesion(Administrador admin[], int&nAdmin) {
 
         if((indice == 0) && (datos1 == admin[indice].getId()) && (datos2 == admin[indice].getPassword())) {
             cout<<"Acceso como Super Administrador"<<endl;
-            // //Menú de administrador normal + poder agregar otro administrador
-            // cout<<"1.- Agregar un administrador"<<endl;
-            // cin>>res;
-            // switch(res) {
-            //     case 1:
-            //         admin[nAdmin] = crearAdministrador();
-            //         nAdmin++;
-            //         cout<<"Administrador creado"<<endl;
-            //         break;
-            //     default:
-            //         cout<<"Opcion no establecida"<<endl;
-            //         break;
-            // }
+            menuSuperAdministrador(admin, nAdmin);
         }
         else if((datos1 == admin[indice].getId()) && (datos2 == admin[indice].getPassword())) {
             cout<<"Acceso consedido"<<endl;
+            menuAdministradorNorm();
         }
         else{
             cout<<"Acceso denegado"<<endl;
         }
     }
     
-    return indice;
 }
 
 Administrador crearAdministrador() {
@@ -604,6 +572,35 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin){
                 mostrarAdministradores(admin, nAdmin);
                 break;
             case 3: break;
+            default:
+                cout<<"Opcion no establecida"<<endl;
+                break;
+        }
+    }
+    while(entrada.entero != 3);
+}
+
+void menuAdministradorNorm(Venta v[], int&nVentas){
+    Entrada entrada;
+    do{
+        cout<<"Opciones de super administrador"<<endl;
+        cout<<"1.- Visualizar ventas"<<endl;
+        cout<<"2.- Visualizar una venta"<<endl;
+        cout<<"3.- Mostrar Vehiculos existente"<<endl;
+        cout<<"4.- Mostrar total vendido"<<endl;
+        cout<<"5.- Regresar al inicio"<<endl;
+        cout<<"Ingrese respuesta"<<endl;
+        cin>>entrada.entero;
+        switch(entrada.entero) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3: 
+                break;
+            case 4:
+                break;
+            case 5: break;
             default:
                 cout<<"Opcion no establecida"<<endl;
                 break;
