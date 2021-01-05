@@ -80,13 +80,10 @@ int main() {
 }
 
 Vehiculo personalizarVehiculo() {
-
-    Vehiculo* a = new Deportivo[5];
-    // a[0]->Deportivo();
-
-    Vehiculo* automovil;
+    Vehiculo* automovil ; //En el arreglo estan el total de autos por categoria
+ 
     string respuesta;
-    Entrada entrada;
+    Entrada entrada; //Union para ahorrar memoria
     int res;
     cout<<"1.- Clasico"<<endl;
     cout<<"2.- Deportivo"<<endl;
@@ -145,6 +142,7 @@ Vehiculo personalizarVehiculo() {
     case 2:
         automovil = new Deportivo();
         automovil->setTipoVehiculo("Deportivo");
+        
         cout<<"1.- Porsche"<<endl;
         cout<<"2.- Mazda"<<endl;
         cout<<"3.- BMW"<<endl;
@@ -153,19 +151,54 @@ Vehiculo personalizarVehiculo() {
         cout<<"6.- Ford"<<endl;
         cout<<"Elija la marca: "<<endl;
         cin>>entrada.entero;
+        
         switch (entrada.entero) {
-        case 1: automovil->setMarca("Porsche"); break;
-        case 2: automovil->setMarca("Mazda"); break;
-        case 3: automovil->setMarca("BMW"); break;
-        case 4: automovil->setMarca("Honda"); break;
-        case 5: automovil->setMarca("Mercedes Benz"); break;
-        case 6: automovil->setMarca("Ford"); break;
+        case 1: automovil->setMarca("Porsche");
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+				
+        case 2: automovil->setMarca("Mazda");
+        		escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+				
+        case 3: automovil->setMarca("BMW");
+        		escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+				
+        case 4: automovil->setMarca("Honda");
+        		escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+				
+        case 5: automovil->setMarca("Mercedes Benz");
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+				
+        case 6: automovil->setMarca("Ford");
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil); 
+				break;
+				
         default: cout<<"Marca no disponible"<<endl; break;
+        
         }
+        
         break;
+        
     case 3:
         automovil = new Descapotable();
         automovil->setTipoVehiculo("Descapotable");
+        
         cout<<"1.- Fiat"<<endl;
         cout<<"2.- Mazda"<<endl;
         cout<<"3.- VolksWagen"<<endl;
@@ -175,15 +208,40 @@ Vehiculo personalizarVehiculo() {
         cout<<"Elija la marca: "<<endl;
         cin>>entrada.entero;
         switch (entrada.entero) {
-        case 1: automovil->setMarca("Fiat"); break;
-        case 2: automovil->setMarca("Mazda"); break;
-        case 3: automovil->setMarca("VolksWagen"); break;
-        case 4: automovil->setMarca("Ford"); break;
-        case 5: automovil->setMarca("Lotus Elise"); break;
-        case 6: automovil->setMarca("Audi"); break;
+        case 1: automovil->setMarca("Fiat"); 
+		 	escogerTransmision(*automovil);
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
+        case 2: automovil->setMarca("Mazda"); 
+		 	escogerTransmision(*automovil);
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
+        case 3: automovil->setMarca("VolksWagen");
+			escogerTransmision(*automovil);
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
+        case 4: automovil->setMarca("Ford");
+			escogerTransmision(*automovil);
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			 break;
+        case 5: automovil->setMarca("Lotus Elise");
+			escogerTransmision(*automovil);
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
+        case 6: automovil->setMarca("Audi");
+			escogerTransmision(*automovil);
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
         default: cout<<"Marca no disponible"<<endl; break;
         }
         break;
+        
     case 4:
         automovil = new Familiar();
         automovil->setTipoVehiculo("Familiar");
@@ -194,13 +252,30 @@ Vehiculo personalizarVehiculo() {
         cout<<"Elija la marca: "<<endl;
         cin>>entrada.entero;
         switch (entrada.entero) {
-        case 1: automovil->setMarca("Seat"); break;
-        case 2: automovil->setMarca("Subaru"); break;
-        case 3: automovil->setMarca("Peugout"); break;
-        case 4: automovil->setMarca("Kia"); break;
+        case 1: automovil->setMarca("Seat");
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil); 
+				break;
+        case 2: automovil->setMarca("Subaru");
+        		escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+        case 3: automovil->setMarca("Peugout"); 
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+        case 4: automovil->setMarca("Kia"); 
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
         default: cout<<"Marca no disponible"<<endl; break;
         }
         break;
+        
     case 5:
         automovil = new PicKup();
         automovil->setTipoVehiculo("PickUp");
@@ -212,14 +287,35 @@ Vehiculo personalizarVehiculo() {
         cout<<"Elija la marca: "<<endl;
         cin>>entrada.entero;
         switch (entrada.entero) {
-        case 1: automovil->setMarca("Chevrolet"); break;
-        case 2: automovil->setMarca("Ford"); break;
-        case 3: automovil->setMarca("Mitsubishi"); break;
-        case 4: automovil->setMarca("Nissan"); break;
-        case 5: automovil->setMarca("Toyota"); break;
+        case 1: automovil->setMarca("Chevrolet");
+			escogerTransmision(*automovil); 
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
+        case 2: automovil->setMarca("Ford"); 
+			escogerTransmision(*automovil); 
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
+        case 3: automovil->setMarca("Mitsubishi"); 
+			escogerTransmision(*automovil); 
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
+        case 4: automovil->setMarca("Nissan"); 
+			escogerTransmision(*automovil); 
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
+        case 5: automovil->setMarca("Toyota"); 
+			escogerTransmision(*automovil); 
+            escogerFrenos(*automovil);
+            escogerTraccion(*automovil);
+			break;
         default: cout<<"Marca no disponible"<<endl; break;
         }
         break;
+        
     case 6:
         automovil = new Sedan();
         automovil->setTipoVehiculo("Sedan");
@@ -232,19 +328,43 @@ Vehiculo personalizarVehiculo() {
         cout<<"Elija la marca: "<<endl;
         cin>>entrada.entero;
         switch (entrada.entero) {
-        case 1: automovil->setMarca("Chevrolet"); break;
-        case 2: automovil->setMarca("Ford"); break;
-        case 3: automovil->setMarca("Honda"); break;
-        case 4: automovil->setMarca("Hyundai"); break;
-        case 5: automovil->setMarca("Mazda"); break;
-        case 6: automovil->setMarca("Nissan"); break;
+        case 1: automovil->setMarca("Chevrolet");
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil); 
+				break;
+        case 2: automovil->setMarca("Ford");
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil); 
+				break;
+        case 3: automovil->setMarca("Honda");
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil); 
+				break;
+        case 4: automovil->setMarca("Hyundai"); 
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+        case 5: automovil->setMarca("Mazda"); 
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+        case 6: automovil->setMarca("Nissan"); 
+				escogerTransmision(*automovil);
+            	escogerFrenos(*automovil);
+            	escogerTraccion(*automovil);
+				break;
+				
         default: cout<<"Marca no disponible"<<endl; break;
         }
     default:
         cout<<"Opcion no disponible"<<endl;
         break;
     }
-
     return *automovil;
 }
 
