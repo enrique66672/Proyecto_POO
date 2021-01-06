@@ -20,10 +20,41 @@ public:
         aceleracion = _aceleracion;
     }
     ~Deportivo() {}
-    void setMotor() {}
+    void setMotor(){ 
+        int res;
+        cout << "1.- Boxer" << endl;
+        cout << "2.- A dos tiempos" << endl;
+        cout << "3.- A cuatro tiempos" << endl;
+        cout << "4.- V6" << endl;
+        cout << "5.- V8" << endl;
+        cout << "Elija el motor de su deportivo: " << endl;
+        cin>>res;
+
+        switch (res){
+            case 1: tipoMotor = "Boxer"; break;
+            case 2: tipoMotor = "A dos tiempos"; break;
+            case 3: tipoMotor = "A cuatro tiempos"; break;
+            case 4: tipoMotor = "V6"; break;
+            case 5: tipoMotor = "V8"; break;
+            default: cout<<"Opcion no disponible"<<endl; break;
+        }
+    }
     string getMotor(){ return tipoMotor; }
 
-    void setDireccion(string _tipoDireccion){ tipoDireccion = _tipoDireccion; }
+    void setDireccion(){ 
+        int res;
+        cout << "1.- Electrica" << endl;
+        cout << "2.- Mecanica" << endl;
+        cout << "3.- Hidraulica" << endl;
+        cout << "Elija la direccion que quiere: " << endl;
+        cin>>res;
+        switch (res){
+            case : tipoDireccion = "Electrica"; break;
+            case : tipoDireccion = "Mecanica"; break;
+            case : tipoDireccion = "Hidraulica"; break;
+            default: cout<<"Opcion no disponible"<<endl; break;
+        }
+    }
     string getDireccion(){ return tipoDireccion; }
 
     void setAceleracion() { aceleracion = (35 + rand() % 15)/10; }
