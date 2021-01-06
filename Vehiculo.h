@@ -30,9 +30,14 @@ public:
 	float getVelocidadMaxima(){ return velocidadMaxima; }
 
 	void setNumCilindros(){ 
-		if(tipoVehiculo == "Deportivo" || tipoVehiculo == "Sedan" || tipoVehiculo == "Clasico" || tipoVehiculo == "Descapotable") numCilindros = 4;
-		else if(tipoVehiculo == "Familiar") numCilindros = 6;
-		else if(tipoVehiculo == "PickUp") numCilindros = 8;
+		switch(tipoVehiculo) {
+			case "Deportivo":
+			case "Descapotable":
+			case "Clasico":
+			case "Sedan": numCilindros = 4; break;
+			case "Familiar": numCilindros = 6; break;
+			case "PickUp": numCilindros = 8; break;
+		}
 	}
 	int getNumCilindros(){ return numCilindros; }
 
@@ -40,15 +45,28 @@ public:
 	string getTransmision(){ return transmision; }
 
 	void setConsumo() {
-		if(tipoVehiculo == "Deportivo" || tipoVehiculo == "Descapotable") consumo = (100 + rand() % 50) / 10;
-		else if(tipoVehiculo == "Sedan") consumo = (130 + rand() % 50) / 10;
-		else if(tipoVehiculo == "Clasico") consumo = (120 + rand() % 50) / 10;
-		else if(tipoVehiculo == "Familiar") consumo = (90 + rand() % 20) / 10;
-		else if(tipoVehiculo == "PickUp") consumo = (70 + rand() % 50) / 10;
+		switch(tipoVehiculo) {
+			case "Sedan": consumo = (130 + rand() % 50) / 10; break;
+			case "Clasico": consumo = (120 + rand() % 50) / 10; break;
+			case "Descapotable":
+			case "Deportivo": consumo = (100 + rand() % 50) / 10; break;
+			case "Familiar": consumo = (90 + rand() % 20) / 10; break;
+			case "PickUp": consumo = (70 + rand() % 50) / 10; break;
+		}	
 	}
 	float getConsumo(){ return consumo; }
 	
-	void setChasis(string ch){ chasis = ch; }
+	// void setChasis(string ch){ chasis = ch; }
+	void setChasis() {
+		switch(tipoVehiculo) {
+			case "Sedan":
+			case "Familiar":
+			case "Deportivo":
+			case "Descapotable":
+			case "Clasico": chasis = "Autoportante"; break;
+			case "PickUp": chasis = "Independiente"; break;
+		}
+	}
 	string getChasis(){ return chasis; }
 
 	void setFrenos(string fr){ frenos = fr; }
@@ -57,7 +75,16 @@ public:
 	void setTraccion(string tra){ traccion = tra; }
 	string getTraccion(){ return traccion; }
 
-	void setSuspension(string sus){ suspension = sus; }
+	// void setSuspension(string sus){ suspension = sus; }
+	void setSuspension() {
+		string suspensiones[3] = {"Independiente", "Rigida", "Semirrigida"};
+		int k = rand() % 2;
+		switch(k) {
+			case 0: suspension = suspensiones[0]; break;
+			case 1: suspension = suspensiones[1]; break;
+			case 2: suspension = suspensiones[2]; break;
+		}
+	}
 	string getSuspension(){ return suspension; }
 
 	void setPuertas(int cabinas) {
@@ -86,6 +113,16 @@ public:
 	string getModelo(){ return modelo; }
 
 	void setPrecio(double _precio) { precio = _precio; }
+	void setPrecio(){
+		switch(tipoVehiculo) {
+			case "Sedan": precio = (250 + rand() % 250) * 1000 ; break;
+			case "Clasico": precio = (100 + rand() % 200) * 1000; break;
+			case "Descapotable":
+			case "Deportivo": precio = (750 + rand() % 450) * 1000; break;
+			case "Familiar": precio = (500 + rand() % 1000) * 1000; break;
+			case "PickUp": precio = (400 + rand() % 800) * 1000; break;
+		}		
+	}
 	double getPrecio() { return precio; }
 
 	void setTipoVehiculo(string tipo) { 
