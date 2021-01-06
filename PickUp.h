@@ -74,7 +74,7 @@ class PicKup: public Vehiculo{
 					res = -1;
 					cout << "Opcion no valida" << endl;
 				}
-			} while (res == "invalido" );			
+			} while (res == -1);			
 		}
 		bool getPuertasDeCarga(){ return puertaDeCarga; }
 		

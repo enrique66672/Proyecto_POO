@@ -49,9 +49,9 @@ public:
         cout << "Elija la direccion que quiere: " << endl;
         cin>>res;
         switch (res){
-            case : tipoDireccion = "Electrica"; break;
-            case : tipoDireccion = "Mecanica"; break;
-            case : tipoDireccion = "Hidraulica"; break;
+            case 1: tipoDireccion = "Electrica"; break;
+            case 2: tipoDireccion = "Mecanica"; break;
+            case 3: tipoDireccion = "Hidraulica"; break;
             default: cout<<"Opcion no disponible"<<endl; break;
         }
     }

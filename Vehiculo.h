@@ -29,15 +29,16 @@ public:
 	float getPotenciaMax(){ return potenciaMaxima; }
 	float getVelocidadMaxima(){ return velocidadMaxima; }
 
+	void setTipoVehiculo(string tipo) { 
+		tipoVehiculo = tipo; 
+		setNumCilindros();
+	}
+	string getTipoVehiculo() { return tipoVehiculo; }
+
 	void setNumCilindros(){ 
-		switch(tipoVehiculo) {
-			case "Deportivo":
-			case "Descapotable":
-			case "Clasico":
-			case "Sedan": numCilindros = 4; break;
-			case "Familiar": numCilindros = 6; break;
-			case "PickUp": numCilindros = 8; break;
-		}
+		if(tipoVehiculo == "Familiar") numCilindros = 6;
+		else if(tipoVehiculo == "PickUp") numCilindros = 8;
+		else numCilindros = 4; //Deportivo, Descapotable, Clasico, Sedan
 	}
 	int getNumCilindros(){ return numCilindros; }
 
@@ -45,27 +46,18 @@ public:
 	string getTransmision(){ return transmision; }
 
 	void setConsumo() {
-		switch(tipoVehiculo) {
-			case "Sedan": consumo = (130 + rand() % 50) / 10; break;
-			case "Clasico": consumo = (120 + rand() % 50) / 10; break;
-			case "Descapotable":
-			case "Deportivo": consumo = (100 + rand() % 50) / 10; break;
-			case "Familiar": consumo = (90 + rand() % 20) / 10; break;
-			case "PickUp": consumo = (70 + rand() % 50) / 10; break;
-		}	
+		if(tipoVehiculo == "Sedan") consumo = (130 + rand() % 50) / 10; 
+		else if(tipoVehiculo == "Clasico") consumo = (120 + rand() % 50) / 10;
+		else if(tipoVehiculo == "Familiar") consumo = (90 + rand() % 20) / 10;
+		else if(tipoVehiculo == "PickUp") consumo = (70 + rand() % 50) / 10;
+		else consumo = (100 + rand() % 50) / 10; //Deportivo y Descapotable	
 	}
 	float getConsumo(){ return consumo; }
 	
 	// void setChasis(string ch){ chasis = ch; }
-	void setChasis() {
-		switch(tipoVehiculo) {
-			case "Sedan":
-			case "Familiar":
-			case "Deportivo":
-			case "Descapotable":
-			case "Clasico": chasis = "Autoportante"; break;
-			case "PickUp": chasis = "Independiente"; break;
-		}
+	void setChasis(string tipoV) {
+		if(tipoVehiculo == "PickUp") chasis = "Independiente";
+		else chasis = "Autoportante"; //Clasico, Deportivo, Descapotable, Familiar, Sedan
 	}
 	string getChasis(){ return chasis; }
 
@@ -114,21 +106,13 @@ public:
 
 	void setPrecio(double _precio) { precio = _precio; }
 	void setPrecio(){
-		switch(tipoVehiculo) {
-			case "Sedan": precio = (250 + rand() % 250) * 1000 ; break;
-			case "Clasico": precio = (100 + rand() % 200) * 1000; break;
-			case "Descapotable":
-			case "Deportivo": precio = (750 + rand() % 450) * 1000; break;
-			case "Familiar": precio = (500 + rand() % 1000) * 1000; break;
-			case "PickUp": precio = (400 + rand() % 800) * 1000; break;
-		}		
+		if(tipoVehiculo == "Sedan") precio = (250 + rand() % 250) * 1000 ;
+		else if(tipoVehiculo == "Clasico") precio = (100 + rand() % 200) * 1000;
+		else if(tipoVehiculo == "Familiar") precio = (500 + rand() % 1000) * 1000;
+		else if(tipoVehiculo == "PickUp") precio = (400 + rand() % 800) * 1000;
+		else precio = (100 + rand() % 200) * 1000; //Descapotable y Deportivo	
 	}
 	double getPrecio() { return precio; }
 
-	void setTipoVehiculo(string tipo) { 
-		tipoVehiculo = tipo; 
-		setNumCilindros();
-	}
-	string getTipoVehiculo() { return tipoVehiculo; }
 };
 #endif

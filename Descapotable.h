@@ -7,15 +7,15 @@ class Descapotable : public Vehiculo
 {
 private:
    int pasajeros;
-   float maletero;
+   string maletero;
    string capo;
 public:
     Descapotable() : Vehiculo(){
         pasajeros = 0;
         capo = "";
-        maletero = 0;
+        maletero = "";
     }
-    Descapotable(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, int _pasajeros, string _capo, float _maletero) : Vehiculo(_numCilindros, _transmision, _consumo, _chasis, _frenos, _traccion, _suspension, _puertas, _marca, _color, _rines, _llantas, _modelo, _precio, _tipoVehiculo) {
+    Descapotable(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, int _pasajeros, string _capo, string _maletero) : Vehiculo(_numCilindros, _transmision, _consumo, _chasis, _frenos, _traccion, _suspension, _puertas, _marca, _color, _rines, _llantas, _modelo, _precio, _tipoVehiculo) {
         pasajeros = _pasajeros;
         capo = _capo;
         maletero = _maletero;
