@@ -28,6 +28,7 @@ void escogerFrenos(Vehiculo&);
 void escogerTraccion(Vehiculo&);
 void escogerColor(Vehiculo&);
 void escogerRines(Vehiculo&);
+void escogerLlantas(Vehiculo&);
 
 void vehiculosstock(Vehiculo[], int&);
 void superAdmin(Administrador&, int&);
@@ -114,11 +115,11 @@ void automovilesStosck(Vehiculo autos[], int&nVehiculos) {
 	au[]= new Familiar(4, "Automatica", 14.5, "Semirrigida", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Ford", "Azul Marino", 17, "Al seasons", "Expedition 2021", 1581000.0, "Familiar", 8, 457.20, 1812.3, "Electronico", "8 bolsas de aire" );
 	
 	//Descapotable(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, int _pasajeros, string _capo, string _maletero)
-	au[] = new Descapotable(4,"Automatica", 2,  "McPherson", "Discos ventilados - Discos sólidos", "total",  "Independiente", 4, "Audi", "Rojo", 12, "runflat", "A3 Cabrio 2020", 790900, "Descapotable", 4, "toldo de tela eléctrico", 480.2 );
-	au[] = new Descapotable(4,"Automatica", 3,  "Monocasco", "Disco ventilado", "trasera",  "Paralelogramo deformable", 2, "KTM", "Amarillo", 12, "asimetricas", "X-BOW Street 2011", 1664575, "Descapotable", 2, "toldo de tela eléctrico", 350 );
-	au[] = new Descapotable(4,"Automatica", 5,  "McPherson", "Discos ventilados ", "trasera",  "Resorte helicoidal", 2, "BMW", "Negro", 12, "runflat", "420i Cabrio 2018", 1189399, "Descapotable", 2, "toldo de tela eléctrico", 300 );
-	au[] = new Descapotable(4,"Automatica", 3,  "Monocasco", "Discos ventilados", "total",  "Independiente", 4, "VOLKSWAGEN", "balnco", 12, "Asimetrica", "BEETLE CABRIO", 985000, "Descapotable", 4, "toldo de tela eléctrico", 400 );
-	au[] = new Descapotable(4,"Automatica", 2,  "Monocasco", "Discos ventilados", "traseros",  "Independiente", 4, "Ford", "Gris", 12, "all seasons","MUSTANG CONVERTIBLE", 850000, "Descapotable", 4, "toldo de tela eléctrico", 420 );
+	au[] = new Descapotable(4,"Automatica", 2,  "McPherson", "Discos ventilados - Discos s?idos", "total",  "Independiente", 4, "Audi", "Rojo", 12, "runflat", "A3 Cabrio 2020", 790900, "Descapotable", 4, "toldo de tela el?trico", 480.2 );
+	au[] = new Descapotable(4,"Automatica", 3,  "Monocasco", "Disco ventilado", "trasera",  "Paralelogramo deformable", 2, "KTM", "Amarillo", 12, "asimetricas", "X-BOW Street 2011", 1664575, "Descapotable", 2, "toldo de tela el?trico", 350 );
+	au[] = new Descapotable(4,"Automatica", 5,  "McPherson", "Discos ventilados ", "trasera",  "Resorte helicoidal", 2, "BMW", "Negro", 12, "runflat", "420i Cabrio 2018", 1189399, "Descapotable", 2, "toldo de tela el?trico", 300 );
+	au[] = new Descapotable(4,"Automatica", 3,  "Monocasco", "Discos ventilados", "total",  "Independiente", 4, "VOLKSWAGEN", "balnco", 12, "Asimetrica", "BEETLE CABRIO", 985000, "Descapotable", 4, "toldo de tela el?trico", 400 );
+	au[] = new Descapotable(4,"Automatica", 2,  "Monocasco", "Discos ventilados", "traseros",  "Independiente", 4, "Ford", "Gris", 12, "all seasons","MUSTANG CONVERTIBLE", 850000, "Descapotable", 4, "toldo de tela el?trico", 420 );
 	
 }
 Vehiculo personalizarVehiculo() {
@@ -515,6 +516,35 @@ void escogerRines(Vehiculo&v) {
     }
 }
 
+void escogerLlantas(Vehiculo&v){
+    int res;
+
+    cout << "Elija su tipo de llanta " << endl;
+    cout << "1.- Bajo consumo " << endl;
+    cout << "2.- Runflat " << endl;
+    cout << "3.- Bajo perfil " << endl;
+    cout << "4.- Tubulares " << endl;
+    cout << "5.- Diagonal " << endl;
+    cout << "6.- Radial " << endl;
+    cout << "7.- All seasons " << endl;
+    cout << "8.- Asimetricas " << endl;
+    cout << "9.- Direccionales " << endl;
+    cin>>res;
+
+    switch (res)
+    {
+        case 1: v.setLlanta(" bajo consumo"); break;
+        case 2: v.setLlanta("runflat"); break;
+        case 3: v.setLlanta("bajo perfil"); break;
+        case 4: v.setLlanta("tubulares"); break;
+        case 5: v.setLlanta("diagonal"); break;
+        case 6: v.setLlanta("radial"); break;
+        case 7: v.setLlanta("al seasons"); break;
+        case 8: v.setLlanta("asimetricas"); break;
+        case 9: v.setLlanta("direccionales"); break;
+        default: cout<<"Opcion no disponible"<<endl; break;
+    }
+}
 
 void superAdmin(Administrador&admin, int&nAdmin) {
     admin.setId("ad0001", "Administrador");
