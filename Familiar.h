@@ -23,20 +23,59 @@ class Familiar: public Vehiculo{
 			seguridad =  _seguridad;
 		}
 		~Familiar() {}
-		void setNPasajeros(int _pasajeros){ pasajeros = _pasajeros; }
+		void setNPasajeros() {
+			int res;
+			cout<<"1.- 4 asientos"<<endl;
+			cout<<"2.- 6 asientos"<<endl;
+			cout<<"Cuantos asientos quieres"<<endl;
+			cin>>res;
+			switch(res) {
+				case 1: pasajeros = 4; break;
+				case 2: pasajeros = 6; break;
+				default: cout<<"Opcion no disponible"<<endl;
+			}
+		}
 		int getNPasajeros(){ return pasajeros; }
 		
-		void setDimensiones(float _dimensiones){ dimensiones = _dimensiones; }
+		void setDimensiones() {
+			switch(pasajeros) {
+				case 4: dimensiones = (float) 4 + (rand() % 10) / 100; break;
+				case 6: dimensiones = (float) 5 + (rand() % 10) / 100; break;
+			}
+		}
 		float getDimensiones(){ return dimensiones; }
 		
-		void setCapacidadCarga(float _capacidadCarga){ capacidadCarga = _capacidadCarga; }
+		void setCapacidadCarga() {
+			switch(pasajeros) {
+				case 4: capacidadCarga = (float) 400 + (rand() % 2000)/10;
+				case 6: capacidadCarga = (float) 600 + (rand() % 2000)/10;
+			}
+		}
 		float getCapacidadCarga() { return capacidadCarga; }
 		
-		void setTipoEncendido(string _tipoEncendido){ tipoEncendido = _tipoEncendido; }
+		void setTipoEncendido() {
+			int res;
+			cout<<"1.- Boton"<<endl;
+			cout<<"2.- Llave"<<endl;
+			cout<<"Elije tipo de encendido"<<endl;
+			switch(res) {
+				case 1: tipoEncendido = "Boton"; break;
+				case 2: tipoEncendido = "Llave"; break;
+			}
+		}
 		string getTipoEncendido(){ return tipoEncendido; }
 		
-		void setSeguridad(string _seguridad){ seguridad = _seguridad; }
+		void setSeguridad() { //Bolsas aire
+			int res;
+			cout<<"1.- 4 bolsas de aire"<<endl;
+			cout<<"2.- 8 bolsas de aire"<<endl;
+			cout<<"Cuantas bolsas de aire elige: "<<endl;
+			cin>>res;
+			switch(res) {
+				case 1: seguridad = 4; break;
+				case 2: seguridad = 8; break;
+			}
+		}
 		string getSeguridad(){ return seguridad; }		
 		
 };
-

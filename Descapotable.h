@@ -20,7 +20,7 @@ public:
         maletero = _maletero;
     }
     ~Descapotable() {}
-    void setPasajero(int _pasajeros){ pasajeros = _pasajeros; }
+    // void setPasajero(int _pasajeros){ pasajeros = _pasajeros; }
     int getPasajeros(){ return pasajeros; }
 
     void setCapo(string _capo){ capo = _capo; }

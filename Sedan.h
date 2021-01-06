@@ -17,10 +17,10 @@ public:
         pasajeros = _pasajeros;
     }
     ~Sedan() {}
-    void setMaletero(float _maletero){ maletero = _maletero; }
+    void setMaletero() { maletero = (float) 350 + (rand() % 1500)/10; }
     float getMaletero(){ return maletero; }
     
-    void setPasajeros(int _pasajeros){ pasajeros = _pasajeros; }
+    // void setPasajeros(int _pasajeros){ pasajeros = _pasajeros; }
     int getPasajeros(){ return pasajeros; }
 
 };

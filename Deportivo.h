@@ -20,13 +20,13 @@ public:
         aceleracion = _aceleracion;
     }
     ~Deportivo() {}
-    void setMotor(string _tipoMotor){ tipoMotor = _tipoMotor; }
+    void setMotor() {}
     string getMotor(){ return tipoMotor; }
 
     void setDireccion(string _tipoDireccion){ tipoDireccion = _tipoDireccion; }
     string getDireccion(){ return tipoDireccion; }
 
-    void setAceleracion(float _aceleracion){ aceleracion = _aceleracion; }
+    void setAceleracion() { aceleracion = (35 + rand() % 15)/10; }
     float getAceleracion(){ return aceleracion; }
    
 };
