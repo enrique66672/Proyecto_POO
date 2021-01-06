@@ -78,7 +78,52 @@ int main() {
     while(respuesta != 3);
     return 0;
 }
-
+void automovilesStosck(Vehiculo autos[], int&nVehiculos) {
+	Vehiculo* au[30];
+	
+	//Deportivo(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, string _tipoMotor, string _tipoDireccion, float _aceleracion)
+	au[] = new Deportivo(6, "Automatica", 17.9, "Monocasco de fibra","De carbono","Cuatro Ruedas", "Hidraulico", 2, "Mercedes", "Negro", 20, "Deportivas","AMG-GT 2018", 4000000.00, "Deportivo", "V12", "Electrohidraulica", 2.9);
+	au[] = new Deportivo(6, "Hibrida", 16.6, "Monocasco de fibra","De carbono","Trasera", "Aire", 4, "Ford", "Rojo", 20, "Deportivas","Mustang 2020", 1099900.00, "Deportivo", "V8", "Mecanica", 3.8);
+	au[] = new Deportivo(4, "Manual", 11.9, "Monocasco de fibra","De carbono","Delantera", "Hidraulico", 4, "Mercedes", "Gris", 20, "Deportivas","AMG-A-45 2017", 400000.00, "Deportivo", "V8", "Electrica", 4.2);
+	au[] = new Deportivo(6, "Automatica", 15.3, "Monocasco de fibra","De carbono","Cuatro Ruedas", "Hidraulico", 2, "Porsche", "Azul", 20, "Deportivas","911 Turbo 2018", 3478000.00, "Deportivo", "V12", "Electrohidraulica", 2.7);
+	
+	//Sedan(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, float _maletero, int _pasajeros)
+	au[] = new Sedan(4, "Automatica", 19.3, "Espacial tabular", "ABS", "Trasera", "Eje rigido", 4, "Chevrolet", "Rojo", 18, "Runflat", "Aveo 2020", 209400.00, "Sedan", 366.5, 4);
+	au[] = new Sedan(3, "Automatica", 15.7, "Escalar", "ABS", "Delantera", "Aire", 4, "Ford", "Rojo", 19, "Bajo perfil", "Figo 2020", 329000.00, "Sedan", 356.7, 4);
+	au[] = new Sedan(4, "Automatica", 18.3, "Monocasco", "ABS", "Trasera", "Hidraulica", 4, "Honda", "Rojo", 20, "All season", "Civic 2020", 358400.00, "Sedan", 480.2, 4);
+	au[] = new Sedan(4, "Automatica", 19.5, "Escalar", "ABS", "Trasera", "Eje rigido", 4, "Mazda", "Rojo", 18, "Runflat", "Mazda 2 Sedan 2020", 299400.00, "Sedan", 366.2, 4);
+	au[] = new Sedan(4, "Automatica", 16.8, "Espacial tabular", "ABS", "Delantera", "Eje rigido", 4, "Nissan", "Rojo", 18, "Runflat", "Aveo 2020", 209400.00, "Sedan", 369.8, 4);
+	
+	
+	//PicKup(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, string _tamano, string _tipoCaja, int _cabinas, int _capacidadCarga, int _longCaja, bool _puertaCarga)
+	au[] = new PicKup(4, "Automatica", 4.4, "Compacto", "Hidraulicos", "4x4", "Multilink", 4, "Ford", "Blanco", 14, "All seasons", "RAM700 2014", 445000.00, "PickUp", "Compacta", "Corta", 2, 1025, 82, true ); 
+	au[] = new PicKup(6, "Automatica", 5, "Espacial tubular", "Hidraulicos", "4x4", "De doble horquilla", 4, "Chevrolet", "Gris Plata", 16, "Diagonal", "Tornado 2019", 600000.00, "PickUp", "Grande", "Amplia", 2, 1500, 90, false ); 
+	au[] = new PicKup(4, "Manual", 5.26, "Monocasco", "Servofreno", "4x2", "Eje torsional", 2, "Nissan", "Rojo", 14, "Bajo rendimiento", "LT 2009", 245000.00, "PickUp", "Compacta", "Corta", 2, 750, 70, true ); 
+	au[] = new PicKup(6, "Automatica", 5, "De escalera", "Electronicos", "4x4", "McPherson", 4, "Toyota", "Dorado", 16, "Radial", "Tundra 2018", 500000.00, "PickUp", "Grande", "Amplia", 4, 980, 850, true ); 
+	au[] = new PicKup(6, "Automatica", 4, "Compacto", "Hidraulicos", "4x2", "De doble horquilla", 4, "MITSUBISHI", "Negro", 16, "Tubulares", "L200 2002", 438000.00, "PickUp", "Medio", "Amplia", 2, 1250, 69, false );
+	
+	//Clasico(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, string _categoria, string _clasificacion, int _anioRegistro)
+	au[]= new Clasico(4, "Manual",6.7, "Monocasco", "Frenos de Disco", "Traccion Trasera", "Suspencion Trasera", 2,"Volkswagen","Rojo", 15, "Bajo Consumo", "Volkswagen Sedan 1950", 200000, "Clasico", "Antiguo", "Restaurado", 2000);                                                            
+	au[]= new Clasico(8, "Manual",9.55, "Monocasco", "Frenos de Disco", "Traccion Trasera", "Suspencion Trasera", 4, "Ford","Negro", 17, "Radial", "Mustang 1966", 1070000, "Clasico", "Vintage Post Guerra", "Reconstruido", 1990);                                                              
+	au[]= new Clasico(6, "Manual",8.73, "Monocasco ULSAB", "Frenos de Tambor", "Traccion Trasera", "Suspencion Eje Rigido", 2, "Chevrolet","Azul Marino", 16, "Diagonal", "Sedaneta 1953", 350000, "Clasico", "Antiguo", "Restaurado", 2005);                                                              
+	au[]= new Clasico(8, "Manual",11.45, "Espacial Tubular", "Frenos de Disco", "Traccion Trasera", "Suspencion Eje Rigido", 2, "Porsche","Amarillo", 14, "Runflat", "914 1972", 375000, "Clasico", "Antiguo", "Restaurado", 2011);                                                              
+	au[]= new Clasico(6, "Manual",9.45, "Monocasco", "Frenos de Tambor", "Traccion Delantera", "Suspencion Semirrigida", 4, "Dodge","Cafe Claro", 16, "Bajo Consumo", "Guayin 1981", 55000, "Clasico", "Vintage Post Gueraa", "Modificado", 2006);
+	
+	//Familiar(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, int _pasajeros, float _dimensiones, float _capacidadCarga, string _tipoEncendido, string _seguridad)
+	au[]= new Familiar(4, "Manual", 15.5, "DOHC", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Chevrolet", "Blanca", 16, "Bajo Consumo", "Trax 2021", 315600.0, "Familiar", 5, 424.7, 1606.0, "Electronico", "6 bolsas de aire" );
+	au[]= new Familiar(4, "Automatica", 16.0, "Semirrigidas", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Kia", "Rojo Rubi", 18, "Bajo Consumo", "Blazer 2021", 778200.8, "Familiar", 8, 450.95, 1803.3, "Electronico", "7 bolsas de aire" );
+	au[]= new Familiar(6, "Manual", 14.5, "Rigido", "Disco/Tambor", "Trasera", "MacPherson",5, "Renault", "Rojo Rubi", 16, "Asimetricas", "Duster 2021", 291000.0, "Familiar", 5, 431.50, 1614.4, "Manual Estandar", "6 bolsas de aire" );
+	au[]= new Familiar(4, "Manual", 17.5, "Rigida", "Disco/Tambor", "Trasera", "Manejo Suave",5, "Renault", "Negra", 17, "Bajo Consumo", "Captur 2021", 338700.0, "Familiar", 5, 447.20, 1712.3, "Manual Estandar", "6 bolsas de aire" );
+	au[]= new Familiar(4, "Automatica", 14.5, "Semirrigida", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Ford", "Azul Marino", 17, "Al seasons", "Expedition 2021", 1581000.0, "Familiar", 8, 457.20, 1812.3, "Electronico", "8 bolsas de aire" );
+	
+	//Descapotable(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, int _pasajeros, string _capo, string _maletero)
+	au[] = new Descapotable(4,"Automatica", 2,  "McPherson", "Discos ventilados - Discos sólidos", "total",  "Independiente", 4, "Audi", "Rojo", 12, "runflat", "A3 Cabrio 2020", 790900, "Descapotable", 4, "toldo de tela eléctrico", 480.2 );
+	au[] = new Descapotable(4,"Automatica", 3,  "Monocasco", "Disco ventilado", "trasera",  "Paralelogramo deformable", 2, "KTM", "Amarillo", 12, "asimetricas", "X-BOW Street 2011", 1664575, "Descapotable", 2, "toldo de tela eléctrico", 350 );
+	au[] = new Descapotable(4,"Automatica", 5,  "McPherson", "Discos ventilados ", "trasera",  "Resorte helicoidal", 2, "BMW", "Negro", 12, "runflat", "420i Cabrio 2018", 1189399, "Descapotable", 2, "toldo de tela eléctrico", 300 );
+	au[] = new Descapotable(4,"Automatica", 3,  "Monocasco", "Discos ventilados", "total",  "Independiente", 4, "VOLKSWAGEN", "balnco", 12, "Asimetrica", "BEETLE CABRIO", 985000, "Descapotable", 4, "toldo de tela eléctrico", 400 );
+	au[] = new Descapotable(4,"Automatica", 2,  "Monocasco", "Discos ventilados", "traseros",  "Independiente", 4, "Ford", "Gris", 12, "all seasons","MUSTANG CONVERTIBLE", 850000, "Descapotable", 4, "toldo de tela eléctrico", 420 );
+	
+}
 Vehiculo personalizarVehiculo() {
     Vehiculo* automovil ; //En el arreglo estan el total de autos por categoria
  
