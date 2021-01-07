@@ -41,32 +41,49 @@ class Venta{
 			vehiculos[N] = v;
 			N++;
 		}
-		void MostrarVenta(Vehiculo v, int i) {
-			v.getColor();
+		void MostrarVenta(int i) {
+			
+				cout<<"\t Datos de venta"<<endl;
+				cout<< "Numero de factura: " << fac << endl;
+				cout<<"Nombre del comprador: "<<venta[i].comprador.mostrarNombre()<<endl;
+				cout<<"Direccion: "<<venta[i].direccion<<endl;
+				cout<<"Telefono"<<venta[i].comprador.getTelefono();
+				cout<<"Vehiculo Comprado: "<<venta[i].vehiculos.getMarca()<<endl;
+				cout<<"Precio de Vehiculo: "<<venta[i].vehiculos.getPrecio()<<endl;
+				cout<<"Tipo de Pago: "<<venta[i].comprador.getPago()<<endl;
+			
 		}
 		
-		void MostrarTicket(Vehiculo v, Comprador c){
+		void MostrarTicket(){
 			cout<<"\t Ticket de Compra"<<endl;
-			cout<<"Nombre del comprador: "<<c.mostrarNombre()<<endl;
-			cout<<"Tipo de Pago: "<<c.getPago()<<endl;
-			cout<<"Vehiculo Comprado: "<<v.getMarca()<<endl;
-			cout<<"Numero de seire: "<<v.getNumeroSerie()<<endl;
+			cout<<"Nombre del comprador: "<<comprador.mostrarNombre()<<endl;
+			cout<<"Vehiculo Comprado: "<<vehiculos.getMarca()<<endl;
+			cout<<"Numero de serie: "<<vehiculos.getNumeroSerie()<<endl<<endl;
 			cout<<"Caracteristicas del vehiculo: "<<endl;
-			cout<<"Modelo: "<<v.getModelo()<<endl;
-			cout<<"Color: "<<v.getColor()<<endl;
-			cout<<"Precio de Vehiculo: "<<v.getPrecio()<<endl;
+			cout<<"Tipo de vehiculo: "<<vehiculos.getTipoVehiculo()<<endl;
+			cout<<"Modelo: "<<vehiculos.getModelo()<<endl;
+			cout<<"Color: "<<vehiculos.getColor()<<endl;
+			cout<<"Precio de Vehiculo: "<<vehiculos.getPrecio()<<endl;
+			cout<<"Tipo de Pago: "<<comprador.getPago()<<endl;
 		}
 
 		double operator + (Vehiculo v2){
-			return 0;
+			double a;
+			
+			a = vehiculos[].getPrecio() + v2.getPrecio();
+			
+			return a;
 		}
-		int BuscarVentas(string fac) {
+		void BuscarVentas(Venta ventas[]) {
+			string fac;
 			int indice = -1;
 			int i = 0;
 			bool encontrado = false;
-
+			
+			cout << "Ingrese la factura a buscar"; cin >> fac;
+			
 			while((i < N) && (!encontrado)) {
-				if(fac == getFactura()) {
+				if(fac == ventas[i].factura) {
 					indice = i;
 					encontrado = true;
 				}
@@ -75,7 +92,8 @@ class Venta{
 			if(encontrado == false) {
 				cout<<"Factura no encontrada, revise si se ingreso correctamente"<<endl;
 			}
-			return indice;
+			
+			mostarVenta(indice);
 		}
 		void MostrarVentas(Comprador c) {
 			cout<<"Todas las ventas"<<endl;
