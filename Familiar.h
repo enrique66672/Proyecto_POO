@@ -58,6 +58,7 @@ class Familiar: public Vehiculo{
 			cout<<"1.- Boton"<<endl;
 			cout<<"2.- Llave"<<endl;
 			cout<<"Elije tipo de encendido"<<endl;
+			cin>>res;
 			switch(res) {
 				case 1: tipoEncendido = "Boton"; break;
 				case 2: tipoEncendido = "Llave"; break;

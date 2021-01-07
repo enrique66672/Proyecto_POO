@@ -41,37 +41,37 @@ class Venta{
 			vehiculos[N] = v;
 			N++;
 		}
-		void MostrarVenta(int i) {
-			
-				cout<<"\t Datos de venta"<<endl;
-				cout<< "Numero de factura: " << fac << endl;
-				cout<<"Nombre del comprador: "<<venta[i].comprador.mostrarNombre()<<endl;
-				cout<<"Direccion: "<<venta[i].direccion<<endl;
-				cout<<"Telefono"<<venta[i].comprador.getTelefono();
-				cout<<"Vehiculo Comprado: "<<venta[i].vehiculos.getMarca()<<endl;
-				cout<<"Precio de Vehiculo: "<<venta[i].vehiculos.getPrecio()<<endl;
-				cout<<"Tipo de Pago: "<<venta[i].comprador.getPago()<<endl;
-			
+		void MostrarVenta(Venta ventas[], int i) {
+			cout<<"\t Datos de venta"<<endl;
+			cout<< "Numero de factura: " <<factura<< endl;
+			cout<<"Nombre del comprador: "<<ventas[i].comprador.mostrarNombre()<<endl;
+			cout<<"Direccion: "<<ventas[i].direccion<<endl;
+			cout<<"Telefono"<<ventas[i].comprador.getTelefono();
+			for(int j = 0; j <= N; j++) {
+				cout<<"Vehiculo Comprado: "<<ventas[i].vehiculos[j].getMarca()<<endl;
+				cout<<"Precio de Vehiculo: "<<ventas[i].vehiculos[j].getPrecio()<<endl;
+			}
+			cout<<"Tipo de Pago: "<<ventas[i].comprador.getPago()<<endl;
 		}
 		
 		void MostrarTicket(){
-			cout<<"\t Ticket de Compra"<<endl;
-			cout<<"Nombre del comprador: "<<comprador.mostrarNombre()<<endl;
-			cout<<"Vehiculo Comprado: "<<vehiculos.getMarca()<<endl;
-			cout<<"Numero de serie: "<<vehiculos.getNumeroSerie()<<endl<<endl;
-			cout<<"Caracteristicas del vehiculo: "<<endl;
-			cout<<"Tipo de vehiculo: "<<vehiculos.getTipoVehiculo()<<endl;
-			cout<<"Modelo: "<<vehiculos.getModelo()<<endl;
-			cout<<"Color: "<<vehiculos.getColor()<<endl;
-			cout<<"Precio de Vehiculo: "<<vehiculos.getPrecio()<<endl;
-			cout<<"Tipo de Pago: "<<comprador.getPago()<<endl;
+			for(int i = 0; i <= N; i++) {
+				cout<<"\t Ticket de Compra"<<endl;
+				cout<<"Nombre del comprador: "<<comprador.mostrarNombre()<<endl;
+				cout<<"Vehiculo Comprado: "<<vehiculos[i].getMarca()<<endl;
+				cout<<"Numero de serie: "<<vehiculos[i].getNumeroSerie()<<endl<<endl;
+				cout<<"Caracteristicas del vehiculo: "<<endl;
+				cout<<"Tipo de vehiculo: "<<vehiculos[i].getTipoVehiculo()<<endl;
+				cout<<"Modelo: "<<vehiculos[i].getModelo()<<endl;
+				cout<<"Color: "<<vehiculos[i].getColor()<<endl;
+				cout<<"Precio de Vehiculo: "<<vehiculos[i].getPrecio()<<endl;
+				cout<<"Tipo de Pago: "<<comprador.getPago()<<endl;
+			}			
 		}
 
 		double operator + (Vehiculo v2){
 			double a;
-			
-			a = vehiculos[].getPrecio() + v2.getPrecio();
-			
+			a = vehiculos[0].getPrecio() + v2.getPrecio();			
 			return a;
 		}
 		void BuscarVentas(Venta ventas[]) {
@@ -93,17 +93,17 @@ class Venta{
 				cout<<"Factura no encontrada, revise si se ingreso correctamente"<<endl;
 			}
 			
-			mostarVenta(indice);
+			MostrarVenta(ventas, indice);
 		}
 		void MostrarVentas(Comprador c) {
 			cout<<"Todas las ventas"<<endl;
 			cout<<"Marca\tModelo\tPrecio\tComprador\tDireccion"<<endl;
-			for(int i = 0; i < N; i++) {
+			for(int i = 0; i <= N; i++) {
 				cout<<vehiculos[i].getMarca()<<"\t";
 				cout<<vehiculos[i].getModelo()<<"\t";
 				cout<<vehiculos[i].getPrecio()<<"\t";
-				cout<<c.mostrarNombre()<<"\t";
-				cout<<getDireccion()<<endl;
+				cout<<comprador.mostrarNombre()<<"\t";
+				cout<<direccion<<endl;
 			}
 		}
 };
