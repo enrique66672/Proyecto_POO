@@ -43,13 +43,15 @@ int main() {
     Administrador* administradores = new Administrador[ADMIN];
     Comprador* compradores = new Comprador[COM];
     Vehiculo* vehiculos = new Vehiculo[AUTOS];
+    Vehiculo stock[AUTOS];
     Venta* ventas = new Venta[VEN];
     int respuesta, r;
-    int nAdmin = 0, nAutos = 0;
+    int nAdmin = 0, nAutos = 0, nVetas = 0;
     Entrada entrada;
     string datos1, datos2;
     
     superAdmin(administradores[nAdmin], nAdmin);
+    // vehiculosstock(stock, nAutos);
 
     do{
         cout<<"\t\nMENU"<<endl;
@@ -81,7 +83,6 @@ int main() {
 
 void automovilesStosck(Vehiculo autos[], int&nVehiculos) {
 	Vehiculo* au[30];
-	
 	//Deportivo(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, string _tipoMotor, string _tipoDireccion, float _aceleracion)
     au[0] = new Deportivo(4, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda", "Negro", 17, "Runflat", "MX-5 2020", 411000.00, "Deportivo", "V8", "Electrica", 3.9);
 	au[1] = new Deportivo(6, "Automatica", 17.9, "Monocasco de fibra","De carbono","Cuatro Ruedas", "Hidraulico", 2, "Mercedes", "Negro", 20, "Deportivas","AMG-GT 2018", 4000000.00, "Deportivo", "V12", "Electrohidraulica", 2.9);
@@ -123,16 +124,11 @@ void automovilesStosck(Vehiculo autos[], int&nVehiculos) {
 	au[27] = new Descapotable(4,"Automatica", 15.9,  "McPherson", "Discos ventilados ", "trasera",  "Resorte helicoidal", 2, "BMW", "Negro", 12, "runflat", "420i Cabrio 2018", 1189399.0, "Descapotable", 2, "toldo de tela eletrico", "300" );
 	au[28] = new Descapotable(4,"Automatica", 13.1,  "Monocasco", "Discos ventilados", "total",  "Independiente", 4, "VOLKSWAGEN", "Blanco", 12, "Asimetrica", "BEETLE CABRIO", 985000.0, "Descapotable", 4, "toldo de tela eletrico", "400" );
 	au[29] = new Descapotable(4,"Automatica", 12.0,  "Monocasco", "Discos ventilados", "traseros",  "Independiente", 4, "Ford", "Gris", 12, "all seasons","MUSTANG CONVERTIBLE", 850000.0, "Descapotable", 4, "toldo de tela eletrico", "420" );
+    nVehiculos += 30;
 }
 
 Vehiculo personalizarVehiculo() {
     Vehiculo* automovil ; //En el arreglo estan el total de autos por categoria
-    // Deportivo* dep;
-    // Descapotable* des;
-    // Familiar* fam;
-    // PicKup* pic;
-    // Sedan* sed;
-
     string respuesta;
     Entrada entrada; //Union para ahorrar memoria
     int res; // Colocar do{} while();
@@ -882,7 +878,8 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin){
         cout<<"Opciones de super administrador"<<endl;
         cout<<"1.- Agregar un administrador"<<endl;
         cout<<"2.- Mostrar los administradores"<<endl;
-        cout<<"3.- Regresar al menu principal"<<endl;
+        cout<<"3.- Crear automoviles para stock"<<endl;
+        cout<<"4.- Regresar al menu principal"<<endl;
         cout<<"Ingrese respuesta"<<endl;
         cin>>entrada.entero;
         switch(entrada.entero) {
@@ -894,7 +891,8 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin){
             case 2:
                 mostrarAdministradores(admin, nAdmin);
                 break;
-            case 3: break;
+            case 3: //personalizarVehiculo(); // Debe retornar un vehiculo
+            case 4: break;
             default:
                 cout<<"Opcion no establecida"<<endl;
                 break;
