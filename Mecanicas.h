@@ -1,6 +1,8 @@
 #ifndef MECANICAS_H
 #define MECANICAS_H
 #include<iostream>
+#include<time.h>
+#include<stdlib.h>
 
 using namespace std;
 

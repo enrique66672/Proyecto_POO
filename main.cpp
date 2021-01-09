@@ -30,7 +30,7 @@ void escogerColor(Vehiculo&);
 void escogerRines(Vehiculo&);
 void escogerLlantas(Vehiculo&);
 
-void vehiculosstock(Vehiculo[], int&);
+void vehiculosstock();
 void superAdmin(Administrador&, int&);
 int buscarAdministrador(Administrador[], int&);
 void iniciarSesion(Administrador[], int&);
@@ -38,6 +38,7 @@ Administrador crearAdministrador();
 void mostrarAdministradores(Administrador[], int&);
 void menuSuperAdministrador(Administrador[], int&);
 void menuAdministradorNorm(Venta[], int&);
+void menuComprador(void);
 
 int main() {
     Administrador* administradores = new Administrador[ADMIN];
@@ -66,8 +67,7 @@ int main() {
             iniciarSesion(administradores, nAdmin);            
             break;
         case 2: // Comprador
-            cout<<"Personalizar el Vehiculo"<<endl;
-            vehiculos[nAutos] = personalizarVehiculo();
+           menuComprador();
             break;
         case 3:
             cout<<"Saliendo..."<<endl;
@@ -79,10 +79,12 @@ int main() {
     }
     while(respuesta != 3);
     return 0;
-}
+} //Fin del main
 
-void automovilesStosck(Vehiculo autos[], int&nVehiculos) {
+void automovilesStock() {
 	Vehiculo* au[30];
+	char option;
+	
 	//Deportivo(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, string _tipoMotor, string _tipoDireccion, float _aceleracion)
     au[0] = new Deportivo(4, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda", "Negro", 17, "Runflat", "MX-5 2020", 411000.00, "Deportivo", "V8", "Electrica", 3.9);
 	au[1] = new Deportivo(6, "Automatica", 17.9, "Monocasco de fibra","De carbono","Cuatro Ruedas", "Hidraulico", 2, "Mercedes", "Negro", 20, "Deportivas","AMG-GT 2018", 4000000.00, "Deportivo", "V12", "Electrohidraulica", 2.9);
@@ -124,7 +126,48 @@ void automovilesStosck(Vehiculo autos[], int&nVehiculos) {
 	au[27] = new Descapotable(4,"Automatica", 15.9,  "McPherson", "Discos ventilados ", "trasera",  "Resorte helicoidal", 2, "BMW", "Negro", 12, "runflat", "420i Cabrio 2018", 1189399.0, "Descapotable", 2, "toldo de tela eletrico", "300" );
 	au[28] = new Descapotable(4,"Automatica", 13.1,  "Monocasco", "Discos ventilados", "total",  "Independiente", 4, "VOLKSWAGEN", "Blanco", 12, "Asimetrica", "BEETLE CABRIO", 985000.0, "Descapotable", 4, "toldo de tela eletrico", "400" );
 	au[29] = new Descapotable(4,"Automatica", 12.0,  "Monocasco", "Discos ventilados", "traseros",  "Independiente", 4, "Ford", "Gris", 12, "all seasons","MUSTANG CONVERTIBLE", 850000.0, "Descapotable", 4, "toldo de tela eletrico", "420" );
-    nVehiculos += 30;
+    //nVehiculos += 30;
+    
+    
+    // Tabla de vehiculos
+    cout << endl;
+	cout << "	MARCA	|		MODELO		|	COLOR	|	TIPO DE VEHICULO	" << endl;
+	cout << "	--------|-------------------------------|-------------------------------|---------------" << endl;
+	
+				
+    for (int i = 0; i < 30; i++) {
+		cout << "\t" << au[i]->getMarca() << "\t" << au[i]->getTipoVehiculo() << "\t" << au[i]->getModelo() << "\t" << au[i]->getColor() << "\t" << au[i]->getPrecio() << endl; 
+				
+		cout << "	--------|-------------------------------|-------------------------------|---------------" << endl;
+		
+		}
+    
+    // Menu para escoger y volver a menu
+    do {
+		cout << endl << endl;
+		
+		cout << "Acciones:" << endl << endl;
+		
+		cout << "> Escoger vehiculo (e)" << endl;
+		cout << "> Regresar al menu (x)" << endl <<endl;
+		
+		cout << "Ir a: ";
+		
+		cin >> option;
+		
+		switch(option) {
+			case 'e':
+				//Funcion escoger auto o algo asi
+				cout << "Hola mundo";
+				break;
+				
+			default: 
+				cout << "Regresando al menu" <<endl;
+				option = 'x';
+				break;
+		}
+		
+	} while (option != 'x');
 }
 
 Vehiculo personalizarVehiculo() {
@@ -872,7 +915,7 @@ void mostrarAdministradores(Administrador admin[], int&nAdmin) {
     }
 }
 
-void menuSuperAdministrador(Administrador admin[], int&nAdmin){
+void menuSuperAdministrador(Administrador admin[], int&nAdmin/*Agregar vehiculos en stock para que agregue mas el admin*/){
     Entrada entrada;
     do{
         cout<<"Opciones de super administrador"<<endl;
@@ -928,4 +971,41 @@ void menuAdministradorNorm(Venta v[], int&nVentas){
         }
     }
     while(entrada.entero != 3);
+}
+
+void menuComprador() {
+	char resp;
+	do {
+		cout << "\t>>>> BIENVENIDO <<<<" << endl << endl;
+		
+		cout << "Acciones:" << endl << endl;
+		
+		cout << "> Ando viendo gracias (y)" << endl;
+		cout << "> Personalizar vehiculo (d)" << endl;
+		cout << "> Salir (g)" << endl <<endl;
+		
+		cout << "Ir a: ";
+		
+		cin >> resp;
+		
+		switch(resp) {
+			case 'y':
+				//Visualizar catalogo 
+				cout << "\t>>>>Vehiculos en stock<<<<" << endl << endl;
+				automovilesStock();
+				break;
+				
+			case 'd': 
+				//Poner lo de personalizar7
+				 cout<<"Personalizar el Vehiculo"<<endl;
+     	        // vehiculos[nAutos] = personalizarVehiculo();
+				break;
+				
+			default: 
+				cout << "Regresando al menu" <<endl;
+				resp = 'g';
+				break;
+		}
+		
+	} while (resp != 'g');
 }
