@@ -25,15 +25,21 @@ class Familiar: public Vehiculo{
 		~Familiar() {}
 		void setNPasajeros() {
 			int res;
-			cout<<"1.- 4 asientos"<<endl;
-			cout<<"2.- 6 asientos"<<endl;
-			cout<<"Cuantos asientos quieres"<<endl;
-			cin>>res;
-			switch(res) {
-				case 1: pasajeros = 4; break;
-				case 2: pasajeros = 6; break;
-				default: cout<<"Opcion no disponible"<<endl;
+			do {
+				cout<<"1.- 4 asientos"<<endl;
+				cout<<"2.- 6 asientos"<<endl;
+				cout<<"Cuantos asientos quieres"<<endl;
+				cin>>res;
+				switch(res) {
+					case 1: pasajeros = 4; break;
+					case 2: pasajeros = 6; break;
+					default: 
+					res = 3;
+					cout<<"Opcion no disponible"<<endl;
+					break;
+				}
 			}
+			while(res == 3);
 		}
 		int getNPasajeros(){ return pasajeros; }
 		
@@ -55,27 +61,41 @@ class Familiar: public Vehiculo{
 		
 		void setTipoEncendido() {
 			int res;
-			cout<<"1.- Boton"<<endl;
-			cout<<"2.- Llave"<<endl;
-			cout<<"Elije tipo de encendido"<<endl;
-			cin>>res;
-			switch(res) {
-				case 1: tipoEncendido = "Boton"; break;
-				case 2: tipoEncendido = "Llave"; break;
+			do {
+				cout<<"1.- Boton"<<endl;
+				cout<<"2.- Llave"<<endl;
+				cout<<"Elije tipo de encendido"<<endl;
+				cin>>res;
+				switch(res) {
+					case 1: tipoEncendido = "Boton"; break;
+					case 2: tipoEncendido = "Llave"; break;
+					default:
+					res = 3;
+					cout<<"Opcion no disponible"<<endl;
+					break;
+				}
 			}
+			while(res == 3);
 		}
 		string getTipoEncendido(){ return tipoEncendido; }
 		
 		void setSeguridad() { //Bolsas aire
 			int res;
-			cout<<"1.- 4 bolsas de aire"<<endl;
-			cout<<"2.- 8 bolsas de aire"<<endl;
-			cout<<"Cuantas bolsas de aire elige: "<<endl;
-			cin>>res;
-			switch(res) {
-				case 1: seguridad = 4; break;
-				case 2: seguridad = 8; break;
+			do {
+				cout<<"1.- 4 bolsas de aire"<<endl;
+				cout<<"2.- 8 bolsas de aire"<<endl;
+				cout<<"Cuantas bolsas de aire elige: "<<endl;
+				cin>>res;
+				switch(res) {
+					case 1: seguridad = 4; break;
+					case 2: seguridad = 8; break;
+					default:
+					res = 3;
+					cout<<"Opcion no disponible"<<endl;
+					break;
+				}
 			}
+			while(res == 3);
 		}
 		string getSeguridad(){ return seguridad; }		
 		

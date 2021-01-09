@@ -29,19 +29,24 @@ class PicKup: public Vehiculo{
 
 		void setTamano(){ 
 			int res;
+			do {
+				cout << "Elija el tamaño de la caja" << endl;
+				cout << "1.- Chica" << endl;
+				cout << "2.- Mediana" << endl;
+				cout << "3.- Grande" << endl;
+				cin>>res;
 
-			cout << "Elija el tamaño de la caja" << endl;
-			cout << "1.- Chica" << endl;
-			cout << "2.- Mediana" << endl;
-			cout << "3.- Grande" << endl;
-			cin>>res;
-
-			switch (res){
-				case 1: tamano = "Chica"; break;
-				case 2: tamano = "Mediana"; break;
-				case 3: tamano = "Grande"; break;			
-				default: cout<<"Opcion no disponible"<<endl; break;
+				switch (res){
+					case 1: tamano = "Chica"; break;
+					case 2: tamano = "Mediana"; break;
+					case 3: tamano = "Grande"; break;			
+					default: 
+					res = 4;
+					cout<<"Opcion no disponible"<<endl; 
+					break;
+				}
 			}
+			while(res == 4);
 		}
 		string getTamano(){ return tamano; }
 		

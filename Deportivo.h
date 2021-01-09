@@ -22,38 +22,50 @@ public:
     ~Deportivo() {}
     void setMotor(){ 
         int res;
-        cout << "1.- Boxer" << endl;
-        cout << "2.- A dos tiempos" << endl;
-        cout << "3.- A cuatro tiempos" << endl;
-        cout << "4.- V6" << endl;
-        cout << "5.- V8" << endl;
-        cout << "Elija el motor de su deportivo: " << endl;
-        cin>>res;
+        do {
+            cout << "1.- Boxer" << endl;
+            cout << "2.- A dos tiempos" << endl;
+            cout << "3.- A cuatro tiempos" << endl;
+            cout << "4.- V6" << endl;
+            cout << "5.- V8" << endl;
+            cout << "Elija el motor de su deportivo: " << endl;
+            cin>>res;
 
-        switch (res){
-            case 1: tipoMotor = "Boxer"; break;
-            case 2: tipoMotor = "A dos tiempos"; break;
-            case 3: tipoMotor = "A cuatro tiempos"; break;
-            case 4: tipoMotor = "V6"; break;
-            case 5: tipoMotor = "V8"; break;
-            default: cout<<"Opcion no disponible"<<endl; break;
+            switch (res){
+                case 1: tipoMotor = "Boxer"; break;
+                case 2: tipoMotor = "A dos tiempos"; break;
+                case 3: tipoMotor = "A cuatro tiempos"; break;
+                case 4: tipoMotor = "V6"; break;
+                case 5: tipoMotor = "V8"; break;
+                default: 
+                res = 6;
+                cout<<"Opcion no disponible"<<endl; 
+                break;
+            }
         }
+        while(res == 6);
     }
     string getMotor(){ return tipoMotor; }
 
     void setDireccion(){ 
         int res;
-        cout << "1.- Electrica" << endl;
-        cout << "2.- Mecanica" << endl;
-        cout << "3.- Hidraulica" << endl;
-        cout << "Elija la direccion que quiere: " << endl;
-        cin>>res;
-        switch (res){
-            case 1: tipoDireccion = "Electrica"; break;
-            case 2: tipoDireccion = "Mecanica"; break;
-            case 3: tipoDireccion = "Hidraulica"; break;
-            default: cout<<"Opcion no disponible"<<endl; break;
+        do {
+            cout << "1.- Electrica" << endl;
+            cout << "2.- Mecanica" << endl;
+            cout << "3.- Hidraulica" << endl;
+            cout << "Elija la direccion que quiere: " << endl;
+            cin>>res;
+            switch (res){
+                case 1: tipoDireccion = "Electrica"; break;
+                case 2: tipoDireccion = "Mecanica"; break;
+                case 3: tipoDireccion = "Hidraulica"; break;
+                default: 
+                res = 4;
+                cout<<"Opcion no disponible"<<endl; 
+                break;
+            }
         }
+        while(res == 4);
     }
     string getDireccion(){ return tipoDireccion; }
 

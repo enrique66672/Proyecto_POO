@@ -69,9 +69,11 @@ class Venta{
 			}			
 		}
 
-		double operator + (Vehiculo v2){
-			double a;
-			a = vehiculos[0].getPrecio() + v2.getPrecio();			
+		double operator + (){
+			double a = 0;
+			for (int i = 0; i < N ; i++){
+				a += vehiculos[i].getPrecio();				
+			}
 			return a;
 		}
 		void BuscarVentas(Venta ventas[]) {
@@ -95,15 +97,18 @@ class Venta{
 			
 			MostrarVenta(ventas, indice);
 		}
-		void MostrarVentas(Comprador c) {
+		
+		void MostrarVentas(Venta v[], int&nVentas) {
 			cout<<"Todas las ventas"<<endl;
 			cout<<"Marca\tModelo\tPrecio\tComprador\tDireccion"<<endl;
-			for(int i = 0; i <= N; i++) {
-				cout<<vehiculos[i].getMarca()<<"\t";
-				cout<<vehiculos[i].getModelo()<<"\t";
-				cout<<vehiculos[i].getPrecio()<<"\t";
-				cout<<comprador.mostrarNombre()<<"\t";
-				cout<<direccion<<endl;
+			for(int i = 0; i < N; i++) {
+				for(int j = 0; j < v[i].N; j++){
+					cout<<v[i].vehiculos[j].getMarca()<<"\t";
+					cout<<v[i].vehiculos[j].getModelo()<<"\t";
+					cout<<v[i].vehiculos[j].getPrecio()<<"\t";
+					cout<<v[i].comprador.mostrarNombre()<<"\t";
+					cout<<v[i].direccion;
+				}
 			}
 		}
 };
