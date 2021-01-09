@@ -30,13 +30,14 @@ void escogerColor(Vehiculo&);
 void escogerRines(Vehiculo&);
 void escogerLlantas(Vehiculo&);
 
+
 void vehiculosstock();
 void superAdmin(Administrador&, int&);
 int buscarAdministrador(Administrador[], int&);
-void iniciarSesion(Administrador[], int&);
+void iniciarSesion(Administrador[], int&, Venta[], int&);
 Administrador crearAdministrador();
 void mostrarAdministradores(Administrador[], int&);
-void menuSuperAdministrador(Administrador[], int&);
+void menuSuperAdministrador(Administrador[], int&, Venta[], int&);
 void menuAdministradorNorm(Venta[], int&);
 void menuComprador(void);
 
@@ -44,7 +45,7 @@ int main() {
     Administrador* administradores = new Administrador[ADMIN];
     Comprador* compradores = new Comprador[COM];
     Vehiculo* vehiculos = new Vehiculo[AUTOS];
-    Vehiculo stock[AUTOS];
+    // Vehiculo stock[AUTOS];
     Venta* ventas = new Venta[VEN];
     int respuesta, r;
     int nAdmin = 0, nAutos = 0, nVetas = 0;
@@ -52,7 +53,6 @@ int main() {
     string datos1, datos2;
     
     superAdmin(administradores[nAdmin], nAdmin);
-    // vehiculosstock(stock, nAutos);
 
     do{
         cout<<"\t\nMENU"<<endl;
@@ -64,10 +64,10 @@ int main() {
 
         switch (respuesta){
         case 1: // Administracion
-            iniciarSesion(administradores, nAdmin);            
+            iniciarSesion(administradores, nAdmin, ventas, nVetas);            
             break;
         case 2: // Comprador
-           menuComprador();
+            menuComprador();
             break;
         case 3:
             cout<<"Saliendo..."<<endl;
@@ -702,135 +702,175 @@ Vehiculo personalizarVehiculo() {
 
 void escogerTransmision(Vehiculo&v) {
     int res;
-    cout<<"1.- Manual"<<endl;
-    cout<<"2.- Automatica"<<endl;
-    cout<<"Tipo de tranmision: "<<endl;
-    cin>>res;
-    switch(res) {
-        case 1: v.setTransmision("Manual"); break;
-        case 2: v.setTransmision("Automatica"); break;
-        default: cout<<"Opcion no disponible"<<endl; break;
+    do{
+        cout<<"1.- Manual"<<endl;
+        cout<<"2.- Automatica"<<endl;
+        cout<<"Tipo de tranmision: "<<endl;
+        cin>>res;
+        switch(res) {
+            case 1: v.setTransmision("Manual"); break;
+            case 2: v.setTransmision("Automatica"); break;
+            default: 
+            res = 3; 
+            cout<<"Opcion no disponible"<<endl; 
+            break;
+        }
     }
+    while(res == 3);
 }
 
 void escogerFrenos(Vehiculo&v) {
     int res;
-    cout<<"1.- Disco"<<endl;
-    cout<<"2.- Tambor"<<endl;
-    cout<<"3.- ABS"<<endl;
-    cout<<"Tipo de frenos: "<<endl;
-    cin>>res;
-    switch(res) {
-        case 1: v.setFrenos("Disco"); break;
-        case 2: v.setFrenos("Tambor"); break;
-        case 3: v.setFrenos("ABS"); break;
-        default: cout<<"Opcion no disponible"<<endl; break;
+    do {
+        cout<<"1.- Disco"<<endl;
+        cout<<"2.- Tambor"<<endl;
+        cout<<"3.- ABS"<<endl;
+        cout<<"Tipo de frenos: "<<endl;
+        cin>>res;
+        switch(res) {
+            case 1: v.setFrenos("Disco"); break;
+            case 2: v.setFrenos("Tambor"); break;
+            case 3: v.setFrenos("ABS"); break;
+            default: 
+            res = 4;
+            cout<<"Opcion no disponible"<<endl; 
+            break;
+        }
     }
+    while(res == 4);
 }
 
 void escogerTraccion(Vehiculo&v) {
     int res;
-
-    if(v.getTipoVehiculo() == "PickUp" || v.getTipoVehiculo() == "Familiar") {
-        cout<<"1.- Delantera"<<endl;
-        cout<<"2.- 4x4"<<endl;
-        cout<<"Tipo de frenos: "<<endl;
-        cin>>res;
-        switch(res) {
-            case 1: v.setTraccion("Delantera"); break;
-            case 2: v.setTraccion("4x4"); break;
-            default: cout<<"Opcion no disponible"<<endl; break;
+    do {
+        if(v.getTipoVehiculo() == "PickUp" || v.getTipoVehiculo() == "Familiar") {
+            cout<<"1.- Delantera"<<endl;
+            cout<<"2.- 4x4"<<endl;
+            cout<<"Tipo de frenos: "<<endl;
+            cin>>res;
+            switch(res) {
+                case 1: v.setTraccion("Delantera"); break;
+                case 2: v.setTraccion("4x4"); break;
+                default: 
+                res = 3;
+                cout<<"Opcion no disponible"<<endl; 
+                break;
+            }
         }
-    }
-    else {
-        cout<<"1.- Delantera"<<endl;
-        cout<<"2.- Tracera"<<endl;
-        cout<<"Tipo de frenos: "<<endl;
-        cin>>res;
-        switch(res) {
-            case 1: v.setTraccion("Delantera"); break;
-            case 2: v.setTraccion("Tracera"); break;
-            default: cout<<"Opcion no disponible"<<endl; break;
+        else {
+            cout<<"1.- Delantera"<<endl;
+            cout<<"2.- Tracera"<<endl;
+            cout<<"Tipo de frenos: "<<endl;
+            cin>>res;
+            switch(res) {
+                case 1: v.setTraccion("Delantera"); break;
+                case 2: v.setTraccion("Tracera"); break;
+                default: 
+                res = 3;
+                cout<<"Opcion no disponible"<<endl; 
+                break;
+            }
         }
-    }
-    
+    } 
+    while(res == 3);
 }
 
 void escogerColor(Vehiculo&v) {
     int res;
-    cout<<"1.- Negro"<<endl;
-    cout<<"2.- Blanco"<<endl;
-    cout<<"3.- Plomo"<<endl;
-    cout<<"4.- Rojo"<<endl;
-    cout<<"5.- Azul"<<endl;
-    cout<<"6.- Plata"<<endl;
-    cout<<"Color de automovil: "<<endl;
-    cin>>res;
-    switch(res) {
-        case 1: v.setColor("Negro"); break;
-        case 2: v.setColor("Blanco"); break;
-        case 3: v.setColor("Plomo"); break;
-        case 4: v.setColor("Rojo"); break;
-        case 5: v.setColor("Azul"); break;
-        case 6: v.setColor("Plata"); break;
-        default: cout<<"Opcion no disponible"<<endl; break;
+    do {
+        cout<<"1.- Negro"<<endl;
+        cout<<"2.- Blanco"<<endl;
+        cout<<"3.- Plomo"<<endl;
+        cout<<"4.- Rojo"<<endl;
+        cout<<"5.- Azul"<<endl;
+        cout<<"6.- Plata"<<endl;
+        cout<<"Color de automovil: "<<endl;
+        cin>>res;
+        switch(res) {
+            case 1: v.setColor("Negro"); break;
+            case 2: v.setColor("Blanco"); break;
+            case 3: v.setColor("Plomo"); break;
+            case 4: v.setColor("Rojo"); break;
+            case 5: v.setColor("Azul"); break;
+            case 6: v.setColor("Plata"); break;
+            default: 
+            res = 7;
+            cout<<"Opcion no disponible"<<endl; 
+            break;
+        }
     }
+    while(res == 7);
 }
 
 void escogerRines(Vehiculo&v) {
     int res;
-    if(v.getTipoVehiculo() == "Clasico" || v.getTipoVehiculo() == "Sedan" || v.getTipoVehiculo() == "Familiar") {
-        cout<<"1.- 13 in"<<endl;
-        cout<<"2.- 14 in"<<endl;
-        cout<<"3.- 15 in"<<endl;
-        cout<<"Tamaño de Rines: "<<endl;
-        cin>>res;
-        switch(res) {
-            case 1: v.setRin(13); break;
-            case 2: v.setRin(14); break;
-            case 3: v.setRin(15); break;
-            default: cout<<"Opcion no disponible"<<endl; break;
+    do {
+        if(v.getTipoVehiculo() == "Clasico" || v.getTipoVehiculo() == "Sedan" || v.getTipoVehiculo() == "Familiar") {
+            cout<<"1.- 13 in"<<endl;
+            cout<<"2.- 14 in"<<endl;
+            cout<<"3.- 15 in"<<endl;
+            cout<<"Tamaño de Rines: "<<endl;
+            cin>>res;
+            switch(res) {
+                case 1: v.setRin(13); break;
+                case 2: v.setRin(14); break;
+                case 3: v.setRin(15); break;
+                default: 
+                res = 4;
+                cout<<"Opcion no disponible"<<endl; 
+                break;
+            }
+        }
+        else if(v.getTipoVehiculo() == "Deportivo" || v.getTipoVehiculo() == "Descapotable" || v.getTipoVehiculo() == "PickUp") {
+            cout<<"1.- 16 in"<<endl;
+            cout<<"2.- 17 in"<<endl;
+            cout<<"Tamaño de Rines: "<<endl;
+            cin>>res;
+            switch(res) {
+                case 1: v.setRin(16); break;
+                case 2: v.setRin(17); break;
+                default: 
+                res = 4;
+                cout<<"Opcion no disponible"<<endl; 
+                break;
+            }
         }
     }
-    else if(v.getTipoVehiculo() == "Deportivo" || v.getTipoVehiculo() == "Descapotable" || v.getTipoVehiculo() == "PickUp") {
-        cout<<"1.- 16 in"<<endl;
-        cout<<"2.- 17 in"<<endl;
-        cout<<"Tamaño de Rines: "<<endl;
-        cin>>res;
-        switch(res) {
-            case 1: v.setRin(16); break;
-            case 2: v.setRin(17); break;
-            default: cout<<"Opcion no disponible"<<endl; break;
-        }
-    }
+    while(res == 4);
 }
 
 void escogerLlantas(Vehiculo&v){
     int res;
-    cout << "1.- Bajo consumo " << endl;
-    cout << "2.- Runflat " << endl;
-    cout << "3.- Bajo perfil " << endl;
-    cout << "4.- Tubulares " << endl;
-    cout << "5.- Diagonal " << endl;
-    cout << "6.- Radial " << endl;
-    cout << "7.- All seasons " << endl;
-    cout << "8.- Asimetricas " << endl;
-    cout << "9.- Direccionales " << endl;
-    cout << "Elija su tipo de llanta " << endl;
-    cin>>res;
+    do {
+        cout << "1.- Bajo consumo " << endl;
+        cout << "2.- Runflat " << endl;
+        cout << "3.- Bajo perfil " << endl;
+        cout << "4.- Tubulares " << endl;
+        cout << "5.- Diagonal " << endl;
+        cout << "6.- Radial " << endl;
+        cout << "7.- All seasons " << endl;
+        cout << "8.- Asimetricas " << endl;
+        cout << "9.- Direccionales " << endl;
+        cout << "Elija su tipo de llanta " << endl;
+        cin>>res;
 
-    switch (res){
-        case 1: v.setLlanta("Bajo consumo"); break;
-        case 2: v.setLlanta("Runflat"); break;
-        case 3: v.setLlanta("Bajo perfil"); break;
-        case 4: v.setLlanta("Tubulares"); break;
-        case 5: v.setLlanta("Diagonal"); break;
-        case 6: v.setLlanta("Radial"); break;
-        case 7: v.setLlanta("All seasons"); break;
-        case 8: v.setLlanta("Asimetricas"); break;
-        case 9: v.setLlanta("Direccionales"); break;
-        default: cout<<"Opcion no disponible"<<endl; break;
+        switch (res){
+            case 1: v.setLlanta("Bajo consumo"); break;
+            case 2: v.setLlanta("Runflat"); break;
+            case 3: v.setLlanta("Bajo perfil"); break;
+            case 4: v.setLlanta("Tubulares"); break;
+            case 5: v.setLlanta("Diagonal"); break;
+            case 6: v.setLlanta("Radial"); break;
+            case 7: v.setLlanta("All seasons"); break;
+            case 8: v.setLlanta("Asimetricas"); break;
+            case 9: v.setLlanta("Direccionales"); break;
+            default: 
+            res = 10;
+            cout<<"Opcion no disponible"<<endl; 
+            break;
+        }
     }
+    while(res == 10);
 }
 
 void superAdmin(Administrador&admin, int&nAdmin) {
@@ -856,7 +896,7 @@ int buscarAdministrador(Administrador admin[], int&nAdmin){
     return indice;
 }
 
-void iniciarSesion(Administrador admin[], int&nAdmin) {
+void iniciarSesion(Administrador admin[], int&nAdmin, Venta v[], int&nVentas) {
     string datos1, datos2;
     int indice = -1, res;
     cin.ignore();
@@ -869,7 +909,7 @@ void iniciarSesion(Administrador admin[], int&nAdmin) {
 
         if((indice == 0) && (datos1 == admin[indice].getId()) && (datos2 == admin[indice].getPassword())) {
             cout<<"Acceso como Super Administrador"<<endl;
-            menuSuperAdministrador(admin, nAdmin);
+            menuSuperAdministrador(admin, nAdmin, v, nVentas);
         }
         else if((datos1 == admin[indice].getId()) && (datos2 == admin[indice].getPassword())) {
             cout<<"Acceso consedido"<<endl;
@@ -879,7 +919,6 @@ void iniciarSesion(Administrador admin[], int&nAdmin) {
             cout<<"Acceso denegado"<<endl;
         }
     }
-    
 }
 
 Administrador crearAdministrador() {
@@ -915,15 +954,19 @@ void mostrarAdministradores(Administrador admin[], int&nAdmin) {
     }
 }
 
-void menuSuperAdministrador(Administrador admin[], int&nAdmin/*Agregar vehiculos en stock para que agregue mas el admin*/){
+void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nVentas){
     Entrada entrada;
     do{
         cout<<"Opciones de super administrador"<<endl;
         cout<<"1.- Agregar un administrador"<<endl;
         cout<<"2.- Mostrar los administradores"<<endl;
         cout<<"3.- Crear automoviles para stock"<<endl;
-        cout<<"4.- Regresar al menu principal"<<endl;
+        cout<<"4.- Visualizar venta"<<endl;
+        cout<<"5.- Visualizar ventas"<<endl;
+        cout<<"6.- Mostrar total vendido"<<endl;
+        cout<<"7.- Regresar al menu principal"<<endl;
         cout<<"Ingrese respuesta"<<endl;
+
         cin>>entrada.entero;
         switch(entrada.entero) {
             case 1:
@@ -935,13 +978,16 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin/*Agregar vehiculos
                 mostrarAdministradores(admin, nAdmin);
                 break;
             case 3: //personalizarVehiculo(); // Debe retornar un vehiculo
-            case 4: break;
+            case 4: v[0].BuscarVentas(v); break;
+            case 5: v[0].MostrarVentas(v , nVentas); break;
+            case 6: cout << "Total de ventas: " << v[0].operator+() << endl; break;
+            case 7: break;
             default:
                 cout<<"Opcion no establecida"<<endl;
                 break;
         }
     }
-    while(entrada.entero != 3);
+    while(entrada.entero != 7);
 }
 
 void menuAdministradorNorm(Venta v[], int&nVentas){
@@ -957,20 +1003,26 @@ void menuAdministradorNorm(Venta v[], int&nVentas){
         cin>>entrada.entero;
         switch(entrada.entero) {
             case 1:
+                v[0].MostrarVentas(v , nVentas);
                 break;
             case 2:
+                v[0].BuscarVentas(v);
                 break;
             case 3: 
+                // v[0]
                 break;
             case 4:
+                cout << "Total de ventas: " << v[0].operator+() << endl;
                 break;
-            case 5: break;
+            case 5:
+                cout<<"Y volvemos a la normalidad"<<endl;
+                break;
             default:
                 cout<<"Opcion no establecida"<<endl;
                 break;
         }
     }
-    while(entrada.entero != 3);
+    while(entrada.entero != 5);
 }
 
 void menuComprador() {
