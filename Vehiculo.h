@@ -25,6 +25,7 @@ public:
 		tipoVehiculo = _tipoVehiculo;
 	}
 	~Vehiculo() {}
+	void setNumeroSerie() { numSerie = 100000 + rand() % (999999-100000); }
 	int getNumeroSerie(){ return numSerie; }
 	float getPotenciaMax(){ return potenciaMaxima; }
 	float getVelocidadMaxima(){ return velocidadMaxima; }

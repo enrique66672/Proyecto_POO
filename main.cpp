@@ -34,21 +34,22 @@ void escogerLlantas(Vehiculo&);
 void vehiculosstock();
 void superAdmin(Administrador&, int&);
 int buscarAdministrador(Administrador[], int&);
-void iniciarSesion(Administrador[], int&, Venta[], int&);
+void iniciarSesion(Administrador[], int&, Venta[], int&, Vehiculo[], int&);
 Administrador crearAdministrador();
 void mostrarAdministradores(Administrador[], int&);
-void menuSuperAdministrador(Administrador[], int&, Venta[], int&);
-void menuAdministradorNorm(Venta[], int&);
-void menuComprador(void);
+void menuSuperAdministrador(Administrador[], int&, Venta[], int&, Vehiculo[], int&);
+void menuAdministradorNorm(Venta[], int&, Vehiculo[], int&);
+void menuComprador(Vehiculo[], int&, Venta[], int&);
+Comprador crearComprador();
+Venta realizarCompra(Comprador&, Vehiculo[], int&, int&);
 
 int main() {
     Administrador* administradores = new Administrador[ADMIN];
     Comprador* compradores = new Comprador[COM];
     Vehiculo* vehiculos = new Vehiculo[AUTOS];
-    // Vehiculo stock[AUTOS];
     Venta* ventas = new Venta[VEN];
     int respuesta, r;
-    int nAdmin = 0, nAutos = 0, nVetas = 0;
+    int nAdmin = 0, nAutos = 0, nVentas = 0;
     Entrada entrada;
     string datos1, datos2;
     
@@ -64,10 +65,10 @@ int main() {
 
         switch (respuesta){
         case 1: // Administracion
-            iniciarSesion(administradores, nAdmin, ventas, nVetas);            
+            iniciarSesion(administradores, nAdmin, ventas, nVentas, vehiculos, nAutos);            
             break;
         case 2: // Comprador
-            menuComprador();
+            menuComprador(vehiculos, nAutos, ventas, nVentas);
             break;
         case 3:
             cout<<"Saliendo..."<<endl;
@@ -203,6 +204,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             break;
         case 2: 
             automovil->setMarca("Chevrolet"); 
@@ -212,6 +215,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             break;
         case 3: 
             automovil->setMarca("Dodge"); 
@@ -221,6 +226,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             break;
         case 4: 
             automovil->setMarca("VolksWagen");
@@ -230,6 +237,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             break;
         case 5: 
             automovil->setMarca("Mercedes Benz"); 
@@ -239,6 +248,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             break;  
         default: cout<<"Marca no disponible"<<endl; break;
         }
@@ -266,6 +277,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             dep = (Deportivo*)automovil;
             dep->setMotor();
             dep->setDireccion();
@@ -280,6 +293,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             dep = (Deportivo*)automovil;
             dep->setMotor();
             dep->setDireccion();
@@ -294,6 +309,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             dep = (Deportivo*)automovil;
             dep->setMotor();
             dep->setDireccion();
@@ -308,6 +325,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             dep = (Deportivo*)automovil;
             dep->setMotor();
             dep->setDireccion();
@@ -322,6 +341,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             dep = (Deportivo*)automovil;
             dep->setMotor();
             dep->setDireccion();
@@ -335,7 +356,9 @@ Vehiculo personalizarVehiculo() {
             escogerTraccion(*automovil);
             escogerColor(*automovil);
             escogerRines(*automovil);
-            escogerLlantas(*automovil); 
+            escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie(); 
             dep = (Deportivo*)automovil;
             dep->setMotor();
             dep->setDireccion();
@@ -370,6 +393,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             des = (Descapotable*)automovil;
             des->setCapo();
             des->setMaletero();
@@ -382,6 +407,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             des = (Descapotable*)automovil;
             des->setCapo();
             des->setMaletero();
@@ -394,6 +421,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             des = (Descapotable*)automovil;
             des->setCapo();
             des->setMaletero();
@@ -406,6 +435,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             des = (Descapotable*)automovil;
             des->setCapo();
             des->setMaletero();
@@ -418,6 +449,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             des = (Descapotable*)automovil;
             des->setCapo();
             des->setMaletero();
@@ -430,6 +463,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             des = (Descapotable*)automovil;
             des->setCapo();
             des->setMaletero();
@@ -457,6 +492,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil); 
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             fam = (Familiar*)automovil;
             fam->setNPasajeros();
             fam->setDimensiones();
@@ -472,6 +509,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             fam = (Familiar*)automovil;
             fam->setNPasajeros();
             fam->setDimensiones();
@@ -487,6 +526,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             fam = (Familiar*)automovil;
             fam->setNPasajeros();
             fam->setDimensiones();
@@ -502,6 +543,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             fam = (Familiar*)automovil;
             fam->setNPasajeros();
             fam->setDimensiones();
@@ -533,6 +576,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             pic = (PicKup*)automovil;
             pic->setTamano();
             pic->setCabinas();
@@ -549,6 +594,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             pic = (PicKup*)automovil;
             pic->setTamano();
             pic->setCabinas();
@@ -565,6 +612,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             pic = (PicKup*)automovil;
             pic->setTamano();
             pic->setCabinas();
@@ -581,6 +630,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             pic = (PicKup*)automovil;
             pic->setTamano();
             pic->setCabinas();
@@ -597,6 +648,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             pic = (PicKup*)automovil;
             pic->setTamano();
             pic->setCabinas();
@@ -630,6 +683,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil); 
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             sed = (Sedan*)automovil;
             sed->setMaletero();
             automovil = (Vehiculo*)sed;
@@ -641,6 +696,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             sed = (Sedan*)automovil;
             sed->setMaletero();
             automovil = (Vehiculo*)sed; 
@@ -652,6 +709,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             sed = (Sedan*)automovil;
             sed->setMaletero();
             automovil = (Vehiculo*)sed; 
@@ -663,6 +722,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             sed = (Sedan*)automovil;
             sed->setMaletero();
             automovil = (Vehiculo*)sed;
@@ -674,6 +735,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             sed = (Sedan*)automovil;
             sed->setMaletero();
             automovil = (Vehiculo*)sed;
@@ -685,6 +748,8 @@ Vehiculo personalizarVehiculo() {
             escogerColor(*automovil);
             escogerRines(*automovil);
             escogerLlantas(*automovil);
+            automovil->setPrecio();
+            automovil->setNumeroSerie();
             sed = (Sedan*)automovil;
             sed->setMaletero();
             automovil = (Vehiculo*)sed;
@@ -746,7 +811,7 @@ void escogerTraccion(Vehiculo&v) {
         if(v.getTipoVehiculo() == "PickUp" || v.getTipoVehiculo() == "Familiar") {
             cout<<"1.- Delantera"<<endl;
             cout<<"2.- 4x4"<<endl;
-            cout<<"Tipo de frenos: "<<endl;
+            cout<<"Tipo de traccion: "<<endl;
             cin>>res;
             switch(res) {
                 case 1: v.setTraccion("Delantera"); break;
@@ -760,7 +825,7 @@ void escogerTraccion(Vehiculo&v) {
         else {
             cout<<"1.- Delantera"<<endl;
             cout<<"2.- Tracera"<<endl;
-            cout<<"Tipo de frenos: "<<endl;
+            cout<<"Tipo de traccion: "<<endl;
             cin>>res;
             switch(res) {
                 case 1: v.setTraccion("Delantera"); break;
@@ -809,7 +874,7 @@ void escogerRines(Vehiculo&v) {
             cout<<"1.- 13 in"<<endl;
             cout<<"2.- 14 in"<<endl;
             cout<<"3.- 15 in"<<endl;
-            cout<<"Tamaño de Rines: "<<endl;
+            cout<<"Tamanio de Rines: "<<endl;
             cin>>res;
             switch(res) {
                 case 1: v.setRin(13); break;
@@ -824,7 +889,7 @@ void escogerRines(Vehiculo&v) {
         else if(v.getTipoVehiculo() == "Deportivo" || v.getTipoVehiculo() == "Descapotable" || v.getTipoVehiculo() == "PickUp") {
             cout<<"1.- 16 in"<<endl;
             cout<<"2.- 17 in"<<endl;
-            cout<<"Tamaño de Rines: "<<endl;
+            cout<<"Tamanio de Rines: "<<endl;
             cin>>res;
             switch(res) {
                 case 1: v.setRin(16); break;
@@ -896,7 +961,7 @@ int buscarAdministrador(Administrador admin[], int&nAdmin){
     return indice;
 }
 
-void iniciarSesion(Administrador admin[], int&nAdmin, Venta v[], int&nVentas) {
+void iniciarSesion(Administrador admin[], int&nAdmin, Venta v[], int&nVentas, Vehiculo automovil[], int&nAutos) {
     string datos1, datos2;
     int indice = -1, res;
     cin.ignore();
@@ -909,11 +974,11 @@ void iniciarSesion(Administrador admin[], int&nAdmin, Venta v[], int&nVentas) {
 
         if((indice == 0) && (datos1 == admin[indice].getId()) && (datos2 == admin[indice].getPassword())) {
             cout<<"Acceso como Super Administrador"<<endl;
-            menuSuperAdministrador(admin, nAdmin, v, nVentas);
+            menuSuperAdministrador(admin, nAdmin, v, nVentas, automovil, nAutos);
         }
         else if((datos1 == admin[indice].getId()) && (datos2 == admin[indice].getPassword())) {
             cout<<"Acceso consedido"<<endl;
-            // menuAdministradorNorm();
+            menuAdministradorNorm(v, nVentas, automovil, nAutos);
         }
         else{
             cout<<"Acceso denegado"<<endl;
@@ -954,7 +1019,7 @@ void mostrarAdministradores(Administrador admin[], int&nAdmin) {
     }
 }
 
-void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nVentas){
+void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nVentas, Vehiculo automovil[], int&nAutos){
     Entrada entrada;
     do{
         cout<<"Opciones de super administrador"<<endl;
@@ -966,8 +1031,8 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nV
         cout<<"6.- Mostrar total vendido"<<endl;
         cout<<"7.- Regresar al menu principal"<<endl;
         cout<<"Ingrese respuesta"<<endl;
-
         cin>>entrada.entero;
+
         switch(entrada.entero) {
             case 1:
                 admin[nAdmin] = crearAdministrador();
@@ -977,7 +1042,10 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nV
             case 2:
                 mostrarAdministradores(admin, nAdmin);
                 break;
-            case 3: //personalizarVehiculo(); // Debe retornar un vehiculo
+            case 3: 
+            automovil[nAutos] = personalizarVehiculo(); // Debe retornar un vehiculo 
+            nAutos++;
+            break;
             case 4: v[0].BuscarVentas(v); break;
             case 5: v[0].MostrarVentas(v , nVentas); break;
             case 6: cout << "Total de ventas: " << v[0].operator+() << endl; break;
@@ -990,7 +1058,7 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nV
     while(entrada.entero != 7);
 }
 
-void menuAdministradorNorm(Venta v[], int&nVentas){
+void menuAdministradorNorm(Venta v[], int&nVentas, Vehiculo automovil[], int&nAutos){
     Entrada entrada;
     do{
         cout<<"Opciones de super administrador"<<endl;
@@ -1009,7 +1077,7 @@ void menuAdministradorNorm(Venta v[], int&nVentas){
                 v[0].BuscarVentas(v);
                 break;
             case 3: 
-                // v[0]
+                automovilesStock();
                 break;
             case 4:
                 cout << "Total de ventas: " << v[0].operator+() << endl;
@@ -1025,39 +1093,118 @@ void menuAdministradorNorm(Venta v[], int&nVentas){
     while(entrada.entero != 5);
 }
 
-void menuComprador() {
-	char resp;
+void menuComprador(Vehiculo automovil[], int&nAutos, Venta venta[], int&nVentas) {
+	Comprador comp;
+    int contCom = 0;
+    comp = crearComprador();
+    char resp;
 	do {
 		cout << "\t>>>> BIENVENIDO <<<<" << endl << endl;
-		
 		cout << "Acciones:" << endl << endl;
-		
 		cout << "> Ando viendo gracias (y)" << endl;
 		cout << "> Personalizar vehiculo (d)" << endl;
 		cout << "> Salir (g)" << endl <<endl;
-		
 		cout << "Ir a: ";
-		
 		cin >> resp;
 		
 		switch(resp) {
-			case 'y':
-				//Visualizar catalogo 
+			case 'y'://Visualizar catalogo 
 				cout << "\t>>>>Vehiculos en stock<<<<" << endl << endl;
 				automovilesStock();
 				break;
-				
-			case 'd': 
-				//Poner lo de personalizar7
-				 cout<<"Personalizar el Vehiculo"<<endl;
-     	        // vehiculos[nAutos] = personalizarVehiculo();
+			case 'd': //Poner lo de personalizar7
+                cout<<"Personalizar el Vehiculo"<<endl;
+     	        automovil[nAutos] = personalizarVehiculo();
+                nAutos++;
+                contCom++;
+                
+                do{
+                    cout<<"Deseas agregar al carrito (Si) = y, (No) = n "<<endl;
+                    cin>>resp;
+                    if(resp == 'n') {
+                        venta[nVentas] = realizarCompra(comp, automovil, nAutos, contCom); //Cambiar objeto por arreglo de objetos
+                        nVentas++;
+                    }
+                    else if(resp == 'y') {
+                        automovil[nAutos] = personalizarVehiculo();
+                        nAutos++;
+                        contCom++;
+                    }
+                    else resp = 'c';
+                }
+                while(resp == 'y');
 				break;
-				
 			default: 
 				cout << "Regresando al menu" <<endl;
 				resp = 'g';
 				break;
 		}
-		
 	} while (resp != 'g');
+}
+
+Comprador crearComprador() {
+    Comprador* c = new Comprador();
+    string dato1, dato2;
+    int res;
+    long long tel;
+    cin.ignore();
+    cout<<"Ingrese su nombre: "<<endl;
+    getline(cin, dato1);
+    cout<<"Ingrese su correo: "<<endl;
+    getline(cin, dato2);
+    c->setCorreo(dato2, dato1);
+    do{
+        cout<<"1.- Credito"<<endl;
+        cout<<"2.- Contado"<<endl;
+        cout<<"Ingrese su forma de pago: "<<endl;
+        cin>>res;
+        switch(res){
+            case 1: c->setPago("Credito"); break;
+            case 2: c->setPago("Contado"); break;
+            default: res = 3; cout<<"Opcion no disponible"<<endl; break;
+        }
+    }
+    while(res == 3);
+    cout<<"Ingrese su telefono: "<<endl;
+    cin>>tel;
+    c->setTelefono(tel);
+
+    return *c;
+}
+
+Venta realizarCompra(Comprador&comp, Vehiculo vehiculo[], int&nAutos, int&contCom) {
+    int res;
+    string dato1;
+    Venta* v = new Venta();
+    v->setComprador(comp);
+    if(comp.getPago() == "Credito"){
+            do {
+                cout<<"1.- 3 Pagos"<<endl;
+                cout<<"2.- 6 Pagos"<<endl;
+                cout<<"3.- 12 Pagos"<<endl;
+                cout<<"Ingrese el plan de pagos: "<<endl;
+                cin>>res;
+                switch(res) {
+                    case 1: v->setPlazo(3); break;
+                    case 2: v->setPlazo(6); break;
+                    case 3: v->setPlazo(12); break;
+                    default:
+                    res = 5;
+                    cout<<"Opcion no disponible"<<endl;
+                    break;
+                }
+            }
+    while(res == 5);
+    }
+    else v->setPlazo(1);
+    cin.ignore();
+    cout<<"Ingrese su dirección: "<<endl;
+    getline(cin, dato1);
+    v->setDireccion(dato1);
+    v->setFactura();
+    for(int i = (nAutos - contCom); i < nAutos; i++) v->AgregarVehiculo(vehiculo[i]);
+    v->MostrarTicket();
+    cout<<"$"<<v->operator + ();
+    
+    return *v;
 }

@@ -10,7 +10,8 @@ class Venta{
 	private:
 		int plazo;
 		int N;
-		string direccion, factura;
+		int factura;
+		string direccion;
 		Comprador comprador;
 		Vehiculo vehiculos [MAX];
 		double total;	
@@ -18,7 +19,7 @@ class Venta{
 		Venta(){
 			plazo = 0;
 			direccion = "";
-			factura = "";
+			factura = 0;
 			total = 0.0;
 			N = 0;
 		}	
@@ -29,8 +30,11 @@ class Venta{
 		void setDireccion(string _direccion){ direccion= _direccion; }
 		string getDireccion(){ return direccion; }
 		
-		void setFactura(string _factura){ factura= _factura; }
-		string getFactura(){ return factura; }		
+		void setFactura(){
+    		srand(time(NULL));
+			factura = 100000 + rand()% (999999 - 100000);
+		}
+		int getFactura(){ return factura; }
 		
 		void setTotal(double _total){ total= _total; }
 		double getTotal(){ return total; }
@@ -55,21 +59,21 @@ class Venta{
 		}
 		
 		void MostrarTicket(){
-			for(int i = 0; i <= N; i++) {
-				cout<<"\t Ticket de Compra"<<endl;
-				cout<<"Nombre del comprador: "<<comprador.mostrarNombre()<<endl;
+			cout<<"\t Ticket de Compra"<<endl;
+			cout<<"Nombre del comprador: "<<comprador.mostrarNombre()<<endl;
+			for(int i = 0; i < N; i++) {
 				cout<<"Vehiculo Comprado: "<<vehiculos[i].getMarca()<<endl;
 				cout<<"Numero de serie: "<<vehiculos[i].getNumeroSerie()<<endl<<endl;
 				cout<<"Caracteristicas del vehiculo: "<<endl;
 				cout<<"Tipo de vehiculo: "<<vehiculos[i].getTipoVehiculo()<<endl;
 				cout<<"Modelo: "<<vehiculos[i].getModelo()<<endl;
 				cout<<"Color: "<<vehiculos[i].getColor()<<endl;
-				cout<<"Precio de Vehiculo: "<<vehiculos[i].getPrecio()<<endl;
+				cout<<"Precio de Vehiculo: "<<vehiculos[i].getPrecio()<<endl; // Checar la salida del precio
 				cout<<"Tipo de Pago: "<<comprador.getPago()<<endl;
 			}			
 		}
 
-		double operator + (){
+		long double operator + (){
 			double a = 0;
 			for (int i = 0; i < N ; i++){
 				a += vehiculos[i].getPrecio();				
@@ -77,7 +81,7 @@ class Venta{
 			return a;
 		}
 		void BuscarVentas(Venta ventas[]) {
-			string fac;
+			int fac;
 			int indice = -1;
 			int i = 0;
 			bool encontrado = false;
