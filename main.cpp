@@ -30,7 +30,7 @@ void escogerColor(Vehiculo&);
 void escogerRines(Vehiculo&);
 void escogerLlantas(Vehiculo&);
 
-
+void iniciarCompra(void);
 void vehiculosStock(Vehiculo[], int&);
 void mostrarStock(Vehiculo[], int&);
 void superAdmin(Administrador&, int&);
@@ -85,6 +85,14 @@ int main() {
     return 0;
 } //Fin del main
 
+void iniciarCompra() {
+	Vehiculo* v = new Deportivo(5, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda", "Negro", 17, "Runflat", "MX-5 2020", 411000.00, "Deportivo", "V8", "Electrica", 3.9);
+	Venta* venta[] = {
+		new Venta(18,"ESIME CULHUACAN", 654988, 3500000,*v)
+	};
+	
+} 
+
 void vehiculosStock(Vehiculo stock[], int&nStock) {
     Vehiculo* autos[30] = {
         new Deportivo(4, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda", "Negro", 17, "Runflat", "MX-5 2020", 411000.00, "Deportivo", "V8", "Electrica", 3.9), 
@@ -128,10 +136,9 @@ void vehiculosStock(Vehiculo stock[], int&nStock) {
         stock[i] = *autos[i];
         nStock++;
     }
-    delete autos;
 }
 
-void vehiculosStock(Vehiculo stock[], int&nStock) {
+void mostrarStock(Vehiculo stock[], int&nStock) {
 	char option;
     
     // Tabla de stock

@@ -22,7 +22,16 @@ class Venta{
 			factura = 0;
 			total = 0.0;
 			N = 0;
-		}	
+		}
+		
+		Venta(int _plazo, string _direccion, int _factura, double _total, Vehiculo _vehiculo) {
+			
+			vehiculos[0] = _vehiculo;
+			plazo = _plazo;
+			direccion = _direccion;
+			factura = _factura;
+			total = _total;
+		}
 		
 		void setPlazo(int _plazo){ plazo = _plazo; }
 		int getPlazo(){ return plazo; }
