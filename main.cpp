@@ -1,6 +1,9 @@
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 #include "Comprador.h"
 #include "Administrador.h"
+#include "Venta.h"
 #include "Clasico.h"
 #include "Deportivo.h"
 #include "Descapotable.h"
@@ -23,14 +26,9 @@ union Entrada {
 };
 
 Vehiculo personalizarVehiculo();
-void escogerTransmision(Vehiculo&);
-void escogerFrenos(Vehiculo&);
-void escogerTraccion(Vehiculo&);
-void escogerColor(Vehiculo&);
-void escogerRines(Vehiculo&);
-void escogerLlantas(Vehiculo&);
 
-void iniciarCompra(void);
+
+void comprasPredeterminadas(Venta[], int&);
 void vehiculosStock(Vehiculo[], int&);
 void mostrarStock(Vehiculo[], int&);
 void superAdmin(Administrador&, int&);
@@ -45,6 +43,7 @@ Comprador crearComprador();
 Venta realizarCompra(Comprador&, Vehiculo[], int&, int&);
 
 int main() {
+    srand(time(NULL));
     Administrador* administradores = new Administrador[ADMIN];
     Comprador* compradores = new Comprador[COM];
     Vehiculo* vehiculos = new Vehiculo[AUTOS];
@@ -57,6 +56,7 @@ int main() {
     
     superAdmin(administradores[nAdmin], nAdmin);
     vehiculosStock(stock, nStock);
+    comprasPredeterminadas(ventas, nVentas);
 	
     do{
         cout<<"\t\nMENU"<<endl;
@@ -85,12 +85,32 @@ int main() {
     return 0;
 } //Fin del main
 
-void iniciarCompra() {
-	Vehiculo* v = new Deportivo(5, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda", "Negro", 17, "Runflat", "MX-5 2020", 411000.00, "Deportivo", "V8", "Electrica", 3.9);
-	Venta* venta[] = {
-		new Venta(18,"ESIME CULHUACAN", 654988, 3500000,*v)
+void comprasPredeterminadas(Venta ventas[], int&nVentas) {
+	Vehiculo* v[] = {
+        new Deportivo(5, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda", "Negro", 17, "Runflat", "MX-5 2020", 411000.00, "Deportivo", "V8", "Electrica", 3.9),
+        new Sedan(4, "Automatica", 19.3, "Espacial tabular", "ABS", "Trasera", "Eje rigido", 4, "Chevrolet", "Rojo", 18, "Runflat", "Aveo 2020", 209400.00, "Sedan", 366.5, 4),
+        new PicKup(6, "Automatica", 5, "De escalera", "Electronicos", "4x4", "McPherson", 4, "Toyota", "Dorado", 16, "Radial", "Tundra 2018", 500000.00, "PickUp", "Grande", "Amplia", 4, 980, 850, true ),
+        new Clasico(6, "Manual",9.45, "Monocasco", "Frenos de Tambor", "Traccion Delantera", "Suspencion Semirrigida", 4, "Dodge","Cafe Claro", 16, "Bajo Consumo", "Guayin 1981", 55000, "Clasico", "Vintage Post Gueraa", "Modificado", 2006),
+        new Descapotable(4,"Automatica", 12.5,  "McPherson", "Discos ventilados - Discos solidos", "total",  "Independiente", 4, "Audi", "Rojo", 12, "runflat", "A3 Cabrio 2020", 790900.0, "Descapotable", 4, "toldo de tela eletrico", "480.2" )
+    };
+    Comprador* c[] = {
+        new Comprador("Juan Medina Valdez", "melval_3@gmail.com", 2821090368, "Contado"),
+        new Comprador("Alan Ramirez Lopez", "alopz2001@hotmail.com", 5561950700, "Credito"),
+        new Comprador("Martha Galvez Hernandez", "marthahrz54@gmail.com", 2261072507, "Contado"),
+        new Comprador("Camila Avila Perez", "camila205@hotmail.com", 5660394810, "Contado"),
+        new Comprador("Ivan Fernandez Mundo", "ivan_ferndz@gmail.com", 5595652501, "Credito")
+    };
+	Venta* venta[5] = {
+		new Venta(1, "Ricardo Flores Magon #43", 100508, 750000.0, *v[0], *c[0]),
+        new Venta(18, "Lomas iguanas #10", 100051, 350000.0, *v[1], *c[1]),
+        new Venta(1, "Colonia Centro #25", 100101, 800500.0, *v[2], *c[2]),
+        new Venta(24, "Rafael Vera de Cordoba #23", 100120, 550000.0, *v[3], *c[3]),
+        new Venta(36, "Calle las Hayas #17", 100100, 1250000.0, *v[4], *c[4])
 	};
-	
+    for(int i = 0; i < 5; i++) {
+        ventas[i] = *venta[i];
+        nVentas++;
+    }
 } 
 
 void vehiculosStock(Vehiculo stock[], int&nStock) {
@@ -184,770 +204,653 @@ void mostrarStock(Vehiculo stock[], int&nStock) {
 
 Vehiculo personalizarVehiculo() {
     Vehiculo* automovil ; //En el arreglo estan el total de autos por categoria
-    string respuesta;
-    Entrada entrada; //Union para ahorrar memoria
     int res; // Colocar do{} while();
-    cout<<"1.- Clasico"<<endl;
-    cout<<"2.- Deportivo"<<endl;
-    cout<<"3.- Descapotable"<<endl;
-    cout<<"4.- Familiar"<<endl;
-    cout<<"5.- PickUp"<<endl;
-    cout<<"6.- Sedan"<<endl;
-    cout<<"Tipo de vehiculo a crear: "<<endl;
-    cin>>entrada.entero;
-    switch (entrada.entero) {
-    case 1:
-        automovil = new Clasico();
-        automovil->setTipoVehiculo("Clasico");
-        cout<<"1.- Ford"<<endl;
-        cout<<"2.- Chevrolet"<<endl;
-        cout<<"3.- Dodge"<<endl;
-        cout<<"4.- VolksWagen"<<endl;
-        cout<<"5.- Mercedes Benz"<<endl;
-        cout<<"Elija la marca: "<<endl;
-        cin>>entrada.entero;
-        switch (entrada.entero) {
-        case 1: 
-            automovil->setMarca("Ford");
-            escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            break;
-        case 2: 
-            automovil->setMarca("Chevrolet"); 
-            escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            break;
-        case 3: 
-            automovil->setMarca("Dodge"); 
-            escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            break;
-        case 4: 
-            automovil->setMarca("VolksWagen");
-            escogerTransmision(*automovil); 
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            break;
-        case 5: 
-            automovil->setMarca("Mercedes Benz"); 
-            escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            break;  
-        default: cout<<"Marca no disponible"<<endl; break;
-        }
-        break;
-
-    case 2:
-        Deportivo* dep;
-        automovil = new Deportivo();
-        automovil->setTipoVehiculo("Deportivo");
-        
-        cout<<"1.- Porsche"<<endl;
-        cout<<"2.- Mazda"<<endl;
-        cout<<"3.- BMW"<<endl;
-        cout<<"4.- Honda"<<endl;
-        cout<<"5.- Mercedes Benz"<<endl;
-        cout<<"6.- Ford"<<endl;
-        cout<<"Elija la marca: "<<endl;
-        cin>>entrada.entero;
-        
-        switch (entrada.entero) {
-        case 1: automovil->setMarca("Porsche");
-			escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            dep = (Deportivo*)automovil;
-            dep->setMotor();
-            dep->setDireccion();
-            dep->setAceleracion();
-            automovil = (Vehiculo*)dep;
-			break;
-				
-        case 2: automovil->setMarca("Mazda");
-        	escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            dep = (Deportivo*)automovil;
-            dep->setMotor();
-            dep->setDireccion();
-            dep->setAceleracion();
-            automovil = (Vehiculo*)dep;
-			break;
-				
-        case 3: automovil->setMarca("BMW");
-        	escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            dep = (Deportivo*)automovil;
-            dep->setMotor();
-            dep->setDireccion();
-            dep->setAceleracion();
-            automovil = (Vehiculo*)dep;
-			break;
-				
-        case 4: automovil->setMarca("Honda");
-    		escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            dep = (Deportivo*)automovil;
-            dep->setMotor();
-            dep->setDireccion();
-            dep->setAceleracion();
-            automovil = (Vehiculo*)dep;
-			break;
-				
-        case 5: automovil->setMarca("Mercedes Benz");
-			escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            dep = (Deportivo*)automovil;
-            dep->setMotor();
-            dep->setDireccion();
-            dep->setAceleracion();
-            automovil = (Vehiculo*)dep;
-			break;
-				
-        case 6: automovil->setMarca("Ford");
-			escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie(); 
-            dep = (Deportivo*)automovil;
-            dep->setMotor();
-            dep->setDireccion();
-            dep->setAceleracion();
-            automovil = (Vehiculo*)dep;
-			break;
-				
-        default: cout<<"Marca no disponible"<<endl; break;
-        
-        }
-        
-        break;
-        
-    case 3:
-        Descapotable* des;
-        automovil = new Descapotable();
-        automovil->setTipoVehiculo("Descapotable");
-        
-        cout<<"1.- Fiat"<<endl;
-        cout<<"2.- Mazda"<<endl;
-        cout<<"3.- VolksWagen"<<endl;
-        cout<<"4.- Ford"<<endl;
-        cout<<"5.- Lotus Elise"<<endl;
-        cout<<"6.- Audi"<<endl;
-        cout<<"Elija la marca: "<<endl;
-        cin>>entrada.entero;
-        switch (entrada.entero) {
-        case 1: automovil->setMarca("Fiat"); 
-		 	escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            des = (Descapotable*)automovil;
-            des->setCapo();
-            des->setMaletero();
-            automovil = (Vehiculo*)des;
-			break;
-        case 2: automovil->setMarca("Mazda"); 
-		 	escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            des = (Descapotable*)automovil;
-            des->setCapo();
-            des->setMaletero();
-            automovil = (Vehiculo*)des;
-			break;
-        case 3: automovil->setMarca("VolksWagen");
-			escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            des = (Descapotable*)automovil;
-            des->setCapo();
-            des->setMaletero();
-            automovil = (Vehiculo*)des;
-			break;
-        case 4: automovil->setMarca("Ford");
-			escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            des = (Descapotable*)automovil;
-            des->setCapo();
-            des->setMaletero();
-            automovil = (Vehiculo*)des;
-			 break;
-        case 5: automovil->setMarca("Lotus Elise");
-			escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            des = (Descapotable*)automovil;
-            des->setCapo();
-            des->setMaletero();
-            automovil = (Vehiculo*)des;
-			break;
-        case 6: automovil->setMarca("Audi");
-			escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            des = (Descapotable*)automovil;
-            des->setCapo();
-            des->setMaletero();
-            automovil = (Vehiculo*)des;
-			break;
-        default: cout<<"Marca no disponible"<<endl; break;
-        }
-        break;
-        
-    case 4:
-        Familiar* fam;
-        automovil = new Familiar();
-        automovil->setTipoVehiculo("Familiar");
-        cout<<"1.- Seat"<<endl;
-        cout<<"2.- Subaru"<<endl;
-        cout<<"3.- Peugeot"<<endl;
-        cout<<"4.- Kia"<<endl;
-        cout<<"Elija la marca: "<<endl;
-        cin>>entrada.entero;
-        switch (entrada.entero) {
-        case 1: automovil->setMarca("Seat");
-			escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil); 
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            fam = (Familiar*)automovil;
-            fam->setNPasajeros();
-            fam->setDimensiones();
-            fam->setCapacidadCarga();
-            fam->setTipoEncendido();
-            fam->setSeguridad();
-            automovil = (Vehiculo*)fam;
-			break;
-        case 2: automovil->setMarca("Subaru");
-    		escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            fam = (Familiar*)automovil;
-            fam->setNPasajeros();
-            fam->setDimensiones();
-            fam->setCapacidadCarga();
-            fam->setTipoEncendido();
-            fam->setSeguridad();
-            automovil = (Vehiculo*)fam;
-			break;
-        case 3: automovil->setMarca("Peugout"); 
-			escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            fam = (Familiar*)automovil;
-            fam->setNPasajeros();
-            fam->setDimensiones();
-            fam->setCapacidadCarga();
-            fam->setTipoEncendido();
-            fam->setSeguridad();
-            automovil = (Vehiculo*)fam;
-			break;
-        case 4: automovil->setMarca("Kia"); 
-			escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            fam = (Familiar*)automovil;
-            fam->setNPasajeros();
-            fam->setDimensiones();
-            fam->setCapacidadCarga();
-            fam->setTipoEncendido();
-            fam->setSeguridad();
-            automovil = (Vehiculo*)fam;
-			break;
-        default: cout<<"Marca no disponible"<<endl; break;
-        }
-        break;
-        
-    case 5:
-        PicKup* pic;
-        automovil = new PicKup();
-        automovil->setTipoVehiculo("PickUp");
-        cout<<"1.- Chevrolet"<<endl;
-        cout<<"2.- Ford"<<endl;
-        cout<<"3.- Mitsubishi"<<endl;
-        cout<<"4.- Nissan"<<endl;
-        cout<<"5.- Toyota"<<endl;
-        cout<<"Elija la marca: "<<endl;
-        cin>>entrada.entero;
-        switch (entrada.entero) {
-        case 1: automovil->setMarca("Chevrolet");
-			escogerTransmision(*automovil); 
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            pic = (PicKup*)automovil;
-            pic->setTamano();
-            pic->setCabinas();
-            pic->setPuertaDeCarga();
-            pic->setTipoCaja();
-            pic->setCapacidadDeCarga();
-            pic->SetLongCaja();
-            automovil = (Vehiculo*)pic;
-			break;
-        case 2: automovil->setMarca("Ford"); 
-			escogerTransmision(*automovil); 
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            pic = (PicKup*)automovil;
-            pic->setTamano();
-            pic->setCabinas();
-            pic->setPuertaDeCarga();
-            pic->setTipoCaja();
-            pic->setCapacidadDeCarga();
-            pic->SetLongCaja();
-            automovil = (Vehiculo*)pic;
-			break;
-        case 3: automovil->setMarca("Mitsubishi"); 
-			escogerTransmision(*automovil); 
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            pic = (PicKup*)automovil;
-            pic->setTamano();
-            pic->setCabinas();
-            pic->setPuertaDeCarga();
-            pic->setTipoCaja();
-            pic->setCapacidadDeCarga();
-            pic->SetLongCaja();
-            automovil = (Vehiculo*)pic;
-			break;
-        case 4: automovil->setMarca("Nissan"); 
-			escogerTransmision(*automovil); 
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            pic = (PicKup*)automovil;
-            pic->setTamano();
-            pic->setCabinas();
-            pic->setPuertaDeCarga();
-            pic->setTipoCaja();
-            pic->setCapacidadDeCarga();
-            pic->SetLongCaja();
-            automovil = (Vehiculo*)pic;
-			break;
-        case 5: automovil->setMarca("Toyota"); 
-			escogerTransmision(*automovil); 
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            pic = (PicKup*)automovil;
-            pic->setTamano();
-            pic->setCabinas();
-            pic->setPuertaDeCarga();
-            pic->setTipoCaja();
-            pic->setCapacidadDeCarga();
-            pic->SetLongCaja();
-            automovil = (Vehiculo*)pic;
-			break;
-        default: cout<<"Marca no disponible"<<endl; break;
-        }
-        break;
-        
-    case 6:
-        Sedan* sed;
-        automovil = new Sedan();
-        automovil->setTipoVehiculo("Sedan");
-        cout<<"1.- Chevrolet"<<endl;
-        cout<<"2.- Ford"<<endl;
-        cout<<"3.- Honda"<<endl;
-        cout<<"4.- Hyundai"<<endl;
-        cout<<"5.- Mazda"<<endl;
-        cout<<"6.- Nissan"<<endl;
-        cout<<"Elija la marca: "<<endl;
-        cin>>entrada.entero;
-        switch (entrada.entero) {
-        case 1: automovil->setMarca("Chevrolet");
-			escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil); 
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            sed = (Sedan*)automovil;
-            sed->setMaletero();
-            automovil = (Vehiculo*)sed;
-			break;
-        case 2: automovil->setMarca("Ford");
-			escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            sed = (Sedan*)automovil;
-            sed->setMaletero();
-            automovil = (Vehiculo*)sed; 
-			break;
-        case 3: automovil->setMarca("Honda");
-			escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            sed = (Sedan*)automovil;
-            sed->setMaletero();
-            automovil = (Vehiculo*)sed; 
-			break;
-        case 4: automovil->setMarca("Hyundai"); 
-			escogerTransmision(*automovil);
-            escogerFrenos(*automovil);
-            escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            sed = (Sedan*)automovil;
-            sed->setMaletero();
-            automovil = (Vehiculo*)sed;
-			break;
-        case 5: automovil->setMarca("Mazda"); 
-			escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            sed = (Sedan*)automovil;
-            sed->setMaletero();
-            automovil = (Vehiculo*)sed;
-			break;
-        case 6: automovil->setMarca("Nissan"); 
-			escogerTransmision(*automovil);
-        	escogerFrenos(*automovil);
-        	escogerTraccion(*automovil);
-            escogerColor(*automovil);
-            escogerRines(*automovil);
-            escogerLlantas(*automovil);
-            automovil->setPrecio();
-            automovil->setNumeroSerie();
-            sed = (Sedan*)automovil;
-            sed->setMaletero();
-            automovil = (Vehiculo*)sed;
-			break;
-				
-        default: cout<<"Marca no disponible"<<endl; break;
-        }
-    default:
-        entrada.entero = 7;
-        cout<<"Opcion no disponible"<<endl;
-        break;
-    }
-    return *automovil;
-}
-
-void escogerTransmision(Vehiculo&v) {
-    int res;
     do{
-        cout<<"1.- Manual"<<endl;
-        cout<<"2.- Automatica"<<endl;
-        cout<<"Tipo de tranmision: "<<endl;
+        cout<<"1.- Clasico"<<endl;
+        cout<<"2.- Deportivo"<<endl;
+        cout<<"3.- Descapotable"<<endl;
+        cout<<"4.- Familiar"<<endl;
+        cout<<"5.- PickUp"<<endl;
+        cout<<"6.- Sedan"<<endl;
+        cout<<"Tipo de vehiculo a crear: "<<endl;
         cin>>res;
-        switch(res) {
-            case 1: v.setTransmision("Manual"); break;
-            case 2: v.setTransmision("Automatica"); break;
-            default: 
-            res = 3; 
-            cout<<"Opcion no disponible"<<endl; 
+        switch (res) {
+        case 1:
+            automovil = new Clasico();
+            automovil->setTipoVehiculo("Clasico");
+            do{
+                cout<<"1.- Ford"<<endl;
+                cout<<"2.- Chevrolet"<<endl;
+                cout<<"3.- Dodge"<<endl;
+                cout<<"4.- VolksWagen"<<endl;
+                cout<<"5.- Mercedes Benz"<<endl;
+                cout<<"Elija la marca: "<<endl;
+                cin>>res;
+                switch (res) {
+                case 1: 
+                    automovil->setMarca("Ford");
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    break;
+                case 2: 
+                    automovil->setMarca("Chevrolet"); 
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    break;
+                case 3: 
+                    automovil->setMarca("Dodge"); 
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    break;
+                case 4: 
+                    automovil->setMarca("VolksWagen");
+                    automovil->setTransmision(); 
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    break;
+                case 5: 
+                    automovil->setMarca("Mercedes Benz"); 
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    break;  
+                default: 
+                    res = 0;
+                    cout<<"Marca no disponible"<<endl; 
+                    break;
+                }
+            }
+            while(res == 0);
+            break;
+
+        case 2:
+            Deportivo* dep;
+            automovil = new Deportivo();
+            automovil->setTipoVehiculo("Deportivo");
+
+            do{
+                cout<<"1.- Porsche"<<endl;
+                cout<<"2.- Mazda"<<endl;
+                cout<<"3.- BMW"<<endl;
+                cout<<"4.- Honda"<<endl;
+                cout<<"5.- Mercedes Benz"<<endl;
+                cout<<"6.- Ford"<<endl;
+                cout<<"Elija la marca: "<<endl;
+                cin>>res;
+    
+                switch (res) {
+                case 1: 
+                    automovil->setMarca("Porsche");
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    dep = (Deportivo*)automovil;
+                    dep->setMotor();
+                    dep->setDireccion();
+                    dep->setAceleracion();
+                    automovil = (Vehiculo*)dep;
+	    	  	    break;
+                case 2: 
+                    automovil->setMarca("Mazda");
+                	automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    dep = (Deportivo*)automovil;
+                    dep->setMotor();
+                    dep->setDireccion();
+                    dep->setAceleracion();
+                    automovil = (Vehiculo*)dep;
+	    	  	    break;
+                case 3: 
+                    automovil->setMarca("BMW");
+                	automovil->setTransmision();
+                    automovil->setFrenos();
+                	automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    dep = (Deportivo*)automovil;
+                    dep->setMotor();
+                    dep->setDireccion();
+                    dep->setAceleracion();
+                    automovil = (Vehiculo*)dep;
+	    	  	    break;
+                case 4: 
+                    automovil->setMarca("Honda");
+        	   	    automovil->setTransmision();
+                	automovil->setFrenos();
+                	automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    dep = (Deportivo*)automovil;
+                    dep->setMotor();
+                    dep->setDireccion();
+                    dep->setAceleracion();
+                    automovil = (Vehiculo*)dep;
+	    	  	    break;
+                case 5: 
+                    automovil->setMarca("Mercedes Benz");
+	    	  	    automovil->setTransmision();
+                	automovil->setFrenos();
+                	automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    dep = (Deportivo*)automovil;
+                    dep->setMotor();
+                    dep->setDireccion();
+                    dep->setAceleracion();
+                    automovil = (Vehiculo*)dep;
+	    	  	    break;
+                case 6: 
+                    automovil->setMarca("Ford");
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta(); 
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    dep = (Deportivo*)automovil;
+                    dep->setMotor();
+                    dep->setDireccion();
+                    dep->setAceleracion();
+                    automovil = (Vehiculo*)dep;
+	    	  	    break;
+                default: 
+                    res = 0; 
+                    cout<<"Marca no disponible"<<endl; 
+                    break;
+                }
+            }
+            while(res == 0);
+            break;
+
+        case 3:
+            Descapotable* des;
+            automovil = new Descapotable();
+            automovil->setTipoVehiculo("Descapotable");
+            do{
+                cout<<"1.- Fiat"<<endl;
+                cout<<"2.- Mazda"<<endl;
+                cout<<"3.- VolksWagen"<<endl;
+                cout<<"4.- Ford"<<endl;
+                cout<<"5.- Lotus Elise"<<endl;
+                cout<<"6.- Audi"<<endl;
+                cout<<"Elija la marca: "<<endl;
+                cin>>res;
+                switch (res) {
+                case 1: 
+                    automovil->setMarca("Fiat"); 
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    des = (Descapotable*)automovil;
+                    des->setCapo();
+                    des->setMaletero();
+                    automovil = (Vehiculo*)des;
+                    break;
+                case 2: 
+                    automovil->setMarca("Mazda"); 
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    des = (Descapotable*)automovil;
+                    des->setCapo();
+                    des->setMaletero();
+                    automovil = (Vehiculo*)des;
+                    break;
+                case 3: 
+                    automovil->setMarca("VolksWagen");
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    des = (Descapotable*)automovil;
+                    des->setCapo();
+                    des->setMaletero();
+                    automovil = (Vehiculo*)des;
+                    break;
+                case 4: 
+                    automovil->setMarca("Ford");
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    des = (Descapotable*)automovil;
+                    des->setCapo();
+                    des->setMaletero();
+                    automovil = (Vehiculo*)des;
+                    break;
+                case 5: 
+                    automovil->setMarca("Lotus Elise");
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    des = (Descapotable*)automovil;
+                    des->setCapo();
+                    des->setMaletero();
+                    automovil = (Vehiculo*)des;
+                    break;
+                case 6: 
+                    automovil->setMarca("Audi");
+                    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    des = (Descapotable*)automovil;
+                    des->setCapo();
+                    des->setMaletero();
+                    automovil = (Vehiculo*)des;
+                    break;
+                default: 
+                    res = 0;
+                    cout<<"Marca no disponible"<<endl; 
+                    break;
+                }
+            }
+            while(res == 0);
+            break;
+
+        case 4:
+            Familiar* fam;
+            automovil = new Familiar();
+            automovil->setTipoVehiculo("Familiar");
+            
+            do{
+                cout<<"1.- Seat"<<endl;
+                cout<<"2.- Subaru"<<endl;
+                cout<<"3.- Peugeot"<<endl;
+                cout<<"4.- Kia"<<endl;
+                cout<<"Elija la marca: "<<endl;
+                cin>>res;
+                switch (res) {
+                case 1: 
+                    automovil->setMarca("Seat");
+                    automovil->setTransmision();
+	    	  	    automovil->setFrenos();
+                	automovil->setTraccion();
+                	automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    fam = (Familiar*)automovil;
+                    fam->setNPasajeros();
+                    fam->setDimensiones();
+                    fam->setCapacidadCarga();
+                    fam->setTipoEncendido();
+                    fam->setSeguridad();
+                    automovil = (Vehiculo*)fam;
+                    break;
+                case 2:
+                    automovil->setMarca("Subaru");
+                    automovil->setTransmision();
+        	   	    automovil->setFrenos();
+                	automovil->setTraccion();
+                	automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    fam = (Familiar*)automovil;
+                    fam->setNPasajeros();
+                    fam->setDimensiones();
+                    fam->setCapacidadCarga();
+                    fam->setTipoEncendido();
+                    fam->setSeguridad();
+                    automovil = (Vehiculo*)fam;
+                    break;
+                case 3: 
+                    automovil->setMarca("Peugout"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    fam = (Familiar*)automovil;
+                    fam->setNPasajeros();
+                    fam->setDimensiones();
+                    fam->setCapacidadCarga();
+                    fam->setTipoEncendido();
+                    fam->setSeguridad();
+                    automovil = (Vehiculo*)fam;
+                    break;
+                case 4: 
+                    automovil->setMarca("Kia"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    fam = (Familiar*)automovil;
+                    fam->setNPasajeros();
+                    fam->setDimensiones();
+                    fam->setCapacidadCarga();
+                    fam->setTipoEncendido();
+                    fam->setSeguridad();
+                    automovil = (Vehiculo*)fam;
+                    break;
+                default: 
+                    res = 0;
+                    cout<<"Marca no disponible"<<endl; 
+                    break;
+                }
+            }
+            while(res == 0);
+            break;
+
+        case 5:
+            PicKup* pic;
+            automovil = new PicKup();
+            automovil->setTipoVehiculo("PickUp");
+            do{
+                cout<<"1.- Chevrolet"<<endl;
+                cout<<"2.- Ford"<<endl;
+                cout<<"3.- Mitsubishi"<<endl;
+                cout<<"4.- Nissan"<<endl;
+                cout<<"5.- Toyota"<<endl;
+                cout<<"Elija la marca: "<<endl;
+                cin>>res;
+                switch (res) {
+                case 1: 
+                    automovil->setMarca("Chevrolet");
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    pic = (PicKup*)automovil;
+                    pic->setTamano();
+                    pic->setCabinas();
+                    pic->setPuertaDeCarga();
+                    pic->setTipoCaja();
+                    pic->setCapacidadDeCarga();
+                    pic->SetLongCaja();
+                    automovil = (Vehiculo*)pic;
+	    	  	    break;
+                case 2: 
+                    automovil->setMarca("Ford"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    pic = (PicKup*)automovil;
+                    pic->setTamano();
+                    pic->setCabinas();
+                    pic->setPuertaDeCarga();
+                    pic->setTipoCaja();
+                    pic->setCapacidadDeCarga();
+                    pic->SetLongCaja();
+                    automovil = (Vehiculo*)pic;
+	    	  	    break;
+                case 3: 
+                    automovil->setMarca("Mitsubishi"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    pic = (PicKup*)automovil;
+                    pic->setTamano();
+                    pic->setCabinas();
+                    pic->setPuertaDeCarga();
+                    pic->setTipoCaja();
+                    pic->setCapacidadDeCarga();
+                    pic->SetLongCaja();
+                    automovil = (Vehiculo*)pic;
+	    	  	    break;
+                case 4: 
+                    automovil->setMarca("Nissan"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    pic = (PicKup*)automovil;
+                    pic->setTamano();
+                    pic->setCabinas();
+                    pic->setPuertaDeCarga();
+                    pic->setTipoCaja();
+                    pic->setCapacidadDeCarga();
+                    pic->SetLongCaja();
+                    automovil = (Vehiculo*)pic;
+	    	  	    break;
+                case 5: 
+                    automovil->setMarca("Toyota"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    pic = (PicKup*)automovil;
+                    pic->setTamano();
+                    pic->setCabinas();
+                    pic->setPuertaDeCarga();
+                    pic->setTipoCaja();
+                    pic->setCapacidadDeCarga();
+                    pic->SetLongCaja();
+                    automovil = (Vehiculo*)pic;
+	    	  	    break;
+                default: 
+                    res = 0;
+                    cout<<"Marca no disponible"<<endl; 
+                    break;
+                }
+            }
+            while(res == 0);
+            break;
+
+        case 6:
+            Sedan* sed;
+            automovil = new Sedan();
+            automovil->setTipoVehiculo("Sedan");
+
+            do{
+                cout<<"1.- Chevrolet"<<endl;
+                cout<<"2.- Ford"<<endl;
+                cout<<"3.- Honda"<<endl;
+                cout<<"4.- Hyundai"<<endl;
+                cout<<"5.- Mazda"<<endl;
+                cout<<"6.- Nissan"<<endl;
+                cout<<"Elija la marca: "<<endl;
+                cin>>res;
+                switch (res) {
+                case 1: 
+                    automovil->setMarca("Chevrolet");
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    sed = (Sedan*)automovil;
+                    sed->setMaletero();
+                    automovil = (Vehiculo*)sed;
+	    	  	    break;
+                case 2: 
+                    automovil->setMarca("Ford");
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    sed = (Sedan*)automovil;
+                    sed->setMaletero();
+                    automovil = (Vehiculo*)sed; 
+	    	  	    break;
+                case 3: 
+                    automovil->setMarca("Honda");
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    sed = (Sedan*)automovil;
+                    sed->setMaletero();
+                    automovil = (Vehiculo*)sed; 
+	    	  	    break;
+                case 4: 
+                    automovil->setMarca("Hyundai"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    sed = (Sedan*)automovil;
+                    sed->setMaletero();
+                    automovil = (Vehiculo*)sed;
+	    	  	    break;
+                case 5: 
+                    automovil->setMarca("Mazda"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    sed = (Sedan*)automovil;
+                    sed->setMaletero();
+                    automovil = (Vehiculo*)sed;
+	    	  	    break;
+                case 6: 
+                    automovil->setMarca("Nissan"); 
+	    	  	    automovil->setTransmision();
+                    automovil->setFrenos();
+                    automovil->setTraccion();
+                    automovil->setColor();
+                    automovil->setRin();
+                    automovil->setLlanta();
+                    automovil->setPrecio();
+                    automovil->setNumeroSerie();
+                    sed = (Sedan*)automovil;
+                    sed->setMaletero();
+                    automovil = (Vehiculo*)sed;
+	    	  	    break;
+                default: 
+                    res = 0;
+                    cout<<"Marca no disponible"<<endl; 
+                    break;
+                }
+            }
+            while(res == 0);
+            break; //<-
+        default:
+            res = 0;
+            cout<<"Opcion no disponible"<<endl;
             break;
         }
     }
-    while(res == 3);
-}
-
-void escogerFrenos(Vehiculo&v) {
-    int res;
-    do {
-        cout<<"1.- Disco"<<endl;
-        cout<<"2.- Tambor"<<endl;
-        cout<<"3.- ABS"<<endl;
-        cout<<"Tipo de frenos: "<<endl;
-        cin>>res;
-        switch(res) {
-            case 1: v.setFrenos("Disco"); break;
-            case 2: v.setFrenos("Tambor"); break;
-            case 3: v.setFrenos("ABS"); break;
-            default: 
-            res = 4;
-            cout<<"Opcion no disponible"<<endl; 
-            break;
-        }
-    }
-    while(res == 4);
-}
-
-void escogerTraccion(Vehiculo&v) {
-    int res;
-    do {
-        if(v.getTipoVehiculo() == "PickUp" || v.getTipoVehiculo() == "Familiar") {
-            cout<<"1.- Delantera"<<endl;
-            cout<<"2.- 4x4"<<endl;
-            cout<<"Tipo de traccion: "<<endl;
-            cin>>res;
-            switch(res) {
-                case 1: v.setTraccion("Delantera"); break;
-                case 2: v.setTraccion("4x4"); break;
-                default: 
-                res = 3;
-                cout<<"Opcion no disponible"<<endl; 
-                break;
-            }
-        }
-        else {
-            cout<<"1.- Delantera"<<endl;
-            cout<<"2.- Tracera"<<endl;
-            cout<<"Tipo de traccion: "<<endl;
-            cin>>res;
-            switch(res) {
-                case 1: v.setTraccion("Delantera"); break;
-                case 2: v.setTraccion("Tracera"); break;
-                default: 
-                res = 3;
-                cout<<"Opcion no disponible"<<endl; 
-                break;
-            }
-        }
-    } 
-    while(res == 3);
-}
-
-void escogerColor(Vehiculo&v) {
-    int res;
-    do {
-        cout<<"1.- Negro"<<endl;
-        cout<<"2.- Blanco"<<endl;
-        cout<<"3.- Plomo"<<endl;
-        cout<<"4.- Rojo"<<endl;
-        cout<<"5.- Azul"<<endl;
-        cout<<"6.- Plata"<<endl;
-        cout<<"Color de automovil: "<<endl;
-        cin>>res;
-        switch(res) {
-            case 1: v.setColor("Negro"); break;
-            case 2: v.setColor("Blanco"); break;
-            case 3: v.setColor("Plomo"); break;
-            case 4: v.setColor("Rojo"); break;
-            case 5: v.setColor("Azul"); break;
-            case 6: v.setColor("Plata"); break;
-            default: 
-            res = 7;
-            cout<<"Opcion no disponible"<<endl; 
-            break;
-        }
-    }
-    while(res == 7);
-}
-
-void escogerRines(Vehiculo&v) {
-    int res;
-    do {
-        if(v.getTipoVehiculo() == "Clasico" || v.getTipoVehiculo() == "Sedan" || v.getTipoVehiculo() == "Familiar") {
-            cout<<"1.- 13 in"<<endl;
-            cout<<"2.- 14 in"<<endl;
-            cout<<"3.- 15 in"<<endl;
-            cout<<"Tamanio de Rines: "<<endl;
-            cin>>res;
-            switch(res) {
-                case 1: v.setRin(13); break;
-                case 2: v.setRin(14); break;
-                case 3: v.setRin(15); break;
-                default: 
-                res = 4;
-                cout<<"Opcion no disponible"<<endl; 
-                break;
-            }
-        }
-        else if(v.getTipoVehiculo() == "Deportivo" || v.getTipoVehiculo() == "Descapotable" || v.getTipoVehiculo() == "PickUp") {
-            cout<<"1.- 16 in"<<endl;
-            cout<<"2.- 17 in"<<endl;
-            cout<<"Tamanio de Rines: "<<endl;
-            cin>>res;
-            switch(res) {
-                case 1: v.setRin(16); break;
-                case 2: v.setRin(17); break;
-                default: 
-                res = 4;
-                cout<<"Opcion no disponible"<<endl; 
-                break;
-            }
-        }
-    }
-    while(res == 4);
-}
-
-void escogerLlantas(Vehiculo&v){
-    int res;
-    do {
-        cout << "1.- Bajo consumo " << endl;
-        cout << "2.- Runflat " << endl;
-        cout << "3.- Bajo perfil " << endl;
-        cout << "4.- Tubulares " << endl;
-        cout << "5.- Diagonal " << endl;
-        cout << "6.- Radial " << endl;
-        cout << "7.- All seasons " << endl;
-        cout << "8.- Asimetricas " << endl;
-        cout << "9.- Direccionales " << endl;
-        cout << "Elija su tipo de llanta " << endl;
-        cin>>res;
-
-		//Revisar porque no jala la opcion del sedan jeje
-        switch (res){
-            case 1: v.setLlanta("Bajo consumo"); break;
-            case 2: v.setLlanta("Runflat"); break;
-            case 3: v.setLlanta("Bajo perfil"); break;
-            case 4: v.setLlanta("Tubulares"); break;
-            case 5: v.setLlanta("Diagonal"); break;
-            case 6: v.setLlanta("Radial"); break;
-            case 7: v.setLlanta("All seasons"); break;
-            case 8: v.setLlanta("Asimetricas"); break;
-            case 9: v.setLlanta("Direccionales"); break;
-            default: 
-            res = 10;
-            cout<<"Opcion no disponible"<<endl; 
-            break;
-        }
-    }
-    while(res == 10);
+    while(res == 0);
+    return *automovil;
 }
 
 void superAdmin(Administrador&admin, int&nAdmin) {
