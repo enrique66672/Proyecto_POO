@@ -8,6 +8,9 @@ class Usuario {
 	private:
 		string nombre;
 	public:
+		Usuario(string _nombre) {
+			nombre = _nombre;
+		}
 		Usuario(){
 			nombre = " ";
 		}	

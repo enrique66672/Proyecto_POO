@@ -11,9 +11,13 @@ class Comprador : private Usuario {
 		string correo;
 		long long telefono;
 		string tipoPago;
-		Vehiculo automovil;	
 		
 	public:	
+		Comprador(string _nombre, string _correo, long long _telefono, string _tipoPago) : Usuario(_nombre){
+			correo = _correo;
+			telefono = _telefono;
+			tipoPago = _tipoPago;
+		}
 		Comprador() : Usuario() {
 			string correo = "";
 			telefono = 0;

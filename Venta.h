@@ -13,24 +13,25 @@ class Venta{
 		int factura;
 		string direccion;
 		Comprador comprador;
-		Vehiculo vehiculos [MAX];
+		Vehiculo vehiculos [MAX], vehiculo;
 		double total;	
 	public:
+		Venta(int _plazo, string _direccion, int _factura, double _total, Vehiculo _vehiculo, Comprador _comprador) {
+			plazo = _plazo;
+			direccion = _direccion;
+			factura = _factura;
+			total = _total;
+			vehiculos[0] = _vehiculo;
+			comprador = _comprador;
+			N = 1;
+		}
+		
 		Venta(){
 			plazo = 0;
 			direccion = "";
 			factura = 0;
 			total = 0.0;
 			N = 0;
-		}
-		
-		Venta(int _plazo, string _direccion, int _factura, double _total, Vehiculo _vehiculo) {
-			
-			vehiculos[0] = _vehiculo;
-			plazo = _plazo;
-			direccion = _direccion;
-			factura = _factura;
-			total = _total;
 		}
 		
 		void setPlazo(int _plazo){ plazo = _plazo; }
@@ -113,13 +114,15 @@ class Venta{
 		
 		void MostrarVentas(Venta v[], int&nVentas) {
 			cout<<"Todas las ventas"<<endl;
-			cout<<"Marca\tModelo\tPrecio\tComprador\tDireccion"<<endl;
-			for(int i = 0; i < N; i++) {
+			cout<<"Num: "<<nVentas<<endl;
+			cout<<"num. Factura\tMarca\t\tModelo\t\tPrecio\t\tComprador\t\t\tDireccion"<<endl;
+			for(int i = 0; i < nVentas; i++) {
 				for(int j = 0; j < v[i].N; j++){
-					cout<<v[i].vehiculos[j].getMarca()<<"\t";
+					cout<<v[i].getFactura()<<"\t\t";
+					cout<<v[i].vehiculos[j].getMarca()<<"\t\t";
 					cout<<v[i].vehiculos[j].getModelo()<<"\t";
-					cout<<v[i].vehiculos[j].getPrecio()<<"\t";
-					cout<<v[i].comprador.mostrarNombre()<<"\t";
+					cout<<v[i].vehiculos[j].getPrecio()<<"\t\t";
+					cout<<v[i].comprador.mostrarNombre()<<"\t\t";
 					cout<<v[i].direccion;
 				}
 			}

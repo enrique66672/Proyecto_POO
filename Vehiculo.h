@@ -43,7 +43,25 @@ public:
 	}
 	int getNumCilindros(){ return numCilindros; }
 
-	void setTransmision(string t){ transmision = t; }
+	void setTransmision(string t) { transmision = t; }
+	void setTransmision() {
+		int res;
+	    do{
+	        cout<<"1.- Manual"<<endl;
+	        cout<<"2.- Automatica"<<endl;
+	        cout<<"Tipo de tranmision: "<<endl;
+	        cin>>res;
+	        switch(res) {
+	            case 1: transmision = "Manual"; break;
+	            case 2: transmision = "Automatica"; break;
+	            default: 
+	            res = 3; 
+	            cout<<"Opcion no disponible"<<endl; 
+	            break;
+	        }
+	    }
+	    while(res == 3);
+	}
 	string getTransmision(){ return transmision; }
 
 	void setConsumo() {
@@ -63,9 +81,63 @@ public:
 	string getChasis(){ return chasis; }
 
 	void setFrenos(string fr){ frenos = fr; }
+	void setFrenos() {
+		int res;
+	    do {
+	        cout<<"1.- Disco"<<endl;
+	        cout<<"2.- Tambor"<<endl;
+	        cout<<"3.- ABS"<<endl;
+	        cout<<"Tipo de frenos: "<<endl;
+	        cin>>res;
+	        switch(res) {
+	            case 1: frenos = "Disco"; break;
+	            case 2: frenos = "Tambor"; break;
+	            case 3: frenos = "ABS"; break;
+	            default: 
+	            res = 4;
+	            cout<<"Opcion no disponible"<<endl; 
+	            break;
+	        }
+	    }
+	    while(res == 4);
+	}
 	string getFrenos(){ return frenos; }
 
 	void setTraccion(string tra){ traccion = tra; }
+	void setTraccion() {
+		int res;
+	    do {
+	        if(tipoVehiculo == "PickUp" || tipoVehiculo == "Familiar") {
+	            cout<<"1.- Delantera"<<endl;
+	            cout<<"2.- 4x4"<<endl;
+	            cout<<"Tipo de traccion: "<<endl;
+	            cin>>res;
+	            switch(res) {
+	                case 1: traccion = "Delantera"; break;
+	                case 2: traccion = "4x4"; break;
+	                default: 
+	                res = 3;
+	                cout<<"Opcion no disponible"<<endl; 
+	                break;
+	            }
+	        }
+	        else {
+	            cout<<"1.- Delantera"<<endl;
+	            cout<<"2.- Tracera"<<endl;
+	            cout<<"Tipo de traccion: "<<endl;
+	            cin>>res;
+	            switch(res) {
+	                case 1: traccion = "Delantera"; break;
+	                case 2: traccion = "Tracera"; break;
+	                default: 
+	                res = 3;
+	                cout<<"Opcion no disponible"<<endl; 
+	                break;
+	            }
+	        }
+	    } 
+	    while(res == 3);
+	}
 	string getTraccion(){ return traccion; }
 
 	// void setSuspension(string sus){ suspension = sus; }
@@ -94,12 +166,108 @@ public:
 	string getMarca(){ return marca; }
 
 	void setColor(string col){ color = col; }
+	void setColor() {
+		int res;
+	    do {
+	        cout<<"1.- Negro"<<endl;
+	        cout<<"2.- Blanco"<<endl;
+	        cout<<"3.- Plomo"<<endl;
+	        cout<<"4.- Rojo"<<endl;
+	        cout<<"5.- Azul"<<endl;
+	        cout<<"6.- Plata"<<endl;
+	        cout<<"Color de automovil: "<<endl;
+	        cin>>res;
+	        switch(res) {
+	            case 1: color = "Negro"; break;
+	            case 2: color = "Blanco"; break;
+	            case 3: color = "Plomo"; break;
+	            case 4: color = "Rojo"; break;
+	            case 5: color = "Azul"; break;
+	            case 6: color = "Plata"; break;
+	            default: 
+	            res = 7;
+	            cout<<"Opcion no disponible"<<endl; 
+	            break;
+	        }
+	    }
+	    while(res == 7);
+	}
 	string getColor(){ return color; }
 
 	void setRin(int r){ rines = r; }
+	void setRin() {
+		int res;
+	    do {
+	        if(tipoVehiculo == "Clasico" || tipoVehiculo == "Sedan" || tipoVehiculo == "Familiar") {
+	            cout<<"1.- 13 in"<<endl;
+	            cout<<"2.- 14 in"<<endl;
+	            cout<<"3.- 15 in"<<endl;
+	            cout<<"Tamanio de Rines: "<<endl;
+	            cin>>res;
+	            switch(res) {
+	                case 1: rines = 13; break;
+	                case 2: rines = 14; break;
+	                case 3: rines = 15; break;
+	                default: 
+	                res = 4;
+	                cout<<"Opcion no disponible"<<endl; 
+	                break;
+	            }
+	        }
+	        else if(tipoVehiculo == "Deportivo" || tipoVehiculo == "Descapotable" || tipoVehiculo == "PickUp") {
+	            cout<<"1.- 16 in"<<endl;
+	            cout<<"2.- 17 in"<<endl;
+	            cout<<"Tamanio de Rines: "<<endl;
+	            cin>>res;
+	            switch(res) {
+	                case 1: rines = 16; break;
+	                case 2: rines = 17; break;
+	                default: 
+	                res = 4;
+	                cout<<"Opcion no disponible"<<endl; 
+	                break;
+	            }
+	        }
+	    }
+	    while(res == 4);
+	}
 	int getRin(){ return rines; }
 
 	void setLlanta(string llan){ llantas = llan; }
+	void setLlanta() {
+		int res;
+	    do {
+	        cout << "1.- Bajo consumo " << endl;
+	        cout << "2.- Runflat " << endl;
+	        cout << "3.- Bajo perfil " << endl;
+	        cout << "4.- Tubulares " << endl;
+	        cout << "5.- Diagonal " << endl;
+	        cout << "6.- Radial " << endl;
+	        cout << "7.- All seasons " << endl;
+	        cout << "8.- Asimetricas " << endl;
+	        cout << "9.- Direccionales " << endl;
+	        cout << "Elija su tipo de llanta " << endl;
+	        cin>>res;
+	
+			//Revisar porque no jala la opcion del sedan jeje
+	        switch (res){
+	            case 1: llantas = "Bajo consumo"; break;
+	            case 2: llantas = "Runflat"; break;
+	            case 3: llantas = "Bajo perfil"; break;
+	            case 4: llantas = "Tubulares"; break;
+	            case 5: llantas = "Diagonal"; break;
+	            case 6: llantas = "Radial"; break;
+	            case 7: llantas = "All seasons"; break;
+	            case 8: llantas = "Asimetricas"; break;
+	            case 9: llantas = "Direccionales"; break;
+	            default: 
+	            	res = 10;
+	            	cout<<"Opcion no disponible"<<endl; 
+	            	break;
+	        }
+	    }
+	    while(res == 10);
+	}
 	string getLlantas(){ return llantas; }
 
 	void setModelo(string _modelo) { modelo = _modelo; }
