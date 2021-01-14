@@ -94,9 +94,9 @@ void comprasPredeterminadas(Venta ventas[], int&nVentas) {
         new Descapotable(4,"Automatica", 12.5,  "McPherson", "Discos ventilados - Discos solidos", "total",  "Independiente", 4, "Audi", "Rojo", 12, "runflat", "A3 Cabrio 2020", 790900.0, "Descapotable", 4, "toldo de tela eletrico", "480.2" )
     };
     Comprador* c[] = {
-        new Comprador("Juan Medina Valdez", "melval_3@gmail.com", 2821090368, "Contado"),
+        new Comprador("Juan Medina Valdez", "melval_3@gmail.com", 5521090368, "Contado"),
         new Comprador("Alan Ramirez Lopez", "alopz2001@hotmail.com", 5561950700, "Credito"),
-        new Comprador("Martha Galvez Hernandez", "marthahrz54@gmail.com", 2261072507, "Contado"),
+        new Comprador("Martha Galvez Hernandez", "marthahrz54@gmail.com", 5561072507, "Contado"),
         new Comprador("Camila Avila Perez", "camila205@hotmail.com", 5660394810, "Contado"),
         new Comprador("Ivan Fernandez Mundo", "ivan_ferndz@gmail.com", 5595652501, "Credito")
     };
@@ -158,7 +158,8 @@ void vehiculosStock(Vehiculo stock[], int&nStock) {
     }
 }
 
-void mostrarStock(Vehiculo stock[], int&nStock) {
+void mostrarStock(Comprador comp, Vehiculo automovil[], int&nAutos, Vehiculo stock[], int&nStock, Venta venta[], int&nVentas, int&contCom) {
+	int car;
 	char option;
     
     // Tabla de stock
@@ -167,7 +168,7 @@ void mostrarStock(Vehiculo stock[], int&nStock) {
 	cout << "	--------|-------------------------------|-------------------------------|---------------" << endl;
 	
         for(int i = 0; i < nStock; i++) {
-            cout << "\t" << stock[i].getMarca() << "\t" << stock[i].getTipoVehiculo() << "\t" << stock[i].getModelo() << "\t" << stock[i].getColor() << "\t" << stock[i].getPrecio() << endl; 
+            cout << i  + 1 << "\t" << stock[i].getMarca() << "\t" << stock[i].getTipoVehiculo() << "\t" << stock[i].getModelo() << "\t" << stock[i].getColor() << "\t" << stock[i].getPrecio() << endl; 
         }
 				
 		cout << "	--------|-------------------------------|-------------------------------|---------------" << endl;
@@ -190,7 +191,11 @@ void mostrarStock(Vehiculo stock[], int&nStock) {
 		switch(option) {
 			case 'e':
 				//Funcion escoger auto o algo asi
-				cout << "Hola mundo";
+				cout << "¿Que carro deseas comprar?" << endl; cin >> car;
+				
+				automovil[nAutos] = stock[car - 1];
+				venta[nVentas] = realizarCompra(comp, automovil, nAutos, contCom); //Cambiar objeto por arreglo de objetos
+                nVentas++;
 				break;
 				
 			default: 
@@ -1025,7 +1030,7 @@ void menuComprador(Vehiculo automovil[], Vehiculo stock[], int&nAutos, int&nStoc
 		switch(resp) {
 			case 'y'://Visualizar catalogo 
 				cout << "\t>>>>Vehiculos en stock<<<<" << endl << endl;
-				mostrarStock(stock, nStock);
+				mostrarStock(comp, automovil, nAutos, stock, nStock, venta, nVentas, contCom);
 				break;
 			case 'd': //Poner lo de personalizar7
                 cout<<"Personalizar el Vehiculo"<<endl;

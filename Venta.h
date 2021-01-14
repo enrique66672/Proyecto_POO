@@ -56,12 +56,12 @@ class Venta{
 			N++;
 		}
 		void MostrarVenta(Venta ventas[], int i) {
-			cout<<"\t Datos de venta"<<endl;
+			cout<<"\t\n Datos de venta"<<endl;
 			cout<< "Numero de factura: " <<factura<< endl;
 			cout<<"Nombre del comprador: "<<ventas[i].comprador.mostrarNombre()<<endl;
 			cout<<"Direccion: "<<ventas[i].direccion<<endl;
-			cout<<"Telefono"<<ventas[i].comprador.getTelefono();
-			for(int j = 0; j <= N; j++) {
+			cout<<"Telefono: "<<ventas[i].comprador.getTelefono()<<endl;
+			for(int j = 0; j < N; j++) {
 				cout<<"Vehiculo Comprado: "<<ventas[i].vehiculos[j].getMarca()<<endl;
 				cout<<"Precio de Vehiculo: "<<ventas[i].vehiculos[j].getPrecio()<<endl;
 			}
