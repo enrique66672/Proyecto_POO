@@ -19,13 +19,11 @@ class Clasico : public Vehiculo{
 			anioRegistro = _anioRegistro;
 		}
 		~Clasico() {}
-		void setCategoria(string _categoria){ categoria = _categoria; }
+
 		string getCategoria(){return categoria; }
 		
-		void setClasificacion(string _clasificacion){ clasificacion = _clasificacion; }
 		string getClasificacion(){return clasificacion;}
 		
-		void setAnioRegistro(int _anioRegistro){ anioRegistro = _anioRegistro; }
 		int getAnioRegistro(){ return anioRegistro; }
 		
 };

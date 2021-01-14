@@ -43,7 +43,6 @@ public:
 	}
 	int getNumCilindros(){ return numCilindros; }
 
-	void setTransmision(string t) { transmision = t; }
 	void setTransmision() {
 		int res;
 	    do{
@@ -73,14 +72,12 @@ public:
 	}
 	float getConsumo(){ return consumo; }
 	
-	// void setChasis(string ch){ chasis = ch; }
 	void setChasis(string tipoV) {
 		if(tipoVehiculo == "PickUp") chasis = "Independiente";
 		else chasis = "Autoportante"; //Clasico, Deportivo, Descapotable, Familiar, Sedan
 	}
 	string getChasis(){ return chasis; }
 
-	void setFrenos(string fr){ frenos = fr; }
 	void setFrenos() {
 		int res;
 	    do {
@@ -103,7 +100,6 @@ public:
 	}
 	string getFrenos(){ return frenos; }
 
-	void setTraccion(string tra){ traccion = tra; }
 	void setTraccion() {
 		int res;
 	    do {
@@ -140,7 +136,6 @@ public:
 	}
 	string getTraccion(){ return traccion; }
 
-	// void setSuspension(string sus){ suspension = sus; }
 	void setSuspension() {
 		string suspensiones[3] = {"Independiente", "Rigida", "Semirrigida"};
 		int k = rand() % 2;
@@ -165,7 +160,6 @@ public:
 	void setMarca(string marc){ marca = marc; }
 	string getMarca(){ return marca; }
 
-	void setColor(string col){ color = col; }
 	void setColor() {
 		int res;
 	    do {
@@ -194,7 +188,6 @@ public:
 	}
 	string getColor(){ return color; }
 
-	void setRin(int r){ rines = r; }
 	void setRin() {
 		int res;
 	    do {
@@ -233,7 +226,6 @@ public:
 	}
 	int getRin(){ return rines; }
 
-	void setLlanta(string llan){ llantas = llan; }
 	void setLlanta() {
 		int res;
 	    do {

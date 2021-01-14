@@ -13,7 +13,7 @@ class Venta{
 		int factura;
 		string direccion;
 		Comprador comprador;
-		Vehiculo vehiculos [MAX], vehiculo;
+		Vehiculo vehiculos [MAX];
 		double total;	
 	public:
 		Venta(int _plazo, string _direccion, int _factura, double _total, Vehiculo _vehiculo, Comprador _comprador) {

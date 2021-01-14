@@ -4,14 +4,12 @@
 #include "Usuario.h"
 #include "Venta.h"
 #include "Vehiculo.h"
-#define MAX 30
 
 using namespace std;
 
 class Administrador : private Usuario {
 	private:
 		string id, password;
-		Venta venta[MAX];
 	public:
 		Administrador() : Usuario(){
 			id = "";

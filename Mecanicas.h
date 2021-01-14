@@ -37,7 +37,7 @@ class Mecanicas {
 			velocidadMaxima = velocidadMax(_numCilindros, _traccion);
 		}
 		~Mecanicas() {}
-		
+
 		float valorPotenca(int cili, string trac){
 			if ((cili > 700) && (cili < 1000) && (trac == "Delantera" || trac == "Tracera")){
 				return (float) 450 + rand() % 250;
