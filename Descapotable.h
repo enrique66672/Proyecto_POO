@@ -73,5 +73,7 @@ public:
         while(res == 4);
     }
     string getMaletero(){ return maletero; }
-  
+
+    friend Vehiculo personalizarVehiculo();
+
 };

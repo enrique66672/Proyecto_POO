@@ -72,5 +72,7 @@ public:
     void setAceleracion() { aceleracion = (35 + rand() % 15)/10; }
     float getAceleracion(){ return aceleracion; }
    
+    friend Vehiculo personalizarVehiculo();
+
 };
 

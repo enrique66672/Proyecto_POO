@@ -35,6 +35,5 @@ class Comprador : private Usuario {
 
 		string mostrarNombre(){ return getNombre(); }
 		
-		friend Vehiculo personalizarVehiculo();
 };
 #endif

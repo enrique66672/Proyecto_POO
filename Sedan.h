@@ -21,4 +21,6 @@ public:
     void setMaletero() { maletero = (float) 350 + (rand() % 1500)/10; }
     float getMaletero() { return maletero; }
     int getPasajeros() { return pasajeros; }
+
+    friend Vehiculo personalizarVehiculo();
 };

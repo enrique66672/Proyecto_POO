@@ -97,6 +97,8 @@ class Familiar: public Vehiculo{
 			}
 			while(res == 3);
 		}
-		string getSeguridad(){ return seguridad; }		
+		string getSeguridad(){ return seguridad; }	
+
+		friend Vehiculo personalizarVehiculo();	
 		
 };

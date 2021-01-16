@@ -26,4 +26,6 @@ class Clasico : public Vehiculo{
 		
 		int getAnioRegistro(){ return anioRegistro; }
 		
+		friend Vehiculo personalizarVehiculo();
+
 };

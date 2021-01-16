@@ -11,32 +11,6 @@ class Mecanicas {
 		int numSerie, numCilindros;
 		float potenciaMaxima, velocidadMaxima, consumo;
 		string transmision, chasis, frenos, traccion, suspension;
-	public:
-		Mecanicas() {
-			numCilindros = 0;
-			numSerie = 0;
-			potenciaMaxima = 0;
-			velocidadMaxima = 0;
-			consumo = 0;
-			transmision = "";
-			chasis = "";
-			frenos = "";
-			traccion = "";
-			suspension = "";
-		}
-		Mecanicas(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension){
-			numCilindros = _numCilindros;
-			transmision = _transmision;
-			consumo = _consumo;
-			chasis = _chasis;
-			frenos = _frenos;
-			traccion = _traccion;
-			suspension = _suspension;
-			numSerie = 100000 + rand() % (999999-100000);
-			potenciaMaxima = valorPotenca(_numCilindros, _traccion);
-			velocidadMaxima = velocidadMax(_numCilindros, _traccion);
-		}
-		~Mecanicas() {}
 
 		float valorPotenca(int cili, string trac){
 			if ((cili > 700) && (cili < 1000) && (trac == "Delantera" || trac == "Tracera")){
@@ -69,5 +43,32 @@ class Mecanicas {
 			}
 			else return 0;
 		}
+	public:
+		Mecanicas() {
+			numCilindros = 0;
+			numSerie = 0;
+			potenciaMaxima = 0;
+			velocidadMaxima = 0;
+			consumo = 0;
+			transmision = "";
+			chasis = "";
+			frenos = "";
+			traccion = "";
+			suspension = "";
+		}
+		Mecanicas(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension){
+			numCilindros = _numCilindros;
+			transmision = _transmision;
+			consumo = _consumo;
+			chasis = _chasis;
+			frenos = _frenos;
+			traccion = _traccion;
+			suspension = _suspension;
+			numSerie = 100000 + rand() % (999999-100000);
+			potenciaMaxima = valorPotenca(_numCilindros, _traccion);
+			velocidadMaxima = velocidadMax(_numCilindros, _traccion);
+		}
+		~Mecanicas() {}
+
 };
 #endif

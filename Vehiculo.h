@@ -275,5 +275,6 @@ public:
 	}
 	double getPrecio() { return precio; }
 
+	friend Vehiculo personalizarVehiculo();
 };
 #endif

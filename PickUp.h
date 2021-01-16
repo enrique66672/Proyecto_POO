@@ -128,5 +128,7 @@ class PicKup: public Vehiculo{
 			} while(res < 3500 && res > 7000);
 		}
         int GetLongCaja(){ return longCaja; }
+
+		friend Vehiculo personalizarVehiculo();
 				
 };

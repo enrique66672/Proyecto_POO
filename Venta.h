@@ -83,10 +83,19 @@ class Venta{
 			}			
 		}
 
-		long double operator + (){
+		long double operator + (Venta v[]){
 			double a = 0;
 			for (int i = 0; i < N ; i++){
-				a += vehiculos[i].getPrecio();				
+				for (int j = 0; j < 1; j++){
+					a += v[i].vehiculos[j].getPrecio();
+				}				
+			}
+			return a;
+		}
+		long double operator + (){
+			long double a;
+			for(int i = 0; i < N; i++) {
+				a = vehiculos[i].getPrecio();
 			}
 			return a;
 		}
@@ -96,7 +105,7 @@ class Venta{
 			int i = 0;
 			bool encontrado = false;
 			
-			cout << "Ingrese la factura a buscar"; cin >> fac;
+			cout << "Ingrese la factura a buscar"<<endl; cin >> fac;
 			
 			while((i < N) && (!encontrado)) {
 				if(fac == ventas[i].factura) {
@@ -108,8 +117,7 @@ class Venta{
 			if(encontrado == false) {
 				cout<<"Factura no encontrada, revise si se ingreso correctamente"<<endl;
 			}
-			
-			MostrarVenta(ventas, indice);
+			else MostrarVenta(ventas, indice);
 		}
 		
 		void MostrarVentas(Venta v[], int&nVentas) {
