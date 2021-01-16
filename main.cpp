@@ -196,18 +196,18 @@ void menuEscogerAuto(Vehiculo stock[], int&nStock, Comprador comprador, Venta ve
                 }
                 else ventas[nVentas].setPlazo(1);
                 cin.ignore();
-                cout<<"Ingrese su dirección: "<<endl;
+                cout<<"Ingrese su direccion: "<<endl;
                 getline(cin, dato1);
                 ventas[nVentas].setDireccion(dato1);
                 ventas[nVentas].setFactura();
                 ventas[nVentas].MostrarTicket();
-                cout<<"$"<<ventas[nVentas].operator + ()<<endl;
+                cout<<"Total: $"<<ventas[nVentas].operator + ()<<endl;
                 nVentas++;
 				break;
 				
 			default: 
-				cout << "Regresando al menu" <<endl;
-				option = 'x';
+				cout << "Opcion no disponible" <<endl;
+				// option = 'x';
 				break;
 		}
 		
@@ -215,8 +215,8 @@ void menuEscogerAuto(Vehiculo stock[], int&nStock, Comprador comprador, Venta ve
 }
 
 Vehiculo personalizarVehiculo() {
-    Vehiculo* automovil ; //En el arreglo estan el total de autos por categoria
-    int res; // Colocar do{} while();
+    Vehiculo* automovil ; 
+    int res;
     do{
         cout<<"1.- Clasico"<<endl;
         cout<<"2.- Deportivo"<<endl;
@@ -229,7 +229,7 @@ Vehiculo personalizarVehiculo() {
         switch (res) {
         case 1:
             automovil = new Clasico();
-            automovil->setTipoVehiculo("Clasico");
+            automovil->tipoVehiculo = "Clasico";
             do{
                 cout<<"1.- Ford"<<endl;
                 cout<<"2.- Chevrolet"<<endl;
@@ -240,7 +240,7 @@ Vehiculo personalizarVehiculo() {
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Ford");
+                    automovil->marca = "Ford";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -251,7 +251,7 @@ Vehiculo personalizarVehiculo() {
                     automovil->setNumeroSerie();
                     break;
                 case 2: 
-                    automovil->setMarca("Chevrolet"); 
+                    automovil->marca = "Chevrolet"; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -262,7 +262,7 @@ Vehiculo personalizarVehiculo() {
                     automovil->setNumeroSerie();
                     break;
                 case 3: 
-                    automovil->setMarca("Dodge"); 
+                    automovil->marca = "Dodge"; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -273,7 +273,7 @@ Vehiculo personalizarVehiculo() {
                     automovil->setNumeroSerie();
                     break;
                 case 4: 
-                    automovil->setMarca("VolksWagen");
+                    automovil->marca = "VolksWagen";
                     automovil->setTransmision(); 
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -284,7 +284,7 @@ Vehiculo personalizarVehiculo() {
                     automovil->setNumeroSerie();
                     break;
                 case 5: 
-                    automovil->setMarca("Mercedes Benz"); 
+                    automovil->marca = "Mercedes Benz"; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -306,7 +306,7 @@ Vehiculo personalizarVehiculo() {
         case 2:
             Deportivo* dep;
             automovil = new Deportivo();
-            automovil->setTipoVehiculo("Deportivo");
+            automovil->tipoVehiculo = "Deportivo";
 
             do{
                 cout<<"1.- Porsche"<<endl;
@@ -320,7 +320,7 @@ Vehiculo personalizarVehiculo() {
     
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Porsche");
+                    automovil->marca = "Porsche";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -336,7 +336,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 2: 
-                    automovil->setMarca("Mazda");
+                    automovil->marca = "Mazda";
                 	automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -352,7 +352,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 3: 
-                    automovil->setMarca("BMW");
+                    automovil->marca = "BMW";
                 	automovil->setTransmision();
                     automovil->setFrenos();
                 	automovil->setTraccion();
@@ -368,7 +368,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 4: 
-                    automovil->setMarca("Honda");
+                    automovil->marca = "Honda";
         	   	    automovil->setTransmision();
                 	automovil->setFrenos();
                 	automovil->setTraccion();
@@ -384,7 +384,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 5: 
-                    automovil->setMarca("Mercedes Benz");
+                    automovil->marca = "Mercedes Benz";
 	    	  	    automovil->setTransmision();
                 	automovil->setFrenos();
                 	automovil->setTraccion();
@@ -400,7 +400,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 6: 
-                    automovil->setMarca("Ford");
+                    automovil->marca = "Ford";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -427,7 +427,7 @@ Vehiculo personalizarVehiculo() {
         case 3:
             Descapotable* des;
             automovil = new Descapotable();
-            automovil->setTipoVehiculo("Descapotable");
+            automovil->tipoVehiculo = "Descapotable";
             do{
                 cout<<"1.- Fiat"<<endl;
                 cout<<"2.- Mazda"<<endl;
@@ -439,7 +439,7 @@ Vehiculo personalizarVehiculo() {
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Fiat"); 
+                    automovil->marca = "Fiat"; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -454,7 +454,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)des;
                     break;
                 case 2: 
-                    automovil->setMarca("Mazda"); 
+                    automovil->marca = "Mazda"; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -469,7 +469,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)des;
                     break;
                 case 3: 
-                    automovil->setMarca("VolksWagen");
+                    automovil->marca = "VolksWagen";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -484,7 +484,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)des;
                     break;
                 case 4: 
-                    automovil->setMarca("Ford");
+                    automovil->marca = "Ford";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -499,7 +499,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)des;
                     break;
                 case 5: 
-                    automovil->setMarca("Lotus Elise");
+                    automovil->marca = "Lotus Elise";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -514,7 +514,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)des;
                     break;
                 case 6: 
-                    automovil->setMarca("Audi");
+                    automovil->marca = "Audi";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -540,7 +540,7 @@ Vehiculo personalizarVehiculo() {
         case 4:
             Familiar* fam;
             automovil = new Familiar();
-            automovil->setTipoVehiculo("Familiar");
+            automovil->tipoVehiculo = "Familiar";
             
             do{
                 cout<<"1.- Seat"<<endl;
@@ -551,7 +551,7 @@ Vehiculo personalizarVehiculo() {
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Seat");
+                    automovil->marca = "Seat";
                     automovil->setTransmision();
 	    	  	    automovil->setFrenos();
                 	automovil->setTraccion();
@@ -569,7 +569,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)fam;
                     break;
                 case 2:
-                    automovil->setMarca("Subaru");
+                    automovil->marca = "Subaru";
                     automovil->setTransmision();
         	   	    automovil->setFrenos();
                 	automovil->setTraccion();
@@ -587,7 +587,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)fam;
                     break;
                 case 3: 
-                    automovil->setMarca("Peugout"); 
+                    automovil->marca = "Peugout";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -605,7 +605,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)fam;
                     break;
                 case 4: 
-                    automovil->setMarca("Kia"); 
+                    automovil->marca = "Kia";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -634,7 +634,7 @@ Vehiculo personalizarVehiculo() {
         case 5:
             PicKup* pic;
             automovil = new PicKup();
-            automovil->setTipoVehiculo("PickUp");
+            automovil->tipoVehiculo = "PickUp";
             do{
                 cout<<"1.- Chevrolet"<<endl;
                 cout<<"2.- Ford"<<endl;
@@ -645,7 +645,7 @@ Vehiculo personalizarVehiculo() {
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Chevrolet");
+                    automovil->marca = "Chevrolet";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -664,7 +664,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 2: 
-                    automovil->setMarca("Ford"); 
+                    automovil->marca = "Ford";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -683,7 +683,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 3: 
-                    automovil->setMarca("Mitsubishi"); 
+                    automovil->marca = "Mitsubishi";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -702,7 +702,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 4: 
-                    automovil->setMarca("Nissan"); 
+                    automovil->marca = "Nissan";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -721,7 +721,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 5: 
-                    automovil->setMarca("Toyota"); 
+                    automovil->marca = "Toyota";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -751,7 +751,7 @@ Vehiculo personalizarVehiculo() {
         case 6:
             Sedan* sed;
             automovil = new Sedan();
-            automovil->setTipoVehiculo("Sedan");
+            automovil->tipoVehiculo = "Sedan";
 
             do{
                 cout<<"1.- Chevrolet"<<endl;
@@ -764,7 +764,7 @@ Vehiculo personalizarVehiculo() {
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Chevrolet");
+                    automovil->marca = "Chevrolet";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -778,7 +778,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)sed;
 	    	  	    break;
                 case 2: 
-                    automovil->setMarca("Ford");
+                    automovil->marca = "Ford";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -792,7 +792,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)sed; 
 	    	  	    break;
                 case 3: 
-                    automovil->setMarca("Honda");
+                    automovil->marca = "Honda";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -806,7 +806,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)sed; 
 	    	  	    break;
                 case 4: 
-                    automovil->setMarca("Hyundai"); 
+                    automovil->marca = "Hyundai";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -820,7 +820,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)sed;
 	    	  	    break;
                 case 5: 
-                    automovil->setMarca("Mazda"); 
+                    automovil->marca = "Mazda";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -834,7 +834,7 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)sed;
 	    	  	    break;
                 case 6: 
-                    automovil->setMarca("Nissan"); 
+                    automovil->marca = "Nissan"; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
@@ -977,7 +977,7 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nV
                 break;
             case 4: v[0].BuscarVentas(v); break;
             case 5: v[0].MostrarVentas(v , nVentas); break;
-            case 6: cout << "Total de ventas: " << v[0].operator+() << endl; break;
+            case 6: cout << "Total de ventas: " << +v << endl; break;
             case 7: break;
             default: cout<<"Opcion no establecida"<<endl; break;
         }
@@ -989,7 +989,7 @@ void menuAdministradorNorm(Venta v[], int&nVentas, Vehiculo automovil[], int&nAu
     int res;
 
     do{
-        cout<<"Opciones de super administrador"<<endl;
+        cout<<"Opciones de administrador"<<endl;
         cout<<"1.- Visualizar ventas"<<endl;
         cout<<"2.- Visualizar una venta"<<endl;
         cout<<"3.- Mostrar Vehiculos existente"<<endl;
@@ -1008,7 +1008,7 @@ void menuAdministradorNorm(Venta v[], int&nVentas, Vehiculo automovil[], int&nAu
                 mostrarStock(stock, nStock);
                 break;
             case 4:
-                cout << "Total de ventas: " << v[0].operator+() << endl; // Revisar si se puede mejorar
+                cout << "Total de ventas: " << +v << endl; // Revisar si se puede mejorar
                 break;
             case 5: break;
             default: cout<<"Opcion no establecida"<<endl; break;
@@ -1130,7 +1130,7 @@ Venta realizarCompra(Comprador&comp, Vehiculo vehiculo[], int&nAutos, int&contCo
     v.setFactura();
     for(int i = (nAutos - contCom); i < nAutos; i++) v.AgregarVehiculo(vehiculo[i]);
     v.MostrarTicket();
-    cout<<"Total de compra es: $"<<v.operator + ()<<endl;
+    cout<<"Total de compra es: $"<<+v<<endl;
     
     return v;
 }
