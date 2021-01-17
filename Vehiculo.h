@@ -34,6 +34,8 @@ public:
 		if(tipoVehiculo == "Familiar     ") numCilindros = 6;
 		else if(tipoVehiculo == "PickUp       ") numCilindros = 8;
 		else numCilindros = 4; //Deportivo, Descapotable, Clasico, Sedan
+		velocidadMaxima = valorPotenciaMax();
+		potenciaMaxima = valorPotenciaMax();
 	}
 	int getNumCilindros(){ return numCilindros; }
 

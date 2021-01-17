@@ -12,39 +12,38 @@ class Mecanicas {
 		float potenciaMaxima, velocidadMaxima, consumo;
 		string transmision, chasis, frenos, traccion, suspension;
 
-	private:
-		float valorPotenca(int cili, string trac){
-			if ((cili > 700) && (cili < 1000) && (trac == "Delantera" || trac == "Tracera")){
+		float valorPotenciaMax(){
+			if ((numCilindros > 700) && (numCilindros < 1000) && (traccion == "Delantera" || traccion == "Tracera")){
 				return (float) 450 + rand() % 250;
 			}
-			else if ((cili >= 1000) && (cili < 1500) && (trac == "Tracera" || trac == "Tracera")){
+			else if ((numCilindros >= 1000) && (numCilindros < 1500) && (traccion == "Tracera" || traccion == "Tracera")){
 				return (float) 600 + rand() % 250;
 			}
-			else if ((cili > 700) && (cili < 1000) && trac == "4x4"){
+			else if ((numCilindros > 700) && (numCilindros < 1000) && traccion == "4x4"){
 				return 1.8 * (450 + rand() % 250);
 			}
-			else if((cili > 1000) && (cili < 1500) && trac == "4x4"){
+			else if((numCilindros > 1000) && (numCilindros < 1500) && traccion == "4x4"){
 				return 1.5 * (600 + rand() % 250);
 			}
 			else return 0;
 		}	
 		
-		float velocidadMax(int cili, string trac){
-			if((cili > 700) && (cili < 1000) && (trac == "Delantera" || trac == "Trasera")){
+		float velocidadMax(){
+			if((numCilindros > 700) && (numCilindros < 1000) && (traccion == "Delantera" || traccion == "Trasera")){
 				return (float) 160 + rand() % 40;
 			}
-			else if((cili >= 1000) && (cili < 1500) && (trac == "Tracera" || trac == "Tracera")){
+			else if((numCilindros >= 1000) && (numCilindros < 1500) && (traccion == "Tracera" || traccion == "Tracera")){
 				return (float) 180 + rand() % 70;
 			}
-			else if ((cili > 700) && (cili < 1000) && trac == "4x4"){
+			else if ((numCilindros > 700) && (numCilindros < 1000) && traccion == "4x4"){
 				return (float) 150 + rand() % 50;
 			}
-			else if((cili > 1000) && (cili < 1500) && trac == "4x4"){
+			else if((numCilindros > 1000) && (numCilindros < 1500) && traccion == "4x4"){
 				return (float) 170 + rand() % 50;
 			}
 			else return 0;
 		}
-		
+
 	public:
 		Mecanicas() {
 			numCilindros = 0;
@@ -67,10 +66,9 @@ class Mecanicas {
 			traccion = _traccion;
 			suspension = _suspension;
 			numSerie = 100000 + rand() % (999999-100000);
-			potenciaMaxima = valorPotenca(_numCilindros, _traccion);
-			velocidadMaxima = velocidadMax(_numCilindros, _traccion);
+			potenciaMaxima = valorPotenciaMax();
+			velocidadMaxima = velocidadMax();
 		}
-		~Mecanicas() {}
 
 };
 #endif

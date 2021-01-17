@@ -8,14 +8,15 @@ class Usuario {
 	private:
 		string nombre;
 	public:
-		Usuario(string _nombre) {
-			nombre = _nombre;
-		}
 		Usuario(){
 			nombre = " ";
+		}
+
+		Usuario(string _nombre) {
+			nombre = _nombre;
 		}	
 		
-		void setNombre(string name){ nombre = name; }
+		void setNombre(string n){ nombre = n; }
 		string getNombre(){ return nombre; }
 };
 #endif

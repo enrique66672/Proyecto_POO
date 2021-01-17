@@ -5,8 +5,8 @@ using namespace std;
 
 class Sedan : public Vehiculo {
 private:
-    float maletero;
     int pasajeros;
+    float maletero;
 public:
     Sedan() : Vehiculo(){
         maletero = 0.0;

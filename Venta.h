@@ -16,6 +16,14 @@ class Venta{
 		Vehiculo vehiculos [MAX];
 		long double total;	
 	public:
+		Venta(){
+			plazo = 0;
+			direccion = "";
+			factura = 0;
+			total = 0.0;
+			N = 0;
+		}
+		
 		Venta(int _plazo, string _direccion, int _factura, long double _total, Vehiculo _vehiculo, Comprador _comprador) {
 			plazo = _plazo;
 			direccion = _direccion;
@@ -24,14 +32,6 @@ class Venta{
 			vehiculos[0] = _vehiculo;
 			comprador = _comprador;
 			N = 1;
-		}
-		
-		Venta(){
-			plazo = 0;
-			direccion = "";
-			factura = 0;
-			total = 0.0;
-			N = 0;
 		}
 		
 		void setPlazo(int _plazo){ plazo = _plazo; }
@@ -89,6 +89,7 @@ class Venta{
 			}
 			return total;
 		}
+
 		long double operator + (){ // uso de getTotal
 			total = 0;
 			for(int i = 0; i < N; i++) {

@@ -13,23 +13,27 @@ class Comprador : private Usuario {
 		string tipoPago;
 		
 	public:	
-		Comprador(string _nombre, string _correo, long long _telefono, string _tipoPago) : Usuario(_nombre){
-			correo = _correo;
-			telefono = _telefono;
-			tipoPago = _tipoPago;
-		}
 		Comprador() : Usuario() {
 			string correo = "";
 			telefono = 0;
 			string tipoPago = "";
 		}
-		void setPago(string _Pago){ tipoPago = _Pago; }
+
+		Comprador(string _nombre, string _correo, long long _telefono, string _tipoPago) : Usuario(_nombre){
+			correo = _correo;
+			telefono = _telefono;
+			tipoPago = _tipoPago;
+		}
+		
+		void setPago(string _pago){ tipoPago = _pago; }
 		string getPago(){ return tipoPago; }
 
-		void setCorreo(string _Correo, string _nombre){ 
-			correo = _Correo;	
+		void setCorreo(string _correo, string _nombre){ ´
+			correo = _correo;	
 			setNombre(_nombre);
 		}
+		string getCorreo(){ return correo; }
+		
 		void setTelefono(long long tel){ telefono = tel; }
 		long long getTelefono(){ return telefono; }
 
