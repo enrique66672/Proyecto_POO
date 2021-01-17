@@ -29,7 +29,7 @@ int buscarAdministrador(Administrador[], int&);
 void iniciarSesion(Administrador[], int&, Venta[], int&, Vehiculo[], int&, Vehiculo[], int&);
 Administrador crearAdministrador();
 void mostrarAdministradores(Administrador[], int&);
-void menuSuperAdministrador(Administrador[], int&, Venta[], int&, Vehiculo[], int&);
+void menuSuperAdministrador(Administrador[], int&, Venta[], int&, Vehiculo[], int&, Vehiculo[], int&);
 void menuAdministradorNorm(Venta[], int&, Vehiculo[], int&, Vehiculo[], int&);
 void menuComprador(Vehiculo[], Vehiculo[], int&, int&, Venta[], int&);
 Comprador crearComprador();
@@ -74,25 +74,25 @@ int main() {
 
 void comprasPredeterminadas(Venta ventas[], int&nVentas) {
 	Vehiculo v[] = {
-        Deportivo(5, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda", "Negro", 17, "Runflat", "MX-5 2020", 411000.00, "Deportivo", "V8", "Electrica", 3.9),
-        Sedan(4, "Automatica", 19.3, "Espacial tabular", "ABS", "Trasera", "Eje rigido", 4, "Chevrolet", "Rojo", 18, "Runflat", "Aveo 2020", 209400.00, "Sedan", 366.5, 4),
-        PicKup(6, "Automatica", 5, "De escalera", "Electronicos", "4x4", "McPherson", 4, "Toyota", "Dorado", 16, "Radial", "Tundra 2018", 500000.00, "PickUp", "Grande", "Amplia", 4, 980, 850, true ),
-        Clasico(6, "Manual",9.45, "Monocasco", "Frenos de Tambor", "Traccion Delantera", "Suspencion Semirrigida", 4, "Dodge","Cafe Claro", 16, "Bajo Consumo", "Guayin 1981", 55000, "Clasico", "Vintage Post Gueraa", "Modificado", 2006),
-        Descapotable(4,"Automatica", 12.5,  "McPherson", "Discos ventilados - Discos solidos", "total",  "Independiente", 4, "Audi", "Rojo", 12, "runflat", "A3 Cabrio 2020", 790900.0, "Descapotable", 4, "toldo de tela eletrico", "480.2" )
+        Deportivo(5, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda     ", "Negro", 17, "Runflat", "MX-5 2020      ", 411000.00, "Deportivo    ", "V8", "Electrica", 3.9),
+        Sedan(4, "Automatica", 19.3, "Espacial tabular", "ABS", "Trasera", "Eje rigido", 4, "Chevrolet ", "Rojo", 18, "Runflat", "Aveo 2020      ", 209400.00, "Sedan        ", 366.5, 4),
+        PicKup(6, "Automatica", 5, "De escalera", "Electronicos", "4x4", "McPherson", 4, "Toyota    ", "Dorado", 16, "Radial", "Tundra 2018    ", 500000.00, "PickUp       ", "Grande", "Amplia", 4, 980, 850, true ),
+        Clasico(6, "Manual",9.45, "Monocasco", "Frenos de Tambor", "Traccion Delantera", "Suspencion Semirrigida", 4, "Dodge     ","Cafe Claro", 16, "Bajo Consumo", "Guayin 1981    ", 550000, "Clasico      ", "Vintage Post Gueraa", "Modificado", 2006),
+        Descapotable(4,"Automatica", 12.5,  "McPherson", "Discos ventilados - Discos solidos", "total",  "Independiente", 4, "Audi      ", "Rojo", 12, "runflat", "A3 Cabrio 2020 ", 790900.0, "Descapotable ", 4, "toldo de tela eletrico", "480.2" )
     };
     Comprador c[] = {
-        Comprador("Juan Medina Valdez", "melval_3@gmail.com", 5521090368, "Contado"),
-        Comprador("Alan Ramirez Lopez", "alopz2001@hotmail.com", 5561950700, "Credito"),
+        Comprador("Juan Medina Valdez     ", "melval_3@gmail.com", 5521090368, "Contado"),
+        Comprador("Alan Ramirez Lopez     ", "alopz2001@hotmail.com", 5561950700, "Credito"),
         Comprador("Martha Galvez Hernandez", "marthahrz54@gmail.com", 5561072507, "Contado"),
-        Comprador("Camila Avila Perez", "camila205@hotmail.com", 5660394810, "Contado"),
-        Comprador("Ivan Fernandez Mundo", "ivan_ferndz@gmail.com", 5595652501, "Credito")
+        Comprador("Camila Avila Perez     ", "camila205@hotmail.com", 5660394810, "Contado"),
+        Comprador("Ivan Fernandez Mundo   ", "ivan_ferndz@gmail.com", 5595652501, "Credito")
     };
 	Venta venta[] = {
-		Venta(1, "Ricardo Flores Magon #43", 100508, 750000.0, v[0], c[0]),
-        Venta(18, "Lomas iguanas #10", 100051, 350000.0, v[1], c[1]),
-        Venta(1, "Colonia Centro #25", 100101, 800500.0, v[2], c[2]),
+		Venta(1, "Ricardo Flores Magon #43  ", 100508, 750000.0, v[0], c[0]),
+        Venta(18, "Lomas iguanas #10         ", 100051, 350000.0, v[1], c[1]),
+        Venta(1, "Colonia Centro #25        ", 100101, 800500.0, v[2], c[2]),
         Venta(24, "Rafael Vera de Cordoba #23", 100120, 550000.0, v[3], c[3]),
-        Venta(36, "Calle las Hayas #17", 100100, 1250000.0, v[4], c[4])
+        Venta(36, "Calle las Hayas #17       ", 100100, 1250000.0, v[4], c[4])
 	};
     for(int i = 0; i < 5; i++) {
         ventas[i] = venta[i];
@@ -102,41 +102,41 @@ void comprasPredeterminadas(Venta ventas[], int&nVentas) {
 
 void vehiculosStock(Vehiculo stock[], int&nStock) {
     Vehiculo autos[] = {
-        Deportivo(4, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda     ", "Negro          ", 17, "Runflat", "MX-5 2020             ", 411000.00, "Deportivo        ", "V8", "Electrica", 3.9), 
-        Deportivo(6, "Automatica", 17.9, "Monocasco de fibra","De carbono","Cuatro Ruedas", "Hidraulico", 2, "Mercedes  ", "Negro          ", 20, "Deportivas","AMG-GT 2018           ", 4000000.00, "Deportivo        ", "V12", "Electrohidraulica", 2.9),
-        Deportivo(6, "Hibrida", 16.6, "Monocasco de fibra","De carbono","Trasera", "Aire", 4, "Ford      ", "Rojo           ", 20, "Deportivas","Mustang 2020          ", 1099900.00, "Deportivo        ", "V8", "Mecanica", 3.8),
-        Deportivo(4, "Manual", 11.9, "Monocasco de fibra","De carbono","Delantera", "Hidraulico", 4, "Mercedes  ", "Gris           ", 20, "Deportivas","AMG-A-45 2017         ", 400000.00, "Deportivo        ", "V8", "Electrica", 4.2),
-        Deportivo(6, "Automatica", 15.3, "Monocasco de fibra","De carbono","Cuatro Ruedas", "Hidraulico", 2, "Porsche   ", "Azul           ", 20, "Deportivas","911 Turbo 2018        ", 3478000.00, "Deportivo        ", "V12", "Electrohidraulica", 2.7),
+        Deportivo(4, "Manual", 15.4, "Monocasco de fibra", "ABS", "Trasera", "Independiente", 4, "Mazda         ", "Negro       ", 17, "Runflat", "MX-5 2020             ", 411000.00, "Deportivo    ", "V8", "Electrica", 3.9), 
+        Deportivo(6, "Automatica", 17.9, "Monocasco de fibra","De carbono","Cuatro Ruedas", "Hidraulico", 2, "Mercedes      ", "Negro       ", 20, "Deportivas","AMG-GT 2018           ", 400000.0, "Deportivo    ", "V12", "Electrohidraulica", 2.9),
+        Deportivo(6, "Hibrida", 16.6, "Monocasco de fibra","De carbono","Trasera", "Aire", 4, "Ford          ", "Rojo        ", 20, "Deportivas","Mustang 2020          ", 909990.00, "Deportivo    ", "V8", "Mecanica", 3.8),
+        Deportivo(4, "Manual", 11.9, "Monocasco de fibra","De carbono","Delantera", "Hidraulico", 4, "Mercedes      ", "Gris        ", 20, "Deportivas","AMG-A-45 2017         ", 400000.00, "Deportivo    ", "V8", "Electrica", 4.2),
+        Deportivo(6, "Automatica", 15.3, "Monocasco de fibra","De carbono","Cuatro Ruedas", "Hidraulico", 2, "Porsche       ", "Azul        ", 20, "Deportivas","911 Turbo 2018        ", 847800.00, "Deportivo    ", "V12", "Electrohidraulica", 2.7),
         
-        Sedan(4, "Automatica", 19.3, "Espacial tabular", "ABS", "Trasera", "Eje rigido", 4, "Chevrolet ", "Rojo           ", 18, "Runflat", "Aveo 2020             ", 209400.00, "Sedan            ", 366.5, 4),
-        Sedan(3, "Automatica", 15.7, "Escalar", "ABS", "Delantera", "Aire", 4, "Ford      ", "Rojo           ", 19, "Bajo perfil", "Figo 2020             ", 329000.00, "Sedan            ", 356.7, 4),
-        Sedan(4, "Automatica", 18.3, "Monocasco", "ABS", "Trasera", "Hidraulica", 4, "Honda     ", "Rojo           ", 20, "All season", "Civic 2020            ", 358400.00, "Sedan            ", 480.2, 4),
-        Sedan(4, "Automatica", 19.5, "Escalar", "ABS", "Trasera", "Eje rigido", 4, "Mazda     ", "Rojo           ", 18, "Runflat", "Mazda 2 Sedan 2020    ", 299400.00, "Sedan            ", 366.2, 4),
-        Sedan(4, "Automatica", 16.8, "Espacial tabular", "ABS", "Delantera", "Eje rigido", 4, "Nissan    ", "Rojo           ", 18, "Runflat", "Aveo 2020             ", 209400.00, "Sedan            ", 369.8, 4),
+        Sedan(4, "Automatica", 19.3, "Espacial tabular", "ABS", "Trasera", "Eje rigido", 4, "Chevrolet     ", "Rojo        ", 18, "Runflat", "Aveo 2020             ", 209400.00, "Sedan        ", 366.5, 4),
+        Sedan(3, "Automatica", 15.7, "Escalar", "ABS", "Delantera", "Aire", 4, "Ford          ", "Rojo        ", 19, "Bajo perfil", "Figo 2020             ", 329000.00, "Sedan        ", 356.7, 4),
+        Sedan(4, "Automatica", 18.3, "Monocasco", "ABS", "Trasera", "Hidraulica", 4, "Honda         ", "Rojo        ", 20, "All season", "Civic 2020            ", 358400.00, "Sedan        ", 480.2, 4),
+        Sedan(4, "Automatica", 19.5, "Escalar", "ABS", "Trasera", "Eje rigido", 4, "Mazda         ", "Rojo        ", 18, "Runflat", "Mazda 2 Sedan 2020    ", 299400.00, "Sedan        ", 366.2, 4),
+        Sedan(4, "Automatica", 16.8, "Espacial tabular", "ABS", "Delantera", "Eje rigido", 4, "Nissan        ", "Rojo        ", 18, "Runflat", "Aveo 2020             ", 209400.00, "Sedan        ", 369.8, 4),
         
-        PicKup(4, "Automatica", 4.4, "Compacto", "Hidraulicos", "4x4", "Multilink", 4, "Ford      ", "Blanco         ", 14, "All seasons", "RAM700 2014           ", 445000.00, "PickUp           ", "Compacta", "Corta", 2, 1025, 82, true ),
-        PicKup(6, "Automatica", 5, "Espacial tubular", "Hidraulicos", "4x4", "De doble horquilla", 4, "Chevrolet ", "Gris Plata     ", 16, "Diagonal", "Tornado 2019          ", 600000.00, "PickUp           ", "Grande", "Amplia", 2, 1500, 90, false ),
-        PicKup(4, "Manual", 5.26, "Monocasco", "Servofreno", "4x2", "Eje torsional", 2, "Nissan    ", "Rojo           ", 14, "Bajo rendimiento", "LT 2009               ", 245000.00, "PickUp           ", "Compacta", "Corta", 2, 750, 70, true ),
-        PicKup(6, "Automatica", 5, "De escalera", "Electronicos", "4x4", "McPherson", 4, "Toyota    ", "Dorado         ", 16, "Radial", "Tundra 2018           ", 500000.00, "PickUp           ", "Grande", "Amplia", 4, 980, 850, true ),
-        PicKup(6, "Automatica", 4, "Compacto", "Hidraulicos", "4x2", "De doble horquilla", 4, "MITSUBISHI", "Negro          ", 16, "Tubulares", "L200 2002             ", 438000.00, "PickUp           ", "Medio", "Amplia", 2, 1250, 69, false ),
+        PicKup(4, "Automatica", 4.4, "Compacto", "Hidraulicos", "4x4", "Multilink", 4, "Ford          ", "Blanco      ", 14, "All seasons", "RAM700 2014           ", 445000.00, "PickUp       ", "Compacta", "Corta", 2, 1025, 82, true ),
+        PicKup(6, "Automatica", 5, "Espacial tubular", "Hidraulicos", "4x4", "De doble horquilla", 4, "Chevrolet     ", "Gris Plata  ", 16, "Diagonal", "Tornado 2019          ", 600000.00, "PickUp       ", "Grande", "Amplia", 2, 1500, 90, false ),
+        PicKup(4, "Manual", 5.26, "Monocasco", "Servofreno", "4x2", "Eje torsional", 2, "Nissan        ", "Rojo        ", 14, "Bajo rendimiento", "LT 2009               ", 245000.00, "PickUp       ", "Compacta", "Corta", 2, 750, 70, true ),
+        PicKup(6, "Automatica", 5, "De escalera", "Electronicos", "4x4", "McPherson", 4, "Toyota        ", "Dorado      ", 16, "Radial", "Tundra 2018           ", 500000.00, "PickUp       ", "Grande", "Amplia", 4, 980, 850, true ),
+        PicKup(6, "Automatica", 4, "Compacto", "Hidraulicos", "4x2", "De doble horquilla", 4, "MITSUBISHI    ", "Negro       ", 16, "Tubulares", "L200 2002             ", 438000.00, "PickUp       ", "Medio", "Amplia", 2, 1250, 69, false ),
         
-        Clasico(4, "Manual",6.7, "Monocasco", "Frenos de Disco", "Traccion Trasera", "Suspencion Trasera", 2,"Volkswagen","Rojo           ", 15, "Bajo Consumo", "Volkswagen Sedan 1950 ", 200000, "Clasico          ", "Antiguo", "Restaurado", 2000),                                                        
-        Clasico(8, "Manual",9.55, "Monocasco", "Frenos de Disco", "Traccion Trasera", "Suspencion Trasera", 4, "Ford      ","Negro          ", 17, "Radial", "Mustang 1966          ", 1070000, "Clasico          ", "Vintage Post Guerra", "Reconstruido", 1990),                                              
-        Clasico(6, "Manual",8.73, "Monocasco ULSAB", "Frenos de Tambor", "Traccion Trasera", "Suspencion Eje Rigido", 2, "Chevrolet ","Azul Marino    ", 16, "Diagonal", "Sedaneta 1953         ", 350000, "Clasico          ", "Antiguo", "Restaurado", 2005),                                                           
-        Clasico(8, "Manual",11.45, "Espacial Tubular", "Frenos de Disco", "Traccion Trasera", "Suspencion Eje Rigido", 2, "Porsche   ","Amarillo       ", 14, "Runflat", "914 1972              ", 375000, "Clasico          ", "Antiguo", "Restaurado", 2011),                                                  
-        Clasico(6, "Manual",9.45, "Monocasco", "Frenos de Tambor", "Traccion Delantera", "Suspencion Semirrigida", 4, "Dodge     ","Cafe Claro     ", 16, "Bajo Consumo", "Guayin 1981           ", 55000, "Clasico          ", "Vintage Post Gueraa", "Modificado", 2006),
+        Clasico(4, "Manual",6.7, "Monocasco", "Frenos de Disco", "Traccion Trasera", "Suspencion Trasera", 2,"Volkswagen    ","Rojo        ", 15, "Bajo Consumo", "Volkswagen Sedan 1950 ", 200000, "Clasico      ", "Antiguo", "Restaurado", 2000),                                                        
+        Clasico(8, "Manual",9.55, "Monocasco", "Frenos de Disco", "Traccion Trasera", "Suspencion Trasera", 4, "Ford          ","Negro       ", 17, "Radial", "Mustang 1966          ", 999800, "Clasico      ", "Vintage Post Guerra", "Reconstruido", 1990),                                              
+        Clasico(6, "Manual",8.73, "Monocasco ULSAB", "Frenos de Tambor", "Traccion Trasera", "Suspencion Eje Rigido", 2, "Chevrolet     ","Azul Marino ", 16, "Diagonal", "Sedaneta 1953         ", 350000, "Clasico      ", "Antiguo", "Restaurado", 2005),                                                           
+        Clasico(8, "Manual",11.45, "Espacial Tubular", "Frenos de Disco", "Traccion Trasera", "Suspencion Eje Rigido", 2, "Porsche       ","Amarillo    ", 14, "Runflat", "914 1972              ", 375000, "Clasico      ", "Antiguo", "Restaurado", 2011),                                                  
+        Clasico(6, "Manual",9.45, "Monocasco", "Frenos de Tambor", "Traccion Delantera", "Suspencion Semirrigida", 4, "Dodge         ","Cafe Claro  ", 16, "Bajo Consumo", "Guayin 1981           ", 550000, "Clasico      ", "Vintage Post Gueraa", "Modificado", 2006),
         
-        Familiar(4, "Manual", 15.5, "DOHC", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Chevrolet ", "Blanca         ", 16, "Bajo Consumo", "Trax 2021             ", 315600.0, "Familiar         ", 5, 424.7, 1606.0, "Electronico", "6 bolsas de aire" ),
-        Familiar(4, "Automatica", 16.0, "Semirrigidas", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Kia       ", "Rojo Rubi      ", 18, "Bajo Consumo", "Blazer 2021           ", 778200.8, "Familiar         ", 8, 450.95, 1803.3, "Electronico", "7 bolsas de aire" ),
-        Familiar(6, "Manual", 14.5, "Rigido", "Disco/Tambor", "Trasera", "MacPherson",5, "Renault   ", "Rojo Rubi      ", 16, "Asimetricas", "Duster 2021           ", 291000.0, "Familiar         ", 5, 431.50, 1614.4, "Manual Estandar", "6 bolsas de aire" ),
-        Familiar(4, "Manual", 17.5, "Rigida", "Disco/Tambor", "Trasera", "Manejo Suave",5, "Renault   ", "Negra          ", 17, "Bajo Consumo", "Captur 2021           ", 338700.0, "Familiar         ", 5, 447.20, 1712.3, "Manual Estandar", "6 bolsas de aire" ),
-        Familiar(4, "Automatica", 14.5, "Semirrigida", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Ford      ", "Azul Marino    ", 17, "Al seasons", "Expedition 2021       ", 1581000.0, "Familiar         ", 8, 457.20, 1812.3, "Electronico", "8 bolsas de aire" ),
+        Familiar(4, "Manual", 15.5, "DOHC", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Chevrolet     ", "Blanca      ", 16, "Bajo Consumo", "Trax 2021             ", 315600.0, "Familiar     ", 5, 424.7, 1606.0, "Electronico", "6 bolsas de aire" ),
+        Familiar(4, "Automatica", 16.0, "Semirrigidas", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Kia           ", "Rojo Rubi   ", 18, "Bajo Consumo", "Blazer 2021           ", 778200.8, "Familiar     ", 8, 450.95, 1803.3, "Electronico", "7 bolsas de aire" ),
+        Familiar(6, "Manual", 14.5, "Rigido", "Disco/Tambor", "Trasera", "MacPherson",5, "Renault       ", "Rojo Rubi   ", 16, "Asimetricas", "Duster 2021           ", 291000.0, "Familiar     ", 5, 431.50, 1614.4, "Manual Estandar", "6 bolsas de aire" ),
+        Familiar(4, "Manual", 17.5, "Rigida", "Disco/Tambor", "Trasera", "Manejo Suave",5, "Renault       ", "Negra       ", 17, "Bajo Consumo", "Captur 2021           ", 338700.0, "Familiar     ", 5, 447.20, 1712.3, "Manual Estandar", "6 bolsas de aire" ),
+        Familiar(4, "Automatica", 14.5, "Semirrigida", "ABS", "Cuatro ruedas", "Manejo Suave",5, "Ford          ", "Azul Marino ", 17, "Al seasons", "Expedition 2021       ", 810000.0, "Familiar     ", 8, 457.20, 1812.3, "Electronico", "8 bolsas de aire" ),
         
-        Descapotable(4,"Automatica", 12.5,  "McPherson", "Discos ventilados - Discos solidos", "total",  "Independiente", 4, "Audi      ", "Rojo           ", 12, "runflat", "A3 Cabrio 2020        ", 790900.0, "Descapotable     ", 4, "toldo de tela eletrico", "480.2" ),
-        Descapotable(4,"Automatica", 13.2,  "Monocasco", "Disco ventilado", "trasera",  "Paralelogramo deformable", 2, "KTM       ", "Amarillo       ", 12, "asimetricas", "X-BOW Street 2011     ", 1664575.0, "Descapotable     ", 2, "toldo de tela eletrico", "350" ),
-        Descapotable(4,"Automatica", 15.9,  "McPherson", "Discos ventilados ", "trasera",  "Resorte helicoidal", 2, "BMW       ", "Negro          ", 12, "runflat", "420i Cabrio 2018      ", 1189399.0, "Descapotable     ", 2, "toldo de tela eletrico", "300" ),
-        Descapotable(4,"Automatica", 13.1,  "Monocasco", "Discos ventilados", "total",  "Independiente", 4, "VOLKSWAGEN", "Blanco         ", 12, "Asimetrica", "BEETLE CABRIO         ", 985000.0, "Descapotable     ", 4, "toldo de tela eletrico", "400" ),
-        Descapotable(4,"Automatica", 12.0,  "Monocasco", "Discos ventilados", "traseros",  "Independiente", 4, "Ford      ", "Gris           ", 12, "all seasons","MUSTANG CONVERTIBLE   ", 850000.0, "Descapotable     ", 4, "toldo de tela eletrico", "420" )
+        Descapotable(4,"Automatica", 12.5,  "McPherson", "Discos ventilados - Discos solidos", "total",  "Independiente", 4, "Audi          ", "Rojo        ", 12, "runflat", "A3 Cabrio 2020        ", 790900.0, "Descapotable ", 4, "toldo de tela eletrico", "480.2" ),
+        Descapotable(4,"Automatica", 13.2,  "Monocasco", "Disco ventilado", "trasera",  "Paralelogramo deformable", 2, "KTM           ", "Amarillo    ", 12, "asimetricas", "X-BOW Street 2011     ", 664575.0, "Descapotable ", 2, "toldo de tela eletrico", "350" ),
+        Descapotable(4,"Automatica", 15.9,  "McPherson", "Discos ventilados ", "trasera",  "Resorte helicoidal", 2, "BMW           ", "Negro       ", 12, "runflat", "420i Cabrio 2018      ", 893990.0, "Descapotable ", 2, "toldo de tela eletrico", "300" ),
+        Descapotable(4,"Automatica", 13.1,  "Monocasco", "Discos ventilados", "total",  "Independiente", 4, "VOLKSWAGEN    ", "Blanco      ", 12, "Asimetrica", "BEETLE CABRIO         ", 985000.0, "Descapotable ", 4, "toldo de tela eletrico", "400" ),
+        Descapotable(4,"Automatica", 12.0,  "Monocasco", "Discos ventilados", "traseros",  "Independiente", 4, "Ford          ", "Gris        ", 12, "all seasons","MUSTANG CONVERTIBLE   ", 850000.0, "Descapotable ", 4, "toldo de tela eletrico", "420" )
     };
     
     for(int i = 0; i < 30; i++) {
@@ -146,15 +146,22 @@ void vehiculosStock(Vehiculo stock[], int&nStock) {
 }
 
 void mostrarStock(Vehiculo stock[], int&nStock) {
-    cout << endl;
-	cout << "	MARCA	|	MODELO		   |		COLOR	|	VEHICULO       |	PRECIO	" << endl;
-	cout << "	--------|--------------------------|--------------------|----------------------|------------------------------" << endl;
+    cout << "+----+------------------+--------------------------+--------------+-------------------+--------------" << endl;
+	cout << "| #  |       MARCA      |          MODELO          |     COLOR    | TIPO DE VEHICULO  |    PRECIO   |" << endl;
+	cout << "+----+------------------+--------------------------+--------------+-------------------+-------------+" << endl;
+	
 	
         for(int i = 0; i < nStock; i++) {
-            printf("%6s", ">"); cout << stock[i].getMarca(); printf("%-5s", "|"); cout << stock[i].getModelo(); printf("%-6s", "|"); cout  << stock[i].getColor(); printf("%-6s", "|"); cout << stock[i].getTipoVehiculo(); printf("%-6s", "|");cout << stock[i].getPrecio() << endl;
+            printf("|%3i ", (i+1));
+            cout<<"|  "<<stock[i].getMarca()<<"  |";
+            cout<<"  "<<stock[i].getModelo()<<"  |";
+            cout<<"  "<<stock[i].getColor()<<"|";
+            cout<<"    "<<stock[i].getTipoVehiculo()<<"  |";
+            cout<<"   $"<<stock[i].getPrecio()<<"   |"<<endl;
+            // printf("|%3i", (i+1)); printf("%2s  ", "|"); cout << stock[i].getMarca(); printf("%-5s", "|"); cout << stock[i].getModelo(); printf("%-3s", "|"); cout  << stock[i].getColor(); printf("%-5s", "|"); cout << stock[i].getTipoVehiculo(); printf("%s", "|");cout <<"   "<< stock[i].getPrecio(); printf("%5s\n","|");
         }
 				
-	cout << "	--------|--------------------------|--------------------|----------------------|------------------------------" << endl;
+	cout << "+----+------------------+--------------------------+--------------+-------------------+-------------+" << endl;
 }
 
 void menuEscogerAuto(Vehiculo stock[], int&nStock, Comprador comprador, Venta ventas[], int&nVentas) {
@@ -171,21 +178,20 @@ void menuEscogerAuto(Vehiculo stock[], int&nStock, Comprador comprador, Venta ve
 		
 		switch(option) {
 			case 'e':
-				//Funcion escoger auto o algo asi
 				cout << "¿Que carro deseas comprar?" << endl; cin >> res;
                 ventas[nVentas].AgregarVehiculo(stock[res-1]);
                 ventas[nVentas].setComprador(comprador);
                 if(comprador.getPago() == "Credito"){
                     do {
-                        cout<<"1.- 3 Pagos"<<endl;
-                        cout<<"2.- 6 Pagos"<<endl;
-                        cout<<"3.- 12 Pagos"<<endl;
+                        cout<<"1.- 24 Pagos"<<endl;
+                        cout<<"2.- 36 Pagos"<<endl;
+                        cout<<"3.- 48 Pagos"<<endl;
                         cout<<"Ingrese el plan de pagos: "<<endl;
                         cin>>res;
                         switch(res) {
-                            case 1: ventas[nVentas].setPlazo(3); break;
-                            case 2: ventas[nVentas].setPlazo(6); break;
-                            case 3: ventas[nVentas].setPlazo(12); break;
+                            case 1: ventas[nVentas].setPlazo(24); break;
+                            case 2: ventas[nVentas].setPlazo(36); break;
+                            case 3: ventas[nVentas].setPlazo(48); break;
                             default:
                             res = 5;
                             cout<<"Opcion no disponible"<<endl;
@@ -201,7 +207,7 @@ void menuEscogerAuto(Vehiculo stock[], int&nStock, Comprador comprador, Venta ve
                 ventas[nVentas].setDireccion(dato1);
                 ventas[nVentas].setFactura();
                 ventas[nVentas].MostrarTicket();
-                cout<<"$"<<ventas[nVentas].operator + ()<<endl;
+                cout<<"Total de la compra es: $"<<+ventas[nVentas]<<endl;
                 nVentas++;
 				break;
 				
@@ -218,81 +224,73 @@ Vehiculo personalizarVehiculo() {
     Vehiculo* automovil ; //En el arreglo estan el total de autos por categoria
     int res; // Colocar do{} while();
     do{
-        cout<<"1.- Clasico"<<endl;
-        cout<<"2.- Deportivo"<<endl;
-        cout<<"3.- Descapotable"<<endl;
-        cout<<"4.- Familiar"<<endl;
-        cout<<"5.- PickUp"<<endl;
-        cout<<"6.- Sedan"<<endl;
+        cout<<"1.- Clasico      "<<endl;
+        cout<<"2.- Deportivo    "<<endl;
+        cout<<"3.- Descapotable "<<endl;
+        cout<<"4.- Familiar     "<<endl;
+        cout<<"5.- PickUp       "<<endl;
+        cout<<"6.- Sedan        "<<endl;
         cout<<"Tipo de vehiculo a crear: "<<endl;
         cin>>res;
         switch (res) {
         case 1:
             automovil = new Clasico();
-            automovil->setTipoVehiculo("Clasico");
+            automovil->tipoVehiculo = "Clasico      ";
+            automovil->setPuertas();
+
             do{
-                cout<<"1.- Ford"<<endl;
-                cout<<"2.- Chevrolet"<<endl;
-                cout<<"3.- Dodge"<<endl;
-                cout<<"4.- VolksWagen"<<endl;
-                cout<<"5.- Mercedes Benz"<<endl;
+                cout<<"1.- Ford          "<<endl;
+                cout<<"2.- Chevrolet     "<<endl;
+                cout<<"3.- Dodge         "<<endl;
+                cout<<"4.- VolksWagen    "<<endl;
+                cout<<"5.- Mercedes Benz "<<endl;
                 cout<<"Elija la marca: "<<endl;
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Ford");
+                    automovil->marca = "Ford          ";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     break;
                 case 2: 
-                    automovil->setMarca("Chevrolet"); 
+                    automovil->marca = "Chevrolet     "; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     break;
                 case 3: 
-                    automovil->setMarca("Dodge"); 
+                    automovil->marca = "Dodge         "; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     break;
                 case 4: 
-                    automovil->setMarca("VolksWagen");
+                    automovil->marca = "VolksWagen    ";
                     automovil->setTransmision(); 
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     break;
                 case 5: 
-                    automovil->setMarca("Mercedes Benz"); 
+                    automovil->marca = "Mercedes Benz "; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     break;  
                 default: 
                     res = 0;
@@ -306,113 +304,102 @@ Vehiculo personalizarVehiculo() {
         case 2:
             Deportivo* dep;
             automovil = new Deportivo();
-            automovil->setTipoVehiculo("Deportivo");
+            automovil->tipoVehiculo = "Deportivo    ";
+            automovil->setPuertas();
 
             do{
-                cout<<"1.- Porsche"<<endl;
-                cout<<"2.- Mazda"<<endl;
-                cout<<"3.- BMW"<<endl;
-                cout<<"4.- Honda"<<endl;
-                cout<<"5.- Mercedes Benz"<<endl;
-                cout<<"6.- Ford"<<endl;
+                cout<<"1.- Porsche       "<<endl;
+                cout<<"2.- Mazda         "<<endl;
+                cout<<"3.- BMW           "<<endl;
+                cout<<"4.- Honda         "<<endl;
+                cout<<"5.- Mercedes Benz "<<endl;
+                cout<<"6.- Ford          "<<endl;
                 cout<<"Elija la marca: "<<endl;
                 cin>>res;
     
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Porsche");
+                    automovil->marca = "Porsche       ";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     dep = (Deportivo*)automovil;
                     dep->setMotor();
                     dep->setDireccion();
-                    dep->setAceleracion();
+                    dep->aceleracion = (35 + rand() % 15)/10;
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 2: 
-                    automovil->setMarca("Mazda");
+                    automovil->marca = "Mazda         ";
                 	automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     dep = (Deportivo*)automovil;
                     dep->setMotor();
                     dep->setDireccion();
-                    dep->setAceleracion();
+                    dep->aceleracion = (35 + rand() % 15)/10;
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 3: 
-                    automovil->setMarca("BMW");
+                    automovil->marca = "BMW           ";
                 	automovil->setTransmision();
                     automovil->setFrenos();
                 	automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     dep = (Deportivo*)automovil;
                     dep->setMotor();
                     dep->setDireccion();
-                    dep->setAceleracion();
+                    dep->aceleracion = (35 + rand() % 15)/10;
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 4: 
-                    automovil->setMarca("Honda");
+                    automovil->marca = "Honda         ";
         	   	    automovil->setTransmision();
                 	automovil->setFrenos();
                 	automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     dep = (Deportivo*)automovil;
                     dep->setMotor();
                     dep->setDireccion();
-                    dep->setAceleracion();
+                    dep->aceleracion = (35 + rand() % 15)/10;
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 5: 
-                    automovil->setMarca("Mercedes Benz");
+                    automovil->marca = "Mercedes Benz ";
 	    	  	    automovil->setTransmision();
                 	automovil->setFrenos();
                 	automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     dep = (Deportivo*)automovil;
                     dep->setMotor();
                     dep->setDireccion();
-                    dep->setAceleracion();
+                    dep->aceleracion = (35 + rand() % 15)/10;
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 case 6: 
-                    automovil->setMarca("Ford");
+                    automovil->marca = "Ford          ";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta(); 
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     dep = (Deportivo*)automovil;
                     dep->setMotor();
                     dep->setDireccion();
-                    dep->setAceleracion();
+                    dep->aceleracion = (35 + rand() % 15)/10;
                     automovil = (Vehiculo*)dep;
 	    	  	    break;
                 default: 
@@ -427,103 +414,99 @@ Vehiculo personalizarVehiculo() {
         case 3:
             Descapotable* des;
             automovil = new Descapotable();
-            automovil->setTipoVehiculo("Descapotable");
+            automovil->tipoVehiculo = "Descapotable ";
+            automovil->setPuertas();
+
             do{
-                cout<<"1.- Fiat"<<endl;
-                cout<<"2.- Mazda"<<endl;
-                cout<<"3.- VolksWagen"<<endl;
-                cout<<"4.- Ford"<<endl;
-                cout<<"5.- Lotus Elise"<<endl;
-                cout<<"6.- Audi"<<endl;
+                cout<<"1.- Fiat          "<<endl;
+                cout<<"2.- Mazda         "<<endl;
+                cout<<"3.- VolksWagen    "<<endl;
+                cout<<"4.- Ford          "<<endl;
+                cout<<"5.- Lotus Elise   "<<endl;
+                cout<<"6.- Audi          "<<endl;
                 cout<<"Elija la marca: "<<endl;
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Fiat"); 
+                    automovil->marca = "Fiat          "; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     des = (Descapotable*)automovil;
+                    des->setPasajeros();
                     des->setCapo();
                     des->setMaletero();
                     automovil = (Vehiculo*)des;
                     break;
                 case 2: 
-                    automovil->setMarca("Mazda"); 
+                    automovil->marca = "Mazda         "; 
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     des = (Descapotable*)automovil;
+                    des->setPasajeros();
                     des->setCapo();
                     des->setMaletero();
                     automovil = (Vehiculo*)des;
                     break;
                 case 3: 
-                    automovil->setMarca("VolksWagen");
+                    automovil->marca = "VolksWagen    ";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     des = (Descapotable*)automovil;
+                    des->setPasajeros();
                     des->setCapo();
                     des->setMaletero();
                     automovil = (Vehiculo*)des;
                     break;
                 case 4: 
-                    automovil->setMarca("Ford");
+                    automovil->marca = "Ford          ";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     des = (Descapotable*)automovil;
+                    des->setPasajeros();
                     des->setCapo();
                     des->setMaletero();
                     automovil = (Vehiculo*)des;
                     break;
                 case 5: 
-                    automovil->setMarca("Lotus Elise");
+                    automovil->marca = "Lotus Elise   ";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     des = (Descapotable*)automovil;
+                    des->setPasajeros();
                     des->setCapo();
                     des->setMaletero();
                     automovil = (Vehiculo*)des;
                     break;
                 case 6: 
-                    automovil->setMarca("Audi");
+                    automovil->marca = "Audi          ";
                     automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     des = (Descapotable*)automovil;
+                    des->setPasajeros();
                     des->setCapo();
                     des->setMaletero();
                     automovil = (Vehiculo*)des;
@@ -540,26 +523,25 @@ Vehiculo personalizarVehiculo() {
         case 4:
             Familiar* fam;
             automovil = new Familiar();
-            automovil->setTipoVehiculo("Familiar");
+            automovil->tipoVehiculo = "Familiar     ";
+            automovil->setPuertas();
             
             do{
-                cout<<"1.- Seat"<<endl;
-                cout<<"2.- Subaru"<<endl;
-                cout<<"3.- Peugeot"<<endl;
-                cout<<"4.- Kia"<<endl;
+                cout<<"1.- Seat          "<<endl;
+                cout<<"2.- Subaru        "<<endl;
+                cout<<"3.- Peugeot       "<<endl;
+                cout<<"4.- Kia           "<<endl;
                 cout<<"Elija la marca: "<<endl;
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Seat");
+                    automovil->marca = "Seat          ";
                     automovil->setTransmision();
 	    	  	    automovil->setFrenos();
                 	automovil->setTraccion();
-                	automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     fam = (Familiar*)automovil;
                     fam->setNPasajeros();
                     fam->setDimensiones();
@@ -569,15 +551,13 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)fam;
                     break;
                 case 2:
-                    automovil->setMarca("Subaru");
+                    automovil->marca = "Subaru        ";
                     automovil->setTransmision();
         	   	    automovil->setFrenos();
                 	automovil->setTraccion();
-                	automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     fam = (Familiar*)automovil;
                     fam->setNPasajeros();
                     fam->setDimensiones();
@@ -587,15 +567,13 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)fam;
                     break;
                 case 3: 
-                    automovil->setMarca("Peugout"); 
+                    automovil->marca = "Peugeot       "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     fam = (Familiar*)automovil;
                     fam->setNPasajeros();
                     fam->setDimensiones();
@@ -605,15 +583,13 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)fam;
                     break;
                 case 4: 
-                    automovil->setMarca("Kia"); 
+                    automovil->marca = "Kia           "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     fam = (Familiar*)automovil;
                     fam->setNPasajeros();
                     fam->setDimensiones();
@@ -634,26 +610,26 @@ Vehiculo personalizarVehiculo() {
         case 5:
             PicKup* pic;
             automovil = new PicKup();
-            automovil->setTipoVehiculo("PickUp");
+            automovil->tipoVehiculo = "PickUp       ";
+            automovil->setPuertas();
+
             do{
-                cout<<"1.- Chevrolet"<<endl;
-                cout<<"2.- Ford"<<endl;
-                cout<<"3.- Mitsubishi"<<endl;
-                cout<<"4.- Nissan"<<endl;
-                cout<<"5.- Toyota"<<endl;
+                cout<<"1.- Chevrolet     "<<endl;
+                cout<<"2.- Ford          "<<endl;
+                cout<<"3.- Mitsubishi    "<<endl;
+                cout<<"4.- Nissan        "<<endl;
+                cout<<"5.- Toyota        "<<endl;
                 cout<<"Elija la marca: "<<endl;
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Chevrolet");
+                    automovil->marca = "Chevrolet     ";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     pic = (PicKup*)automovil;
                     pic->setTamano();
                     pic->setCabinas();
@@ -664,15 +640,13 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 2: 
-                    automovil->setMarca("Ford"); 
+                    automovil->marca = "1.- Ford          "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     pic = (PicKup*)automovil;
                     pic->setTamano();
                     pic->setCabinas();
@@ -683,15 +657,13 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 3: 
-                    automovil->setMarca("Mitsubishi"); 
+                    automovil->marca = "Mitsubishi    "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     pic = (PicKup*)automovil;
                     pic->setTamano();
                     pic->setCabinas();
@@ -702,15 +674,13 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 4: 
-                    automovil->setMarca("Nissan"); 
+                    automovil->marca = "Nissan        "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     pic = (PicKup*)automovil;
                     pic->setTamano();
                     pic->setCabinas();
@@ -721,15 +691,13 @@ Vehiculo personalizarVehiculo() {
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 5: 
-                    automovil->setMarca("Toyota"); 
+                    automovil->marca = "Toyota        "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     pic = (PicKup*)automovil;
                     pic->setTamano();
                     pic->setCabinas();
@@ -751,100 +719,95 @@ Vehiculo personalizarVehiculo() {
         case 6:
             Sedan* sed;
             automovil = new Sedan();
-            automovil->setTipoVehiculo("Sedan");
+            automovil->tipoVehiculo = "Sedan        ";
+            automovil->setPuertas();
 
             do{
-                cout<<"1.- Chevrolet"<<endl;
-                cout<<"2.- Ford"<<endl;
-                cout<<"3.- Honda"<<endl;
-                cout<<"4.- Hyundai"<<endl;
-                cout<<"5.- Mazda"<<endl;
-                cout<<"6.- Nissan"<<endl;
+                cout<<"1.- Chevrolet     "<<endl;
+                cout<<"2.- Ford          "<<endl;
+                cout<<"3.- Honda         "<<endl;
+                cout<<"4.- Hyundai       "<<endl;
+                cout<<"5.- Mazda         "<<endl;
+                cout<<"6.- Nissan        "<<endl;
                 cout<<"Elija la marca: "<<endl;
                 cin>>res;
                 switch (res) {
                 case 1: 
-                    automovil->setMarca("Chevrolet");
+                    automovil->marca = "Chevrolet     ";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     sed = (Sedan*)automovil;
-                    sed->setMaletero();
+                    sed->maletero = (float) 350 + (rand() % 1500)/10;
+                    sed->pasajeros = 5;
                     automovil = (Vehiculo*)sed;
 	    	  	    break;
                 case 2: 
-                    automovil->setMarca("Ford");
+                    automovil->marca = "Ford          ";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     sed = (Sedan*)automovil;
-                    sed->setMaletero();
+                    sed->maletero = (float) 350 + (rand() % 1500)/10;
+                    sed->pasajeros = 4;
                     automovil = (Vehiculo*)sed; 
 	    	  	    break;
                 case 3: 
-                    automovil->setMarca("Honda");
+                    automovil->marca = "Honda         ";
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     sed = (Sedan*)automovil;
-                    sed->setMaletero();
+                    sed->maletero = (float) 350 + (rand() % 1500)/10;
+                    sed->pasajeros = 4;
                     automovil = (Vehiculo*)sed; 
 	    	  	    break;
                 case 4: 
-                    automovil->setMarca("Hyundai"); 
+                    automovil->marca = "Hyundai       "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     sed = (Sedan*)automovil;
-                    sed->setMaletero();
+                    sed->maletero = (float) 350 + (rand() % 1500)/10;
+                    sed->pasajeros = 5;
                     automovil = (Vehiculo*)sed;
 	    	  	    break;
                 case 5: 
-                    automovil->setMarca("Mazda"); 
+                    automovil->marca = "Mazda         "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     sed = (Sedan*)automovil;
-                    sed->setMaletero();
+                    sed->maletero = (float) 350 + (rand() % 1500)/10;
+                    sed->pasajeros = 5;
                     automovil = (Vehiculo*)sed;
 	    	  	    break;
                 case 6: 
-                    automovil->setMarca("Nissan"); 
+                    automovil->marca = "Nissan        "; 
 	    	  	    automovil->setTransmision();
                     automovil->setFrenos();
                     automovil->setTraccion();
-                    automovil->setColor();
                     automovil->setRin();
                     automovil->setLlanta();
-                    automovil->setPrecio();
-                    automovil->setNumeroSerie();
+                    automovil->numSerie = 100000 + rand() % (999999-100000);
                     sed = (Sedan*)automovil;
-                    sed->setMaletero();
+                    sed->maletero = (float) 350 + (rand() % 1500)/10;
+                    sed->pasajeros = 5;
                     automovil = (Vehiculo*)sed;
 	    	  	    break;
                 default: 
@@ -862,6 +825,12 @@ Vehiculo personalizarVehiculo() {
         }
     }
     while(res == 0);
+    automovil->setColor();
+    automovil->setNumCilindros();
+    automovil->setChasis();
+    automovil->setConsumo();
+    automovil->setSuspension();
+    automovil->setPrecio();
     return *automovil;
 }
 
@@ -903,7 +872,7 @@ void iniciarSesion(Administrador admin[], int&nAdmin, Venta v[], int&nVentas, Ve
 
         if((indice == 0) && (datos1 == admin[indice].getId()) && (datos2 == admin[indice].getPassword())) {
             cout<<"Acceso como Super Administrador"<<endl;
-            menuSuperAdministrador(admin, nAdmin, v, nVentas, automovil, nAutos);
+            menuSuperAdministrador(admin, nAdmin, v, nVentas, automovil, nAutos, stock, nStock);
         }
         else if((datos1 == admin[indice].getId()) && (datos2 == admin[indice].getPassword())) {
             cout<<"Acceso consedido"<<endl;
@@ -919,9 +888,9 @@ Administrador crearAdministrador() {
     Administrador a;
     int res;
     string datos1, datos2;
-    cin.ignore();
 
     do {
+        cin.ignore();
         cout<<"Ingrese su nombre: "<<endl;
         getline(cin, datos1);
         cout<<"Ingrese id: "<<endl;
@@ -940,25 +909,31 @@ Administrador crearAdministrador() {
 }
 
 void mostrarAdministradores(Administrador admin[], int&nAdmin) {
-    if(nAdmin > 0) {
+    if(nAdmin >= 1) {
+        cout<<"Perfiles de administradores:\n-------------------------------------"<<endl;
         for(int i = 1; i < nAdmin; i++) {
             cout<<"Nombre: "<<admin[i].mostrarNombre()<<endl;
             cout<<"Id: "<<admin[i].getId()<<endl;
+            cout<<"Contrasena: "<<admin[i].getPassword()<<endl;
+            cout<<"-------------------------------------"<<endl;
         }
     }
+    else cout<<"No hay administradores extras creados"<<endl;
 }
 
-void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nVentas, Vehiculo automovil[], int&nAutos){
+void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nVentas, Vehiculo automovil[], int&nAutos, Vehiculo stock[], int&nStock){
     int res;
+    double precio;
     do{
         cout<<"\n\nOpciones de super administrador"<<endl;
         cout<<"1.- Agregar un administrador"<<endl;
         cout<<"2.- Mostrar los administradores"<<endl;
         cout<<"3.- Crear automoviles para stock"<<endl;
-        cout<<"4.- Visualizar venta"<<endl;
-        cout<<"5.- Visualizar ventas"<<endl;
-        cout<<"6.- Mostrar total vendido"<<endl;
-        cout<<"7.- Regresar al menu principal"<<endl;
+        cout<<"4.- Visualizar Stock"<<endl;
+        cout<<"5.- Visualizar venta"<<endl;
+        cout<<"6.- Visualizar ventas"<<endl;
+        cout<<"7.- Mostrar total vendido"<<endl;
+        cout<<"8.- Regresar al menu principal"<<endl;
         cout<<"Ingrese respuesta"<<endl;
         cin>>res;
 
@@ -972,17 +947,21 @@ void menuSuperAdministrador(Administrador admin[], int&nAdmin, Venta v[], int&nV
                 mostrarAdministradores(admin, nAdmin);
                 break;
             case 3: 
-                automovil[nAutos] = personalizarVehiculo();
-                nAutos++;
+                stock[nStock] = personalizarVehiculo();
+                cout<<"Ingresa el precio del automovil"<<endl;
+                cin>>precio;
+                stock[nStock].setPrecio(precio);
+                nStock++;
                 break;
-            case 4: v[0].BuscarVentas(v); break;
-            case 5: v[0].MostrarVentas(v , nVentas); break;
-            case 6: cout << "Total de ventas: " << v[0].operator+() << endl; break;
-            case 7: break;
+            case 4: mostrarStock(stock, nStock); break;
+            case 5: v[0].BuscarVentas(v); break;
+            case 6: v[0].MostrarVentas(v , nVentas); break;
+            case 7: cout << "Total de ventas: " << v[0].totalVentas(v, nVentas)<<endl; break;
+            case 8: break;
             default: cout<<"Opcion no establecida"<<endl; break;
         }
     }
-    while(res != 7);
+    while(res != 8);
 }
 
 void menuAdministradorNorm(Venta v[], int&nVentas, Vehiculo automovil[], int&nAutos, Vehiculo stock[], int&nStock){
@@ -1130,8 +1109,9 @@ Venta realizarCompra(Comprador&comp, Vehiculo vehiculo[], int&nAutos, int&contCo
     v.setDireccion(dato1);
     v.setFactura();
     for(int i = (nAutos - contCom); i < nAutos; i++) v.AgregarVehiculo(vehiculo[i]);
+    cout<<"Tu compra se ha realizado correctamente: "<<endl;
     v.MostrarTicket();
-    cout<<"Total de compra es: $"<<v.operator + ()<<endl;
+    cout<<"Total de compra es: $"<<+v<<endl;
     
     return v;
 }
