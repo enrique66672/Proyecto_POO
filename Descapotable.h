@@ -11,20 +11,37 @@ private:
    string capo;
 public:
     Descapotable() : Vehiculo(){
-        pasajeros = 0;
+        pasajeros = 2;
         capo = "";
         maletero = "";
     }
-    Descapotable(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, int _pasajeros, string _capo, string _maletero) : Vehiculo(_numCilindros, _transmision, _consumo, _chasis, _frenos, _traccion, _suspension, _puertas, _marca, _color, _rines, _llantas, _modelo, _precio, _tipoVehiculo) {
+    Descapotable(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, long double _precio, string _tipoVehiculo, int _pasajeros, string _capo, string _maletero) : Vehiculo(_numCilindros, _transmision, _consumo, _chasis, _frenos, _traccion, _suspension, _puertas, _marca, _color, _rines, _llantas, _modelo, _precio, _tipoVehiculo) {
         pasajeros = _pasajeros;
         capo = _capo;
         maletero = _maletero;
     }
-    ~Descapotable() {}
 
+    void setPasajeros() { //Menú
+        int res;
+        do {
+            cout<<"1.- 2 pasajeros"<<endl;
+            cout<<"2.- 4 pasajeros"<<endl;
+            cout<<"Ingrese los pasajeros que necesita: "<<endl;
+            cin>>res;
+            switch (res) {
+            case 1: pasajeros = 2; break;
+            case 2: pasajeros = 4; break;
+            default: 
+                res = 3;
+                cout<<"Opcion no disponible: "<<endl; 
+                break;
+            }
+        }
+        while (res == 3);        
+    }
     int getPasajeros(){ return pasajeros; }
 
-    void setCapo(){
+    void setCapo(){ // Menú
         int res;
         do {
             cout << "1.Tela-" << endl;
@@ -51,7 +68,7 @@ public:
     }
     string getCapo(){ return capo; }
 
-    void setMaletero( ) { 
+    void setMaletero() { //Menú
         int res;
         do {
             cout << "1.-Neopreno" << endl;

@@ -15,15 +15,15 @@ class Familiar: public Vehiculo{
 			tipoEncendido = "";
 			seguridad = "";
 		}
-		Familiar(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, double _precio, string _tipoVehiculo, int _pasajeros, float _dimensiones, float _capacidadCarga, string _tipoEncendido, string _seguridad) : Vehiculo(_numCilindros, _transmision, _consumo, _chasis, _frenos, _traccion, _suspension, _puertas, _marca, _color, _rines, _llantas, _modelo, _precio, _tipoVehiculo) {
+		Familiar(int _numCilindros, string _transmision, float _consumo, string _chasis, string _frenos, string _traccion, string _suspension, int _puertas, string _marca, string _color, int _rines, string _llantas, string _modelo, long double _precio, string _tipoVehiculo, int _pasajeros, float _dimensiones, float _capacidadCarga, string _tipoEncendido, string _seguridad) : Vehiculo(_numCilindros, _transmision, _consumo, _chasis, _frenos, _traccion, _suspension, _puertas, _marca, _color, _rines, _llantas, _modelo, _precio, _tipoVehiculo) {
 			pasajeros = _pasajeros;
 			dimensiones = _dimensiones;
 			capacidadCarga = _capacidadCarga;
 			tipoEncendido = _tipoEncendido;
 			seguridad =  _seguridad;
 		}
-		~Familiar() {}
-		void setNPasajeros() {
+
+		void setNPasajeros() { // Menú
 			int res;
 			do {
 				cout<<"1.- 4 asientos"<<endl;
@@ -43,7 +43,7 @@ class Familiar: public Vehiculo{
 		}
 		int getNPasajeros(){ return pasajeros; }
 		
-		void setDimensiones() {
+		void setDimensiones() { //Automático
 			switch(pasajeros) {
 				case 4: dimensiones = (float) 4 + (rand() % 10) / 100; break;
 				case 6: dimensiones = (float) 5 + (rand() % 10) / 100; break;
@@ -51,7 +51,7 @@ class Familiar: public Vehiculo{
 		}
 		float getDimensiones(){ return dimensiones; }
 		
-		void setCapacidadCarga() {
+		void setCapacidadCarga() { //Automático
 			switch(pasajeros) {
 				case 4: capacidadCarga = (float) 400 + (rand() % 2000)/10;
 				case 6: capacidadCarga = (float) 600 + (rand() % 2000)/10;
@@ -59,7 +59,7 @@ class Familiar: public Vehiculo{
 		}
 		float getCapacidadCarga() { return capacidadCarga; }
 		
-		void setTipoEncendido() {
+		void setTipoEncendido() { //Menú
 			int res;
 			do {
 				cout<<"1.- Boton"<<endl;
@@ -79,7 +79,7 @@ class Familiar: public Vehiculo{
 		}
 		string getTipoEncendido(){ return tipoEncendido; }
 		
-		void setSeguridad() { //Bolsas aire
+		void setSeguridad() { //Menú
 			int res;
 			do {
 				cout<<"1.- 4 bolsas de aire"<<endl;

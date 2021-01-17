@@ -14,9 +14,9 @@ class Venta{
 		string direccion;
 		Comprador comprador;
 		Vehiculo vehiculos [MAX];
-		double total;	
+		long double total;	
 	public:
-		Venta(int _plazo, string _direccion, int _factura, double _total, Vehiculo _vehiculo, Comprador _comprador) {
+		Venta(int _plazo, string _direccion, int _factura, long double _total, Vehiculo _vehiculo, Comprador _comprador) {
 			plazo = _plazo;
 			direccion = _direccion;
 			factura = _factura;
@@ -45,9 +45,6 @@ class Venta{
 			factura = 100000 + rand()% (999999 - 100000);
 		}
 		int getFactura(){ return factura; }
-		
-		void setTotal(double _total){ total= _total; }
-		double getTotal(){ return total; }
 
 		void setComprador(Comprador comp){ comprador = comp; }
 		
@@ -83,28 +80,27 @@ class Venta{
 			}			
 		}
 
-		long double operator + (Venta v[]){
-			double a = 0;
-			for (int i = 0; i < N ; i++){
-				for (int j = 0; j < 1; j++){
-					a += v[i].vehiculos[j].getPrecio();
+		long double totalVentas (Venta v[], int&nVentas){
+			total = 0;
+			for (int i = 0; i < nVentas ; i++){
+				for (int j = 0; j < N; j++){
+					total += (long double) v[i].vehiculos[j].getPrecio();
 				}				
 			}
-			return a;
+			return total;
 		}
-		long double operator + (){
-			long double a;
+		long double operator + (){ // uso de getTotal
+			total = 0;
 			for(int i = 0; i < N; i++) {
-				a = vehiculos[i].getPrecio();
+				total += vehiculos[i].getPrecio();
 			}
-			return a;
+			return total;
 		}
 		void BuscarVentas(Venta ventas[]) {
 			int fac;
 			int indice = -1;
 			int i = 0;
 			bool encontrado = false;
-			
 			cout << "Ingrese la factura a buscar"<<endl; cin >> fac;
 			
 			while((i < N) && (!encontrado)) {
@@ -114,25 +110,28 @@ class Venta{
 				}
 				i++;
 			}
-			if(encontrado == false) {
-				cout<<"Factura no encontrada, revise si se ingreso correctamente"<<endl;
-			}
+			if(encontrado == false) cout<<"Factura no encontrada, revise si se ingreso correctamente"<<endl;
 			else MostrarVenta(ventas, indice);
 		}
 		
 		void MostrarVentas(Venta v[], int&nVentas) {
 			cout<<"Todas las ventas"<<endl;
 			cout<<"Num: "<<nVentas<<endl;
-			cout<<"num. Factura\tMarca\t\tModelo\t\tPrecio\t\tComprador\t\t\tDireccion"<<endl;
+			cout<<"+--------------+---------------+---------------+----------------+------------+-------------------------+----------------------------+------------+"<<endl;
+			cout<<"| num. Factura | Tipo Vehiculo |     Marca     |     Modelo     |   Precio   |        Comprador        |         Direccion          |  Telefono  |"<<endl;
+			cout<<"+--------------+---------------+---------------+----------------+------------+-------------------------+----------------------------+------------+"<<endl;
 			for(int i = 0; i < nVentas; i++) {
 				for(int j = 0; j < v[i].N; j++){
-					cout<<v[i].getFactura()<<"\t\t";
-					cout<<v[i].vehiculos[j].getMarca()<<"\t\t";
-					cout<<v[i].vehiculos[j].getModelo()<<"\t";
-					cout<<v[i].vehiculos[j].getPrecio()<<"\t\t";
-					cout<<v[i].comprador.mostrarNombre()<<"\t\t";
-					cout<<v[i].direccion;
+					cout<<"|    "<<v[i].getFactura()<<"    |";
+					cout<<" "<<v[i].vehiculos[j].getTipoVehiculo()<<" |";
+					cout<<"    "<<v[i].vehiculos[j].getMarca()<<" |";
+					cout<<" "<<v[i].vehiculos[j].getModelo()<<"|";
+					cout<<"  $"<<v[i].vehiculos[j].getPrecio()<<"   |";
+					cout<<" "<<v[i].comprador.mostrarNombre()<<" |";
+					cout<<" "<<v[i].direccion<<" |";
+					cout<<" "<<v[i].comprador.getTelefono()<<" |"<<endl;
 				}
+				cout<<"+--------------+---------------+---------------+----------------+------------+-------------------------+----------------------------+------------+"<<endl;
 			}
 		}
 };
