@@ -28,7 +28,7 @@ class Comprador : private Usuario {
 		void setPago(string _pago){ tipoPago = _pago; }
 		string getPago(){ return tipoPago; }
 
-		void setCorreo(string _correo, string _nombre){ ´
+		void setCorreo(string _correo, string _nombre){
 			correo = _correo;	
 			setNombre(_nombre);
 		}

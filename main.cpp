@@ -146,7 +146,7 @@ void vehiculosStock(Vehiculo stock[], int&nStock) {
 }
 
 void mostrarStock(Vehiculo stock[], int&nStock) {
-    cout << "+----+------------------+--------------------------+--------------+-------------------+--------------" << endl;
+    cout << "+----+------------------+--------------------------+--------------+-------------------+-------------+" << endl;
 	cout << "| #  |       MARCA      |          MODELO          |     COLOR    | TIPO DE VEHICULO  |    PRECIO   |" << endl;
 	cout << "+----+------------------+--------------------------+--------------+-------------------+-------------+" << endl;
 	
@@ -158,10 +158,9 @@ void mostrarStock(Vehiculo stock[], int&nStock) {
             cout<<"  "<<stock[i].getColor()<<"|";
             cout<<"    "<<stock[i].getTipoVehiculo()<<"  |";
             cout<<"   $"<<stock[i].getPrecio()<<"   |"<<endl;
-            // printf("|%3i", (i+1)); printf("%2s  ", "|"); cout << stock[i].getMarca(); printf("%-5s", "|"); cout << stock[i].getModelo(); printf("%-3s", "|"); cout  << stock[i].getColor(); printf("%-5s", "|"); cout << stock[i].getTipoVehiculo(); printf("%s", "|");cout <<"   "<< stock[i].getPrecio(); printf("%5s\n","|");
+        	cout << "+----+------------------+--------------------------+--------------+-------------------+-------------+" << endl;
+		    // printf("|%3i", (i+1)); printf("%2s  ", "|"); cout << stock[i].getMarca(); printf("%-5s", "|"); cout << stock[i].getModelo(); printf("%-3s", "|"); cout  << stock[i].getColor(); printf("%-5s", "|"); cout << stock[i].getTipoVehiculo(); printf("%s", "|");cout <<"   "<< stock[i].getPrecio(); printf("%5s\n","|");
         }
-				
-	cout << "+----+------------------+--------------------------+--------------+-------------------+-------------+" << endl;
 }
 
 void menuEscogerAuto(Vehiculo stock[], int&nStock, Comprador comprador, Venta ventas[], int&nVentas) {
@@ -178,7 +177,7 @@ void menuEscogerAuto(Vehiculo stock[], int&nStock, Comprador comprador, Venta ve
 		
 		switch(option) {
 			case 'e':
-				cout << "¿Que carro deseas comprar?" << endl; cin >> res;
+				cout << "Que carro deseas comprar?" << endl; cin >> res;
                 ventas[nVentas].AgregarVehiculo(stock[res-1]);
                 ventas[nVentas].setComprador(comprador);
                 if(comprador.getPago() == "Credito"){
@@ -202,7 +201,7 @@ void menuEscogerAuto(Vehiculo stock[], int&nStock, Comprador comprador, Venta ve
                 }
                 else ventas[nVentas].setPlazo(1);
                 cin.ignore();
-                cout<<"Ingrese su dirección: "<<endl;
+                cout<<"Ingrese su direccion: "<<endl;
                 getline(cin, dato1);
                 ventas[nVentas].setDireccion(dato1);
                 ventas[nVentas].setFactura();
@@ -636,7 +635,7 @@ Vehiculo personalizarVehiculo() {
                     pic->setPuertaDeCarga();
                     pic->setTipoCaja();
                     pic->setCapacidadDeCarga();
-                    pic->SetLongCaja();
+                    pic->setLongCaja();
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 2: 
@@ -653,7 +652,7 @@ Vehiculo personalizarVehiculo() {
                     pic->setPuertaDeCarga();
                     pic->setTipoCaja();
                     pic->setCapacidadDeCarga();
-                    pic->SetLongCaja();
+                    pic->setLongCaja();
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 3: 
@@ -670,7 +669,7 @@ Vehiculo personalizarVehiculo() {
                     pic->setPuertaDeCarga();
                     pic->setTipoCaja();
                     pic->setCapacidadDeCarga();
-                    pic->SetLongCaja();
+                    pic->setLongCaja();
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 4: 
@@ -687,7 +686,7 @@ Vehiculo personalizarVehiculo() {
                     pic->setPuertaDeCarga();
                     pic->setTipoCaja();
                     pic->setCapacidadDeCarga();
-                    pic->SetLongCaja();
+                    pic->setLongCaja();
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 case 5: 
@@ -704,7 +703,7 @@ Vehiculo personalizarVehiculo() {
                     pic->setPuertaDeCarga();
                     pic->setTipoCaja();
                     pic->setCapacidadDeCarga();
-                    pic->SetLongCaja();
+                    pic->setLongCaja();
                     automovil = (Vehiculo*)pic;
 	    	  	    break;
                 default: 

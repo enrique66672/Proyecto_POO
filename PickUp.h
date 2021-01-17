@@ -126,9 +126,9 @@ class PicKup: public Vehiculo{
 				}
 			} while(res == 4);
 		}
-		int GetCapacidadDeCarga(){ return capacidadDeCarga; }
+		int getCapacidadDeCarga(){ return capacidadDeCarga; }
 		
-		void SetLongCaja() {//Menú
+		void setLongCaja() {//Menú
 			int res;
 
 			do {
@@ -147,7 +147,7 @@ class PicKup: public Vehiculo{
 			} 
 			while(res == 3);
 		}
-        int GetLongCaja(){ return longCaja; }
+        int getLongCaja(){ return longCaja; }
 
 		friend Vehiculo personalizarVehiculo();
 				
