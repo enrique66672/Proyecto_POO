@@ -12,6 +12,7 @@ class Mecanicas {
 		float potenciaMaxima, velocidadMaxima, consumo;
 		string transmision, chasis, frenos, traccion, suspension;
 
+	private:
 		float valorPotenca(int cili, string trac){
 			if ((cili > 700) && (cili < 1000) && (trac == "Delantera" || trac == "Tracera")){
 				return (float) 450 + rand() % 250;
@@ -43,6 +44,7 @@ class Mecanicas {
 			}
 			else return 0;
 		}
+		
 	public:
 		Mecanicas() {
 			numCilindros = 0;
